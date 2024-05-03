@@ -1,0 +1,76 @@
+(const) %[
+ "back" => (const) %[
+  "y" => 693,
+  "on" => "q_cgmode_exit_over",
+  "over" => "q_cgmode_exit_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_cgmode_exit_normal",
+  "clickse" => "",
+  "x" => 0
+ ],
+ "up" => (const) %[
+  "y" => 304,
+  "on" => "q_cgmode_back_over",
+  "over" => "q_cgmode_back_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_cgmode_back_normal",
+  "clickse" => "",
+  "x" => 0
+ ],
+ "thum" => (const) %[
+  "on" => "sample_cgthum",
+  "over" => "sample_cgthum",
+  "normal" => "q_cgmode_cg_size"
+ ],
+ "down" => (const) %[
+  "y" => 405,
+  "on" => "q_cgmode_next_over",
+  "over" => "q_cgmode_next_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_cgmode_next_normal",
+  "clickse" => "",
+  "x" => 0
+ ],
+ "bgd" => "q_cgmode_bgd",
+ "locate" => (const) [
+  (const) [
+   298,
+   174
+  ],
+  (const) [
+   527,
+   174
+  ],
+  (const) [
+   755,
+   174
+  ],
+  (const) [
+   298,
+   348
+  ],
+  (const) [
+   527,
+   348
+  ],
+  (const) [
+   755,
+   348
+  ],
+  (const) [
+   298,
+   522
+  ],
+  (const) [
+   527,
+   522
+  ],
+  (const) [
+   755,
+   522
+  ]
+ ]
+]

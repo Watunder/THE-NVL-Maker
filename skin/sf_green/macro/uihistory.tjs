@@ -1,0 +1,63 @@
+(const) %[
+ "left" => 150,
+ "marginr" => 211,
+ "up" => (const) %[
+  "y" => 569,
+  "on" => "option_button_on_01",
+  "over" => "option_button_on_01",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_01",
+  "clickse" => void,
+  "x" => 132
+ ],
+ "font" => (const) %[
+  "icon" => "log_play_normal",
+  "italic" => 0,
+  "size" => "16",
+  "color" => "",
+  "edge" => 1,
+  "selicon" => "log_play_over",
+  "shadowcolor" => "0x000000",
+  "shadow" => 0,
+  "bold" => 0,
+  "selcolor" => "",
+  "edgecolor" => "0x000000"
+ ],
+ "marginl" => 122,
+ "linespace" => 28,
+ "slider" => (const) %[
+  "width" => "21",
+  "y" => 140,
+  "over" => "sf_option_slider_button",
+  "normal" => "sf_option_slider_button",
+  "use" => 1,
+  "x" => 70,
+  "height" => "292"
+ ],
+ "down" => (const) %[
+  "y" => 569,
+  "on" => "option_button_on_02",
+  "over" => "option_button_on_02",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_02",
+  "clickse" => void,
+  "x" => 248
+ ],
+ "line" => 10,
+ "back" => (const) %[
+  "y" => 428,
+  "on" => "sf_button_return_over",
+  "over" => "sf_button_return_over",
+  "enterse" => void,
+  "use" => 1,
+  "normal" => "sf_button_return_normal",
+  "clickse" => void,
+  "x" => 848
+ ],
+ "margint" => 109,
+ "marginb" => 279,
+ "top" => 150,
+ "bgd" => "sf_history_bgd"
+]

@@ -1,0 +1,24 @@
+//可多行输出的ptext 2007-05-27
+kag.tagHandlers.ptext = function(elm)
+{
+	var layer = getLayerFromElm(elm);
+	if(elm.lineheight === void)
+	{
+		layer.drawReconstructibleText(elm);
+	}
+	else
+	{
+		var textS = elm.text;
+		var textarr = textS.split(/\\n|\n/);
+		var lineheight = +elm.lineheight;
+		var iy = +elm.y;
+		for(var i=0; i<textarr.count; i++)
+		{
+			elm.text = textarr[i];
+			layer.drawReconstructibleText(elm);
+			iy += lineheight;
+			elm.y = iy;
+		}
+	}
+	return 0;
+} incontextof kag;

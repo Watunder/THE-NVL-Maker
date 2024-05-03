@@ -1,0 +1,62 @@
+(const) %[
+ "back" => (const) %[
+  "y" => 618,
+  "on" => "bs_button_title_over",
+  "over" => "bs_button_title_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "bs_button_title_normal",
+  "clickse" => "",
+  "x" => 115
+ ],
+ "up" => (const) %[
+  "y" => 563,
+  "on" => "option_button_on_01",
+  "over" => "option_button_on_01",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_01",
+  "clickse" => void,
+  "x" => 278
+ ],
+ "thum" => (const) %[
+  "normal" => "sample_cgthum"
+ ],
+ "down" => (const) %[
+  "y" => 563,
+  "on" => "option_button_on_02",
+  "over" => "option_button_on_02",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_02",
+  "clickse" => void,
+  "x" => 574
+ ],
+ "bgd" => "bs_cgmode_bgd",
+ "locate" => (const) [
+  (const) [
+   120,
+   120
+  ],
+  (const) [
+   390,
+   120
+  ],
+  (const) [
+   660,
+   120
+  ],
+  (const) [
+   120,
+   330
+  ],
+  (const) [
+   390,
+   330
+  ],
+  (const) [
+   660,
+   330
+  ]
+ ]
+]

@@ -1,0 +1,58 @@
+(const) %[
+ "msg" => (const) %[
+  "textwidth" => "300",
+  "face" => "",
+  "edgecolor" => "0xffffff",
+  "shadowcolor" => "",
+  "centertop" => 180,
+  "left" => 288,
+  "color" => "0xffffff",
+  "shadow" => 0,
+  "top" => 163,
+  "bold" => 0,
+  "textsize" => 24,
+  "italic" => 0,
+  "edge" => 0,
+  "centerleft" => 408
+ ],
+ "btnno" => (const) %[
+  "fontface" => "",
+  "y" => 227,
+  "on" => "ms_no_over",
+  "oncolor" => "0xffffff",
+  "over" => "ms_no_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_no_normal",
+  "normalcolor" => "0xffffff",
+  "text" => "No",
+  "textsize" => "24",
+  "clickse" => "",
+  "x" => 400,
+  "overcolor" => "0xffffff",
+  "usetext" => 0
+ ],
+ "btnyes" => (const) %[
+  "fontface" => "",
+  "y" => 227,
+  "on" => "ms_yes_over",
+  "oncolor" => "0xffffff",
+  "over" => "ms_yes_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_yes_normal",
+  "normalcolor" => "0xffffff",
+  "text" => "YES",
+  "textsize" => "24",
+  "clickse" => "",
+  "x" => 290,
+  "overcolor" => "0xffffff",
+  "usetext" => 0
+ ],
+ "bgd" => (const) %[
+  "stitle_x" => "",
+  "frame" => "ms_yesno_empty",
+  "stitle_y" => "",
+  "stitle" => ""
+ ]
+]

@@ -1,0 +1,140 @@
+// MessageLineLayer.tjs - MessageLayer用的支持文字渐变的行描绘专用图层
+// 作者：希德船长 修改、发布自由
+// 适用于KAG3 3.28
+
+class TextTransLayer extends KAGLayer
+{
+	var textX, textY;
+	var backlayer;
+	function TextTransLayer(win, par)
+	{
+		super.KAGLayer(win, par);
+	}
+	
+	function finalize()
+	{
+		super.finalize(...);
+	}
+	
+	function atEndOfTransition(src, withchildren, exchange)
+	{
+		super.atEndOfTransition(...);
+		parent.copyRect(textX, textY, backlayer, 0, 0, width, height);
+		visible = false;
+		backlayer.visible = false;
+	}
+}
+
+
+class MessageLineLayer extends KAGLayer
+{
+	var textTransLayerFore, textTransLayerBack; // 文字渐变用缓冲图层
+	var transelm; // trans的参数字典 method元素的值为“disabled”是代表不使用文字渐变 time的值为0代表使用文字delay时间作为渐变时间
+	function MessageLineLayer(win, par)
+	{
+		super.KAGLayer(win, par);
+		textTransLayerFore = new TextTransLayer(win, this);
+		textTransLayerFore.assignImages(this, true);
+		textTransLayerFore.visible = false;
+		textTransLayerFore.hitType = htMask;
+		textTransLayerFore.hitThreshold = 256;
+		textTransLayerFore.face = dfAuto;
+		textTransLayerFore.type = type;
+
+		textTransLayerBack = new global.KAGLayer(win, this);
+		textTransLayerBack.assignImages(this, true);
+		textTransLayerBack.visible = false;
+		textTransLayerBack.hitType = htMask;
+		textTransLayerBack.hitThreshold = 256;
+		textTransLayerBack.face = dfAuto;
+		textTransLayerBack.type = type;
+		
+		textTransLayerFore.backlayer = textTransLayerBack;
+		
+		transelm = %[];
+		transelm.method = "disabled";
+	}
+
+	function finalize()
+	{
+		invalidate textTransLayerFore;
+		invalidate textTransLayerBack;
+		invalidate transelm;
+		super.finalize(...);
+	}
+	
+	function setTransOption(elm)
+	{
+		if(elm !== void)
+			(Dictionary.assign incontextof transelm)(elm);
+		if(transelm.method === void)
+			transelm.method = "disabled";
+		if(transelm.time === void)
+			transelm.time = 0;
+		else
+			transelm.time = +transelm.time;
+	}
+	
+	function drawText(x, y, text, color, opa=255, aa=true, shadowlevel=0, shadowcolor=0x000000, shadowwidth=0, shadowofsx=0, shadowofsy=0)
+	{
+		if(transelm.method == "disabled")
+		{
+			super.drawText(...);
+		}
+		else
+		{
+			if(textTransLayerFore.inTransition)
+				textTransLayerFore.stopTransition();
+			textTransLayerBack.font.angle = font.angle;
+			textTransLayerBack.font.bold = font.bold;
+			textTransLayerBack.font.face = font.face;
+			textTransLayerBack.font.height = font.height;
+			textTransLayerBack.font.italic = font.italic;
+			textTransLayerBack.font.strikeout = font.strikeout;
+			textTransLayerBack.font.underline = font.underline;
+			textTransLayerBack.setImagePos(0, 0);
+			textTransLayerBack.setImageSize(font.getTextWidth(text), font.getTextHeight(text));
+			textTransLayerBack.setSizeToImageSize();
+			textTransLayerBack.setPos(x, y);
+			textTransLayerBack.fillRect(0, 0, textTransLayerBack.width, textTransLayerBack.height, 0);
+			textTransLayerFore.assignImages(textTransLayerBack, true);
+			textTransLayerBack.drawText(0, 0, text, color, opa, aa, shadowlevel, shadowcolor, shadowwidth, shadowofsx, shadowofsy);
+			textTransLayerFore.visible = true;
+			textTransLayerBack.visible = false;
+			textTransLayerFore.textX = x;
+			textTransLayerFore.textY = y;
+			if(transelm.time == 0)
+			{
+				transelm.time = window.chSpeed;
+				textTransLayerFore.beginTransition(transelm, textTransLayerBack);
+				transelm.time = 0;
+			}
+			else
+			{
+				textTransLayerFore.beginTransition(transelm, textTransLayerBack);
+			}
+		}
+	}
+	
+	function stopTextTransition()
+	{
+		if(textTransLayerFore.inTransition)
+			textTransLayerFore.stopTransition();
+	}
+	
+	property visible
+	{
+		getter()
+		{
+			stopTextTransition();
+			return super.visible;
+		}
+		
+		setter(v)
+		{
+			if(v == false)
+				stopTextTransition();
+			super.visible = v;
+		}
+	}
+}

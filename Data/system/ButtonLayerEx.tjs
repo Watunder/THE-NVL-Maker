@@ -1,0 +1,268 @@
+// ButtonLayerEx.tjs - 支持动画的按钮图层
+// 本模块由ButtonLayer.tjs修改而来 修改者：希德船长 修改、发布自由
+// 适用于KAG3 3.28
+
+/*
+这个按钮层无法完全替代ButtonLayer，它的内部工作机制和ButtonLayer是不同的。它提供了ButtonLayer中没有的某些功能，但是并不包含ButtonLayer中原有的全部功能(不包含文字描绘，素材整体载入等)。
+
+该按钮图层要求载入.asd文件连同图片一起载入。在.asd文件中包含normal, over, on, focus这几个label，至少也要有normal
+
+
+属性：
+	anigraphic		对应动画脚本的图片文件名
+	anim			动画脚本文件名
+	clipleft		clip矩形的左边界的横坐标
+	cliptop			clip矩形的上边界的纵坐标
+	clipwidth		clip矩形的宽
+	clipheight		clip矩形的高
+	除此之外，还“可能”支持image这个tag的其他某些参数，动画按钮“可能”支持action，但是暂时未测试ORZ
+
+*/
+
+
+class ButtonLayerEx extends GraphicLayerEx
+{
+	var Butt_mouseOn = false; // 鼠标是否在按钮范围内
+	var Butt_mouseDown = false; // 鼠标左键是否按下
+	var Butt_keyPressed = false; // 确定键(VK_RETURN VK_SPACE)是否按下
+	var Butt_showFocusImage = false; // 是否包含被选中状态
+	var normallabel, overlabel, onlabel, focuslabel; // 各个状态的label
+	var currentlabel = ""; // 记录当前的label
+
+	function ButtonLayerEx(win, par)
+	{
+		super.GraphicLayerEx(win, par);
+
+		if(typeof win.cursorPointed !== "undefined")
+			cursor = win.cursorPointed;
+
+		hitType = htMask;
+		hitThreshold = 0;
+		focusable = true; // 允许获得焦点
+	}
+
+	function finalize()
+	{
+		super.finalize(...);
+	}
+
+	function assign(src)
+	{
+		// src の情報をこのボタンレイヤにコピー
+		super.assign(src);
+		assignVisibleState(src);
+		Butt_showFocusImage = src.Butt_showFocusImage;
+		hitThreshold = src.hitThreshold;
+		normallabel = src.normallabel;
+		overlabel = src.overlabel;
+		onlabel = src.onlabel;
+		focuslabel = src.focuslabel;
+		setButtonState();
+	}
+
+	function loadImages(elm)
+	{
+		// 画像を読み込む
+		var tempdir = %[];
+		(Dictionary.assign incontextof tempdir)(elm);
+		if(elm.anigraphic !== void)
+		{
+			tempdir.storage = elm.anigraphic;
+			if(elm.anim === void)
+				tempdir.anim = elm.anigraphic;
+		}
+		if(elm.graphickey !== void)
+			tempdir.key = elm.graphickey;
+		super.loadImages(tempdir);
+		if(Anim_storageName == "")
+			throw new Exception("指定的图像必须有对应的动画脚本");
+		var testParser = new KAGParser();
+		testParser.loadScenario(Anim_storageName);
+		try
+		{
+			testParser.goToLabel("*normal");
+			normallabel = "*normal";
+		}
+		catch
+		{
+			throw new Exception("动画脚本中必须包含*normal");
+		}
+		try
+		{
+			testParser.goToLabel("*on");
+			onlabel = "*on";
+		}
+		catch
+		{
+			onlabel = "*normal";
+		}
+		try
+		{
+			testParser.goToLabel("*over");
+			overlabel = "*over";
+		}
+		catch
+		{
+			overlabel = "*normal";
+		}
+		try
+		{
+			testParser.goToLabel("*focus");
+			focuslabel = "*focus";
+		}
+		catch
+		{
+			focuslabel = overlabel;
+		}
+		invalidate testParser;
+		setButtonState();
+	}
+
+	function onMouseDown(x, y, button)
+	{
+		// onMouseDown イベントハンドラ
+        if (button == mbLeft) {
+            Butt_mouseDown = true;
+            focus();
+            setButtonState();
+        }
+		super.onMouseDown(...);
+	}
+
+	function onMouseUp()
+	{
+		// onMouseUp イベントハンドラ
+		Butt_mouseDown = false;
+		setButtonState();
+		super.onMouseUp(...);
+	}
+
+	function onClick()
+	{
+		// onClick イベントハンドラ
+		super.onClick(...);
+	}
+
+	function setButtonState()
+	{
+		var currentlabeltemp;
+		if(Butt_mouseDown) currentlabeltemp = onlabel;
+		else if(Butt_mouseOn) currentlabeltemp = overlabel;
+		else if(Butt_showFocusImage && focused) currentlabeltemp = focuslabel;
+		else currentlabeltemp = normallabel;
+		if(currentlabeltemp != currentlabel)
+		{
+			currentlabel = currentlabeltemp;
+			startAnim(%["seg" => 0, "target" => currentlabel]);
+		}
+	}
+
+	function onMouseEnter()
+	{
+		// マウスがレイヤ領域内に入った
+		Butt_mouseOn = true;
+		setButtonState();
+		super.onMouseEnter(...);
+	}
+
+	function onMouseLeave()
+	{
+		// マウスがレイヤ領域から出ていった
+		Butt_mouseOn = false;
+		Butt_mouseDown = false;
+		setButtonState();
+		super.onMouseLeave(...);
+	}
+
+	function onNodeDisabled()
+	{
+		// レイヤのノードが不可になった
+		super.onNodeDisabled(...);
+		Butt_mouseDown = false;
+		setButtonState();
+	}
+
+	function onNodeEnabled()
+	{
+		// レイヤのノードが有効になった
+		super.onNodeEnabled(...);
+		setButtonState();
+	}
+
+	function onFocus()
+	{
+		// フォーカスを得た
+		super.onFocus(...);
+		setButtonState();
+	}
+
+	function onBlur()
+	{
+		// フォーカスを失った
+		super.onBlur(...);
+		Butt_mouseDown = false;
+		setButtonState();
+	}
+
+	function onKeyDown(key, shift, process)
+	{
+		// キーが押された
+		if(process)
+		{
+			if(key == VK_RETURN || key == VK_SPACE)
+			{
+				// スペースキーまたはエンターキー
+				Butt_keyPressed = true;
+				setButtonState();
+				super.onKeyDown(key, shift, false); // 処理をしたのでprocessにfalseを渡す
+			}
+			else
+			{
+				super.onKeyDown(...);
+			}
+		}
+		else
+		{
+			// process が false の場合は処理は行わない
+			super.onKeyDown(...);
+		}
+	}
+
+	function onKeyUp(key, shift, process)
+	{
+		// キーが離された
+		if(process)
+		{
+			if(key == VK_RETURN || key == VK_SPACE)
+			{
+				// スペースキーまたはエンターキー
+				var flag = Butt_keyPressed;
+				Butt_keyPressed = false;
+				setButtonState();
+				super.onKeyUp(key, shift, false);
+				if(flag) onClick(width \ 2, height \ 2); // クリック動作
+			}
+			else
+			{
+				super.onKeyUp(...);
+			}
+		}
+		else
+		{
+			super.onKeyUp(...);
+		}
+	}
+
+	function onKeyPress(key, shift)
+	{
+		super.onKeyPress(...);
+	}
+
+	property showFocusImage
+	{
+		setter(x) { Butt_showFocusImage = x; }
+		getter { return Butt_showFocusImage; }
+	}
+}
+
+

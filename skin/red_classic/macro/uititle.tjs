@@ -1,0 +1,72 @@
+(const) %[
+ "rain" => 0,
+ "exit" => (const) %[
+  "y" => 650,
+  "on" => "cr_title_over_03",
+  "over" => "cr_title_over_03",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "cr_title_normal_03",
+  "clickse" => "",
+  "x" => 480
+ ],
+ "sakura" => 0,
+ "bgm" => "BGM098",
+ "movie" => 0,
+ "momiji" => 0,
+ "extra" => (const) %[
+  "y" => 590,
+  "on" => "cr_title_over_04",
+  "over" => "cr_title_over_04",
+  "enterse" => "",
+  "use" => 0,
+  "normal" => "cr_title_normal_04",
+  "clickse" => "",
+  "x" => 480
+ ],
+ "load" => (const) %[
+  "y" => 530,
+  "on" => "cr_title_over_02",
+  "over" => "cr_title_over_02",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "cr_title_normal_02",
+  "clickse" => "",
+  "x" => 480
+ ],
+ "start" => (const) %[
+  "y" => 470,
+  "on" => "cr_title_over_01",
+  "over" => "cr_title_over_01",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "cr_title_normal_01",
+  "clickse" => "",
+  "x" => 480
+ ],
+ "front" => "empty",
+ "option" => (const) %[
+  "y" => 510,
+  "on" => "menu_button_on_03",
+  "over" => "menu_button_on_03",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "menu_button_03",
+  "clickse" => void,
+  "x" => 775
+ ],
+ "snow" => 0,
+ "logo" => "nvl_logo",
+ "omake" => (const) %[
+  "y" => 590,
+  "on" => "cr_title_over_04",
+  "over" => "cr_title_over_04",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "cr_title_normal_04",
+  "clickse" => "",
+  "x" => 480
+ ],
+ "firefly" => 0,
+ "bgd" => "cr_title_bgd"
+]

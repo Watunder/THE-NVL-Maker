@@ -1,0 +1,55 @@
+ %[
+ "num" =>  %[
+  "on" => "0xfae4c8",
+  "over" => "0xfae4c8",
+  "normal" => "0xfae4c8"
+ ],
+ "date" =>  %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "up" =>  %[
+  "on" => "option_button_on_01",
+  "over" => "option_button_on_01",
+  "normal" => "option_button_01"
+ ],
+ "down" =>  %[
+  "on" => "option_button_on_02",
+  "over" => "option_button_on_02",
+  "normal" => "option_button_02"
+ ],
+ "history" =>  %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "draw" =>  %[
+  "talk" => "0xFFFFFF",
+  "date" => "0xFFFFFF",
+  "bookmark" => "0xFFFFFF"
+ ],
+ "back" =>  %[
+  "on" => "bs_button_return_over",
+  "over" => "bs_button_return_over",
+  "normal" => "bs_button_return_normal"
+ ],
+ "lastsavemark" => "bs_save_new",
+ "talk" =>  %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "bookmark" =>  %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "pagecolor" => "0xFFFFFF",
+ "button" =>  %[
+  "on" => "bs_slbutton_over",
+  "over" => "bs_slbutton_over",
+  "normal" => "bs_slbutton_normal"
+ ],
+ "bgd" => "bs_load_bgd"
+]

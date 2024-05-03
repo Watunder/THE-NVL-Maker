@@ -1,0 +1,120 @@
+(const) %[
+ "scr" => (const) %[
+  "left" => 35,
+  "marginb" => 27,
+  "marginl" => 20,
+  "top" => 31,
+  "marginr" => 25,
+  "frame" => "dia_frame_large",
+  "margint" => 28
+ ],
+ "face" => (const) %[
+  "left" => 66,
+  "top" => 593
+ ],
+ "save" => (const) %[
+  "y" => 567,
+  "on" => "ms_sysbutton_over_01",
+  "over" => "ms_sysbutton_over_01",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_sysbutton_01",
+  "clickse" => "",
+  "x" => 15
+ ],
+ "dia" => (const) %[
+  "left" => 0,
+  "marginb" => "39",
+  "marginl" => "151",
+  "top" => 0,
+  "marginr" => "82",
+  "frame" => "ms_dia",
+  "margint" => "450"
+ ],
+ "blank" => (const) %[
+  "marginb" => 26,
+  "marginl" => 28,
+  "marginr" => 38,
+  "margint" => 21
+ ],
+ "option" => (const) %[
+  "y" => 567,
+  "on" => "ms_sysbutton_over_05",
+  "over" => "ms_sysbutton_over_05",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_sysbutton_05",
+  "clickse" => "",
+  "x" => 455
+ ],
+ "load" => (const) %[
+  "y" => 567,
+  "on" => "ms_sysbutton_over_02",
+  "over" => "ms_sysbutton_over_02",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_sysbutton_02",
+  "clickse" => "",
+  "x" => 125
+ ],
+ "history" => (const) %[
+  "y" => 312,
+  "on" => "menu_button_on_04",
+  "over" => "menu_button_on_04",
+  "enterse" => "",
+  "use" => 0,
+  "normal" => "menu_button_04",
+  "clickse" => "",
+  "x" => 711
+ ],
+ "menu" => (const) %[
+  "y" => 567,
+  "on" => "ms_sysbutton_over_06",
+  "over" => "ms_sysbutton_over_06",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_sysbutton_06",
+  "clickse" => "",
+  "x" => 565
+ ],
+ "auto" => (const) %[
+  "y" => 567,
+  "on" => "ms_sysbutton_over_04",
+  "over" => "ms_sysbutton_over_04",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_sysbutton_04",
+  "clickse" => "",
+  "x" => 345
+ ],
+ "skip" => (const) %[
+  "y" => 567,
+  "on" => "ms_sysbutton_over_03",
+  "over" => "ms_sysbutton_over_03",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_sysbutton_03",
+  "clickse" => "",
+  "x" => 235
+ ],
+ "hide" => (const) %[
+  "y" => 546,
+  "on" => "dia_button_on_03",
+  "over" => "dia_button_on_03",
+  "enterse" => "",
+  "use" => 0,
+  "normal" => "dia_button_03",
+  "clickse" => "",
+  "x" => 680
+ ],
+ "other" => (const) %[
+  "y" => 567,
+  "on" => "ms_sysbutton_over_07",
+  "over" => "ms_sysbutton_over_07",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_sysbutton_07",
+  "clickse" => "",
+  "x" => 675
+ ]
+]

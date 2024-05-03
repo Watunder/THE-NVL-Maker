@@ -1,0 +1,63 @@
+(const) %[
+ "left" => 180,
+ "marginr" => 177,
+ "up" => (const) %[
+  "y" => 569,
+  "on" => "option_button_on_01",
+  "over" => "option_button_on_01",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_01",
+  "clickse" => void,
+  "x" => 132
+ ],
+ "font" => (const) %[
+  "icon" => "log_play_normal",
+  "italic" => 0,
+  "size" => "20",
+  "color" => "",
+  "edge" => 1,
+  "selicon" => "log_play_over",
+  "shadowcolor" => "0x000000",
+  "shadow" => 0,
+  "bold" => 0,
+  "selcolor" => "",
+  "edgecolor" => "0x000000"
+ ],
+ "marginl" => 134,
+ "linespace" => 32,
+ "slider" => (const) %[
+  "width" => "16",
+  "y" => 183,
+  "over" => "bs_history_scroll_button",
+  "normal" => "bs_history_scroll_button",
+  "use" => 1,
+  "x" => 882,
+  "height" => "333"
+ ],
+ "down" => (const) %[
+  "y" => 569,
+  "on" => "option_button_on_02",
+  "over" => "option_button_on_02",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_02",
+  "clickse" => void,
+  "x" => 248
+ ],
+ "line" => 12,
+ "back" => (const) %[
+  "y" => 618,
+  "on" => "bs_button_return_over",
+  "over" => "bs_button_return_over",
+  "enterse" => void,
+  "use" => 1,
+  "normal" => "bs_button_return_normal",
+  "clickse" => void,
+  "x" => 115
+ ],
+ "margint" => 192,
+ "marginb" => 171,
+ "top" => 215,
+ "bgd" => "bs_history_bgd"
+]

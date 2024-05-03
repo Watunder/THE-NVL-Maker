@@ -1,0 +1,72 @@
+(const) %[
+ "rain" => 0,
+ "exit" => (const) %[
+  "y" => 570,
+  "on" => "bs_title_over_03",
+  "over" => "bs_title_over_03",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "bs_title_normal_03",
+  "clickse" => "",
+  "x" => 721
+ ],
+ "sakura" => 0,
+ "bgm" => "BGM098",
+ "movie" => 0,
+ "momiji" => 0,
+ "extra" => (const) %[
+  "y" => 500,
+  "on" => "bs_title_over_04",
+  "over" => "bs_title_over_04",
+  "enterse" => "kaizan-system02",
+  "use" => 0,
+  "normal" => "bs_title_normal_04",
+  "clickse" => "",
+  "x" => 721
+ ],
+ "load" => (const) %[
+  "y" => 430,
+  "on" => "bs_title_over_02",
+  "over" => "bs_title_over_02",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "bs_title_normal_02",
+  "clickse" => "",
+  "x" => 721
+ ],
+ "start" => (const) %[
+  "y" => 360,
+  "on" => "bs_title_over_01",
+  "over" => "bs_title_over_01",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "bs_title_normal_01",
+  "clickse" => "",
+  "x" => 721
+ ],
+ "front" => "empty",
+ "option" => (const) %[
+  "y" => 510,
+  "on" => "menu_button_on_03",
+  "over" => "menu_button_on_03",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "menu_button_03",
+  "clickse" => void,
+  "x" => 775
+ ],
+ "snow" => 1,
+ "logo" => "nvl_logo",
+ "omake" => (const) %[
+  "y" => 500,
+  "on" => "bs_title_over_04",
+  "over" => "bs_title_over_04",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "bs_title_normal_04",
+  "clickse" => "",
+  "x" => 721
+ ],
+ "firefly" => 0,
+ "bgd" => "bs_title_bgd"
+]

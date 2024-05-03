@@ -1,0 +1,71 @@
+(const) %[
+ "rain" => 0,
+ "exit" => (const) %[
+  "y" => 490,
+  "on" => "dark_title_over_06",
+  "over" => "dark_title_over_06",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_title_normal_06",
+  "clickse" => "",
+  "x" => 540
+ ],
+ "sakura" => 0,
+ "bgm" => "cover of an old book.ogg",
+ "movie" => 0,
+ "momiji" => 0,
+ "option" => (const) %[
+  "y" => 340,
+  "on" => "dark_title_over_03",
+  "over" => "dark_title_over_03",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_title_normal_03",
+  "clickse" => "",
+  "x" => 540
+ ],
+ "extra" => (const) %[
+  "y" => 440,
+  "on" => "dark_title_over_05",
+  "over" => "dark_title_over_05",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_title_normal_05",
+  "clickse" => "",
+  "x" => 540
+ ],
+ "load" => (const) %[
+  "y" => 290,
+  "on" => "dark_title_over_02",
+  "over" => "dark_title_over_02",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_title_normal_02",
+  "clickse" => "",
+  "x" => 540
+ ],
+ "snow" => 1,
+ "logo" => "nvl_logo",
+ "omake" => (const) %[
+  "y" => 390,
+  "on" => "dark_title_over_04",
+  "over" => "dark_title_over_04",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_title_normal_04",
+  "clickse" => "",
+  "x" => 540
+ ],
+ "firefly" => 0,
+ "bgd" => "dark_title_bgd",
+ "start" => (const) %[
+  "y" => 240,
+  "on" => "dark_title_over_01",
+  "over" => "dark_title_over_01",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_title_normal_01",
+  "clickse" => "",
+  "x" => 540
+ ]
+]

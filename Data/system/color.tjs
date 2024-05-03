@@ -1,0 +1,22 @@
+%[
+        "evening" => %[
+            "lightColor" => 0xc0ff6010,
+            "lightType" => ltPsHardLight,
+            "brightness" => 0,
+            "contrast" => 0, 
+            "charLightColor" => 0xffff0000,
+            "charLightType" => ltPsSoftLight,
+            "charBrightness" => 0,
+            "charContrast" => 0,
+            ],
+        "night" => %[
+            "lightColor" => 0xc0000040,
+            "lightType" => ltPsHardLight,
+            "brightness" => -20,
+            "contrast" => -30,
+            "charLightColor" => 0xff400080,
+            "charLightType" => ltPsSoftLight,
+            "charBrightness" => -50,
+            "charContrast" => -30,
+            ]
+]

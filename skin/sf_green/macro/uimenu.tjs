@@ -1,0 +1,67 @@
+ %[
+ "totitle" =>  %[
+  "y" => 445,
+  "on" => "sf_menu_button_over_05",
+  "over" => "sf_menu_button_over_05",
+  "use" => 1,
+  "normal" => "sf_menu_button_normal_05",
+  "x" => 850
+ ],
+ "exit" =>  %[
+  "y" => 475,
+  "on" => "sf_menu_button_over_06",
+  "over" => "sf_menu_button_over_06",
+  "use" => 1,
+  "normal" => "sf_menu_button_normal_06",
+  "x" => 850
+ ],
+ "save" =>  %[
+  "y" => 325,
+  "on" => "sf_menu_button_over_01",
+  "over" => "sf_menu_button_over_01",
+  "use" => 1,
+  "normal" => "sf_menu_button_normal_01",
+  "x" => 850
+ ],
+ "option" =>  %[
+  "y" => 385,
+  "on" => "sf_menu_button_over_03",
+  "over" => "sf_menu_button_over_03",
+  "use" => 1,
+  "normal" => "sf_menu_button_normal_03",
+  "x" => 850
+ ],
+ "load" =>  %[
+  "y" => 355,
+  "on" => "sf_menu_button_over_02",
+  "over" => "sf_menu_button_over_02",
+  "use" => 1,
+  "normal" => "sf_menu_button_normal_02",
+  "x" => 850
+ ],
+ "history" =>  %[
+  "y" => 415,
+  "on" => "sf_menu_button_over_04",
+  "over" => "sf_menu_button_over_04",
+  "use" => 1,
+  "normal" => "sf_menu_button_normal_04",
+  "x" => 850
+ ],
+ "back" =>  %[
+  "y" => 720,
+  "on" => "menu_button_on_07",
+  "over" => "menu_button_on_07",
+  "use" => 0,
+  "normal" => "menu_button_07",
+  "x" => 910
+ ],
+ "other" =>  %[
+  "y" => 190,
+  "on" => "menu_button_on_08",
+  "over" => "menu_button_on_08",
+  "use" => 0,
+  "normal" => "menu_button_08",
+  "x" => 45
+ ],
+ "bgd" => "sf_menu_bgd"
+]

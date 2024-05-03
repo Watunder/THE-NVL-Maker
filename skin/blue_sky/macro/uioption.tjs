@@ -1,0 +1,114 @@
+ %[
+ "totitle" =>  %[
+  "y" => 507,
+  "on" => "bs_button_title_over",
+  "over" => "bs_button_title_over",
+  "use" => 1,
+  "normal" => "bs_button_title_normal",
+  "x" => 525
+ ],
+ "textspeed" =>  %[
+  "on" => "bs_option_slider_button",
+  "base" => "bs_option_slider",
+  "y" => 397,
+  "over" => "bs_option_slider_button",
+  "use" => 1,
+  "normal" => "bs_option_slider_button",
+  "x" => 466
+ ],
+ "window" =>  %[
+  "y" => 230,
+  "on" => "bs_option_window_over",
+  "over" => "bs_option_window_over",
+  "use" => 1,
+  "normal" => "bs_option_window_normal",
+  "x" => 641
+ ],
+ "allskip" =>  %[
+  "y" => 275,
+  "on" => "bs_option_all_over",
+  "over" => "bs_option_all_over",
+  "use" => 1,
+  "normal" => "bs_option_all_normal",
+  "x" => 499
+ ],
+  "reset" => (const) %[
+  "y" => 43,
+  "on" => "dia_button_on_05",
+  "over" => "dia_button_on_05",
+  "enterse" => "",
+  "use" => 0,
+  "normal" => "dia_button_05",
+  "clickse" => "",
+  "x" => 242
+ ],
+  "cvvolume" => (const) %[
+  "on" => "sample_sliderbutton_on",
+  "base" => "sample_slider",
+  "y" => 398,
+  "over" => "sample_sliderbutton_on",
+  "use" => 0,
+  "normal" => "sample_sliderbutton",
+  "x" => 250
+ ],
+ "sevolume" =>  %[
+  "on" => "bs_option_slider_button",
+  "base" => "bs_option_slider",
+  "y" => 357,
+  "over" => "bs_option_slider_button",
+  "use" => 1,
+  "normal" => "bs_option_slider_button",
+  "x" => 466
+ ],
+ "autospeed" =>  %[
+  "on" => "bs_option_slider_button",
+  "base" => "bs_option_slider",
+  "y" => 437,
+  "over" => "bs_option_slider_button",
+  "use" => 1,
+  "normal" => "bs_option_slider_button",
+  "x" => 466
+ ],
+ "readskip" =>  %[
+  "y" => 275,
+  "on" => "bs_option_read_over",
+  "over" => "bs_option_read_over",
+  "use" => 1,
+  "normal" => "bs_option_read_normal",
+  "x" => 641
+ ],
+ "bgmvolume" =>  %[
+  "on" => "bs_option_slider_button",
+  "base" => "bs_option_slider",
+  "y" => 317,
+  "over" => "bs_option_slider_button",
+  "use" => 1,
+  "normal" => "bs_option_slider_button",
+  "x" => 466
+ ],
+ "back" =>  %[
+  "y" => 507,
+  "on" => "bs_button_return_over",
+  "over" => "bs_button_return_over",
+  "use" => 1,
+  "normal" => "bs_button_return_normal",
+  "x" => 350
+ ],
+ "endgame" =>  %[
+  "y" => 507,
+  "on" => "bs_button_exit_over",
+  "over" => "bs_button_exit_over",
+  "use" => 1,
+  "normal" => "bs_button_exit_normal",
+  "x" => 700
+ ],
+ "bgd" => "bs_option_bgd",
+ "fullscreen" =>  %[
+  "y" => 230,
+  "on" => "bs_option_full_over",
+  "over" => "bs_option_full_over",
+  "use" => 1,
+  "normal" => "bs_option_full_normal",
+  "x" => 499
+ ]
+]

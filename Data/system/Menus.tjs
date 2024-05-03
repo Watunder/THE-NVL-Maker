@@ -1,0 +1,211 @@
+// Menus.tjs - メニュー作成関数の定義
+// Copyright (C)2001-2005, W.Dee and contributors  改変?配布は自由です
+
+function KAGWindow_createMenus()
+{
+	// この関数は MainWindow クラスのオブジェクトのコンテキスト上で実行されます
+
+	menu.add(this.systemMenu = new KAGMenuItem(this, "System", 0, "", false));
+
+	systemMenu.add(this.rightClickMenuItem = new KAGMenuItem(this, "隐藏文字框", 0,
+		onRightClickMenuItemClick, false));
+
+	systemMenu.add(this.showHistoryMenuItem = new KAGMenuItem(this, "显示履历", 0,
+		onShowHistoryMenuItemClick, false));
+
+	systemMenu.add(this.skipToNextStopMenuItem = new KAGMenuItem(this,
+		autoRecordPageShowing?"前进到下个选项(&F)":"前进到下个选项(&F)", 0,
+		onSkipToNextStopMenuItemClick, false));
+
+	systemMenu.add(this.autoModeMenuItem = new KAGMenuItem(this, "自动模式(&A)", 0,
+		onAutoModeMenuItemClick, false));
+
+	systemMenu.add(this.autoModeWaitMenu = new KAGMenuItem(this, "自动模式的等待时间(&D)", 0,
+		void, false));
+
+		autoModeWaitMenu.add(this.autoModeFastMenuItem = new KAGMenuItem(this, "短(&1)", 1,
+			onAutoModeWaitMenuClick, false));
+		autoModeFastMenuItem.wait = autoModePageWaits.fast;
+		autoModeFastMenuItem.lwait = autoModeLineWaits.fast;
+		autoModeWaitMenu.add(this.autoModeFasterMenuItem = new KAGMenuItem(this, "较短(&2)", 1,
+			onAutoModeWaitMenuClick, false));
+		autoModeFasterMenuItem.wait = autoModePageWaits.faster;
+		autoModeFasterMenuItem.lwait = autoModeLineWaits.faster;
+		autoModeWaitMenu.add(this.autoModeMediumMenuItem = new KAGMenuItem(this, "普通(&3)", 1,
+			onAutoModeWaitMenuClick, false));
+		autoModeMediumMenuItem.wait = autoModePageWaits.medium;
+		autoModeMediumMenuItem.lwait = autoModeLineWaits.medium;
+		autoModeWaitMenu.add(this.autoModeSlowerMenuItem = new KAGMenuItem(this, "较长(&4)", 1,
+			onAutoModeWaitMenuClick, false));
+		autoModeSlowerMenuItem.wait = autoModePageWaits.slower;
+		autoModeSlowerMenuItem.lwait = autoModeLineWaits.slower;
+		autoModeWaitMenu.add(this.autoModeSlowMenuItem = new KAGMenuItem(this, "长(&5)", 1,
+			onAutoModeWaitMenuClick, false));
+		autoModeSlowMenuItem.wait = autoModePageWaits.slow;
+		autoModeSlowMenuItem.lwait = autoModeLineWaits.slow;
+
+	systemMenu.add(this.goBackMenuItem = new KAGMenuItem(this, "后退(&B)", 0,
+		onBackStartMenuItemClick, false));
+
+	systemMenu.add(this.goToStartMenuItem = new KAGMenuItem(this, "返回主题画面", 0,
+		onGoToStartMenuItemClick, false));
+
+	systemMenu.add(this.exitMenuItem = new KAGMenuItem(this, "结束", 0, onExitMenuItemClick, false));
+
+	menu.add(this.characterMenu = new KAGMenuItem(this, "文字表示", 0, void, false));
+
+		characterMenu.add(this.chSpeedMenu = new KAGMenuItem(this, "表示速度", 0, void, false));
+
+			chSpeedMenu.add(this.chNoWaitMenuItem = new KAGMenuItem(this, "瞬间", 1,
+				onChSpeedMenuItemClick, false));
+			chNoWaitMenuItem.speed = 0;
+			chSpeedMenu.add(this.chFastMenuItem = new KAGMenuItem(this, "高速", 1,
+				onChSpeedMenuItemClick, false));
+			chFastMenuItem.speed = chSpeeds.fast;
+			chSpeedMenu.add(this.chNormalMenuItem = new KAGMenuItem(this, "普通", 1,
+				onChSpeedMenuItemClick, false));
+			chNormalMenuItem.speed = chSpeeds.normal;
+			chSpeedMenu.add(this.chSlowMenuItem = new KAGMenuItem(this, "缓慢", 1,
+				onChSpeedMenuItemClick, false));
+			chSlowMenuItem.speed = chSpeeds.slow;
+
+			chSpeedMenu.add(new MenuItem(this, "-"));
+
+			chSpeedMenu.add(this.chNonStopToPageBreakItem = new KAGMenuItem(this, "前进到页尾(&P)", 0,
+				onChNonStopToPageBreakItemClick, false));
+
+		characterMenu.add(this.ch2ndSpeedMenu = new KAGMenuItem(this, "已读部分(&I)", 0, void, false));
+
+			ch2ndSpeedMenu.add(this.ch2ndNoWaitMenuItem = new KAGMenuItem(this, "不等待(&W)", 1,
+				onCh2ndSpeedMenuItemClick, false));
+			ch2ndNoWaitMenuItem.speed = 0;
+			ch2ndSpeedMenu.add(this.ch2ndFastMenuItem = new KAGMenuItem(this, "高速(&F)", 1,
+				onCh2ndSpeedMenuItemClick, false));
+			ch2ndFastMenuItem.speed = chSpeeds.fast;
+			ch2ndSpeedMenu.add(this.ch2ndNormalMenuItem = new KAGMenuItem(this, "普通(&N)", 1,
+				onCh2ndSpeedMenuItemClick, false));
+			ch2ndNormalMenuItem.speed = chSpeeds.normal;
+			ch2ndSpeedMenu.add(this.ch2ndNoChangeMenuItem = new KAGMenuItem(this, "不改变(&M)", 1,
+				onCh2ndSpeedMenuItemClick, false));
+			ch2ndNoChangeMenuItem.speed = -1; // 変えない
+
+			ch2ndSpeedMenu.add(new MenuItem(this, "-"));
+
+			ch2ndSpeedMenu.add(this.ch2ndNonStopToPageBreakItem = new KAGMenuItem(this, "前进到页尾(&P)", 0,
+				onCh2ndNonStopToPageBreakItemClick, false));
+
+		characterMenu.add(new MenuItem(this, "-"));
+
+		characterMenu.add(this.chAntialiasMenuItem = new KAGMenuItem(this, "反走样(&A)", 0,
+			onChAntialiasMenuItemClick, false));
+
+		characterMenu.add(this.chChangeFontMenuItem = new KAGMenuItem(this, "字体(&D) ...", 0,
+			onChChangeFontMenuItem, false));
+
+	if(freeSaveDataMode)
+	{
+		// フリーセーブモードの場合
+		menu.add(this.bookMarkMenu = new KAGMenuItem(this, "进度", 0, void, false));
+		bookMarkMenu.add(this.restoreMenu = new KAGMenuItem(this, "读取进度...", 0, onRestoreMenuClick, false));
+		bookMarkMenu.add(this.storeMenu = new KAGMenuItem(this, "保存进度...", 0, onStoreMenuClick, false));
+	}
+	else
+	{
+		menu.add(this.restoreMenu = new KAGMenuItem(this, "读取进度", 0, onRestoreMenuClick, false));
+		menu.add(this.storeMenu = new KAGMenuItem(this, "保存进度", 0, onStoreMenuClick, false));
+	}
+
+	menu.add(this.displayMenu = new KAGMenuItem(this, "Display(&V)", 0, void, false));
+
+		displayMenu.add(this.windowedMenuItem = new KAGMenuItem(this, "Windowed", 1,
+			onWindowedMenuItemClick, false));
+		displayMenu.add(this.fullScreenMenuItem = new KAGMenuItem(this, "FullScreen", 1,
+			onFullScreenMenuItemClick, false));
+
+	menu.add(this.helpMenu = new KAGMenuItem(this, "About", 0, void, false));
+
+		helpMenu.add(this.helpIndexMenuItem = new KAGMenuItem(this, "License", 0,
+			onHelpIndexMenuItemClick, false));
+		helpMenu.add(this.helpAboutMenuItem = new KAGMenuItem(this, "Original Version", 0,
+			onHelpAboutMenuItemClick, false));
+		helpMenu.add(this.helpAboutMenuItem = new KAGMenuItem(this, "Altered Version", 0,
+			onHelpAboutMenuItemClick2, false));
+
+	menu.add(this.debugMenu = new KAGMenuItem(this, "Debug(&D)", 0, void, false));
+
+		debugMenu.add(this.reloadScenarioMenuItem = new KAGMenuItem(this, "Reload Scenario(&R)", 1,
+			onReloadScenarioMenuItemClick, false));
+		debugMenu.add(this.showConsoleMenuItem = new KAGMenuItem(this, "Console(&C)\tShift+F4", 1,
+			onShowConsoleMenuItemClick, false));
+		debugMenu.add(this.showControllerMenuItem = new KAGMenuItem(this, "Controller(&S)\tShift+F1", 1,
+			onShowContollerMenuItemClick, false));
+
+}
+
+
+// 以下、KAG 用 メニューアイテムクラス
+class KAGMenuItem extends MenuItem
+{
+	// 基本的に MenuItem だが、指定されたイベント、あるいは
+	// 文字列を実行する機能を持つ
+	var owner;
+	var command;
+	var _accessible = true;
+	var _enabled = true;
+	var autoEnable = false;
+
+	function KAGMenuItem(window, caption, group, command, autoenable)
+	{
+		super.MenuItem(window, caption);
+		this.owner = window;
+		this.command = command;
+		this.autoEnable = autoenable;
+		if(group!=0)
+		{
+			this.group = group;
+			this.radio = true;
+		}
+	}
+
+	function finalize()
+	{
+		delete owner;
+		delete command;
+		super.finalize(...);
+	}
+
+	property enabled  // オーバーライド
+	{
+		getter { return _enabled; }
+		setter(x) { _enabled = x; super.enabled = _accessible && _enabled; }
+	}
+
+	property accessible
+	{
+		getter { return _accessible; }
+		setter(x) { _accessible = x; super.enabled = _accessible && _enabled; }
+	}
+
+	function click()
+	{
+		// click 動作
+		if(command !== void)
+		{
+			if(typeof command == "String")
+			{
+				Scripts.eval(command);
+			}
+			else
+			{
+				command(this);
+			}
+		}
+	}
+
+	function onClick()
+	{
+		super.onClick(...);
+		click();
+	}
+}
+

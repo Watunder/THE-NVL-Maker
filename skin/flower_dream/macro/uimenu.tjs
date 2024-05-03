@@ -1,0 +1,83 @@
+(const) %[
+ "totitle" => (const) %[
+  "y" => 427,
+  "on" => "q_menu_title_overl",
+  "over" => "q_menu_title_overl",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_menu_title_nomal",
+  "clickse" => "",
+  "x" => 377
+ ],
+ "exit" => (const) %[
+  "y" => 490,
+  "on" => "q_menu_exit_overl",
+  "over" => "q_menu_exit_overl",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_menu_exit_nomal",
+  "clickse" => "",
+  "x" => 377
+ ],
+ "save" => (const) %[
+  "y" => 175,
+  "on" => "q_menu_save_overl",
+  "over" => "q_menu_save_overl",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_menu_save_nomal",
+  "clickse" => "",
+  "x" => 377
+ ],
+ "option" => (const) %[
+  "y" => 301,
+  "on" => "q_menu_option_overl",
+  "over" => "q_menu_option_overl",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_menu_option_nomal",
+  "clickse" => "",
+  "x" => 377
+ ],
+ "load" => (const) %[
+  "y" => 238,
+  "on" => "q_menu_load_overl",
+  "over" => "q_menu_load_overl",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_menu_load_nomal",
+  "clickse" => "",
+  "x" => 377
+ ],
+ "history" => (const) %[
+  "y" => 364,
+  "on" => "q_menu_history_overl",
+  "over" => "q_menu_history_overl",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_menu_history_nomal",
+  "clickse" => "",
+  "x" => 377
+ ],
+ "back" => (const) %[
+  "y" => 686,
+  "on" => "q_menu_return_overl",
+  "over" => "q_menu_return_overl",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_menu_return_nomal",
+  "clickse" => "",
+  "x" => 305
+ ],
+ "other" => (const) %[
+  "y" => 553,
+  "on" => "q_menu_other_overl",
+  "over" => "q_menu_other_overl",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_menu_other_nomal",
+  "clickse" => "",
+  "x" => 377
+ ],
+ "bgd" => "q_menu_bgd"
+]

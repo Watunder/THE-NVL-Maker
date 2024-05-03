@@ -1,0 +1,23 @@
+//为文字层加载头像图片 2007-06-18
+
+kag.tagHandlers.setface = function(elm)
+{
+	if(elm.layer === void)
+		elm.layer = "message"+currentNum;
+	var layer = getLayerFromElm(elm);
+	if(layer === void || !(layer instanceof "MessageLayer"))
+		layer = current;
+	var faceLayer = layer.faceLayer;
+	if (elm.storage !== void)
+	{
+		faceLayer.loadImages(elm.storage, elm.key);
+        faceLayer.left       = +elm.left     if elm.left     !== void;
+        faceLayer.top        = +elm.top      if elm.top      !== void;
+        faceLayer.width      = +elm.width    if elm.width    !== void;
+        faceLayer.height     = +elm.height   if elm.height   !== void;
+        faceLayer.absolute   = +elm.absolute if elm.absolute !== void;
+        faceLayer.originMode = +elm.origin   if elm.origin   !== void;
+        faceLayer.visible    = true;
+	}
+	return 0;
+} incontextof kag;

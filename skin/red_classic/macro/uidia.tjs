@@ -1,0 +1,102 @@
+ %[
+ "scr" =>  %[
+  "left" => 0,
+  "marginb" => "107",
+  "marginl" => "146",
+  "top" => 0,
+  "marginr" => "143",
+  "frame" => "cr_dia_screen",
+  "margint" => "84"
+ ],
+ "face" =>  %[
+  "left" => 117,
+  "top" => 768
+ ],
+ "save" =>  %[
+  "y" => 708,
+  "on" => "cr_dia_button_save_over",
+  "over" => "cr_dia_button_save_over",
+  "use" => 1,
+  "normal" => "cr_dia_button_save_normal",
+  "x" => 593
+ ],
+ "dia" =>  %[
+  "left" => 0,
+  "marginb" => "70",
+  "marginl" => "252",
+  "top" => 0,
+  "marginr" => "158",
+  "frame" => "cr_dia_frame",
+  "margint" => "579"
+ ],
+ "blank" =>  %[
+  "marginl" => 18,
+  "marginb" => 29,
+  "marginr" => 23,
+  "margint" => 21
+ ],
+ "option" =>  %[
+  "y" => 708,
+  "on" => "cr_dia_button_system_over",
+  "over" => "cr_dia_button_system_over",
+  "use" => 1,
+  "normal" => "cr_dia_button_system_normal",
+  "x" => 689
+ ],
+ "load" =>  %[
+  "y" => 708,
+  "on" => "cr_dia_button_load_over",
+  "over" => "cr_dia_button_load_over",
+  "use" => 1,
+  "normal" => "cr_dia_button_load_normal",
+  "x" => 638
+ ],
+ "history" =>  %[
+  "y" => 708,
+  "on" => "cr_dia_button_hitory_over",
+  "over" => "cr_dia_button_hitory_over",
+  "use" => 1,
+  "normal" => "cr_dia_button_hitory_normal",
+  "x" => 749
+ ],
+ "menu" =>  %[
+  "y" => 540,
+  "on" => "dia_button_on_04",
+  "over" => "dia_button_on_04",
+  "use" => 0,
+  "normal" => "dia_button_04",
+  "x" => 940
+ ],
+ "auto" =>  %[
+  "y" => 708,
+  "on" => "cr_dia_button_auto_over",
+  "over" => "cr_dia_button_auto_over",
+  "use" => 1,
+  "normal" => "cr_dia_button_auto_normal",
+  "x" => 801
+ ],
+ "skip" =>  %[
+  "y" => 708,
+  "on" => "cr_dia_button_skip_over",
+  "over" => "cr_dia_button_skip_over",
+  "use" => 1,
+  "normal" => "cr_dia_button_skip_normal",
+  "x" => 843
+ ],
+ "hide" =>  %[
+  "y" => 660,
+  "on" => "dia_button_on_03",
+  "over" => "dia_button_on_03",
+  "use" => 0,
+  "normal" => "dia_button_03",
+  "x" => 940
+ ],
+ "other" =>  %[
+  "y" => 535,
+  "on" => "dia_button_on_08",
+  "over" => "dia_button_on_08",
+  "use" => 0,
+  "normal" => "dia_button_08",
+  "x" => 290
+ ]
+]

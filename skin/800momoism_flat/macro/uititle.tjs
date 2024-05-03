@@ -1,0 +1,72 @@
+(const) %[
+ "rain" => 0,
+ "exit" => (const) %[
+  "y" => 488,
+  "on" => "ms_title_button_over_06",
+  "over" => "ms_title_button_over_06",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_title_button_06",
+  "clickse" => "",
+  "x" => 680
+ ],
+ "sakura" => 0,
+ "bgm" => "cover of an old book.ogg",
+ "movie" => 0,
+ "momiji" => 0,
+ "extra" => (const) %[
+  "y" => 430,
+  "on" => "ms_title_button_over_05",
+  "over" => "ms_title_button_over_05",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_title_button_05",
+  "clickse" => "",
+  "x" => 410
+ ],
+ "load" => (const) %[
+  "y" => 310,
+  "on" => "ms_title_button_over_02",
+  "over" => "ms_title_button_over_02",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_title_button_02",
+  "clickse" => "",
+  "x" => 410
+ ],
+ "start" => (const) %[
+  "y" => 270,
+  "on" => "ms_title_button_over_01",
+  "over" => "ms_title_button_over_01",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_title_button_01",
+  "clickse" => "",
+  "x" => 410
+ ],
+ "front" => "ms_title_fg",
+ "option" => (const) %[
+  "y" => 350,
+  "on" => "ms_title_button_over_03",
+  "over" => "ms_title_button_over_03",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_title_button_03",
+  "clickse" => "",
+  "x" => 410
+ ],
+ "snow" => 0,
+ "logo" => "nvl_logo",
+ "omake" => (const) %[
+  "y" => 390,
+  "on" => "ms_title_button_over_04",
+  "over" => "ms_title_button_over_04",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "ms_title_button_04",
+  "clickse" => "",
+  "x" => 410
+ ],
+ "firefly" => 0,
+ "bgd" => "ms_title_bgd"
+]

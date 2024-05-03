@@ -1,0 +1,28 @@
+(const) %[
+ "savedata" => (const) %[
+  "num" => 48,
+  "thumbnailwidth" => 360
+ ],
+ "width" => 1024,
+ "history" => (const) %[
+  "face" => "思源黑体 CN",
+  "bold" => "false",
+  "linespace" => 26,
+  "size" => 20
+ ],
+ "startfrom" => "title.ks",
+ "title_omake" => "uititle_omake.tjs",
+ "title" => "FlowerDream",
+ "height" => 768,
+ "font" => (const) %[
+  "edgecolor" => "0x000000",
+  "shadowcolor" => "0x000000",
+  "face" => "思源黑体 CN",
+  "color" => "0xffffff",
+  "shadow" => "false",
+  "edge" => "true",
+  "size" => 22
+ ],
+ "newgameplus" => 0,
+ "usemappfont" => 1
+]

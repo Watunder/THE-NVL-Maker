@@ -1,0 +1,28 @@
+//实现sysbutton的状态的设置 目前只包含enable属性 2007-06-18
+
+kag.tagHandlers.sysbuttonopt = function(elm)
+{
+	if(elm.layer === void)
+		elm.layer = "message"+currentNum;
+	var layer = getLayerFromElm(elm);
+	if(layer === void || !(layer instanceof "MessageLayer"))
+		layer = current;
+	if (elm.name !== void)
+	{
+		var button = layer.buttons[elm.name];
+		if(button !== void)
+		{
+			button.enabled = +elm.enabled if elm.enabled !== void;
+		}
+	}
+	else
+	{
+		var buttonstenp = [];
+		buttonstenp.assign(layer.buttons);
+		for(var i=1; i<buttonstenp.count; i+=2)
+		{
+			buttonstenp[i].enabled = +elm.enabled if elm.enabled !== void;
+		}
+	}
+	return 0;
+} incontextof kag;

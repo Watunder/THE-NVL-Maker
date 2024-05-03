@@ -1,0 +1,128 @@
+(const) %[
+ "totitle" => (const) %[
+  "y" => 380,
+  "on" => "menu_button_on_06",
+  "over" => "menu_button_on_06",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "menu_button_06",
+  "clickse" => void,
+  "x" => 526
+ ],
+ "textspeed" => (const) %[
+  "on" => "dark_slider_button_normal",
+  "base" => "dark_slider_bar",
+  "y" => 257,
+  "over" => "dark_slider_button_normal",
+  "use" => 1,
+  "normal" => "dark_slider_button_normal",
+  "x" => 395
+ ],
+ "window" => (const) %[
+  "y" => 169,
+  "on" => "dark_optionbutton_over",
+  "over" => "dark_optionbutton_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_optionbutton_normal",
+  "clickse" => "",
+  "x" => 476
+ ],
+ "allskip" => (const) %[
+  "y" => 319,
+  "on" => "dark_optionbutton_over",
+  "over" => "dark_optionbutton_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_optionbutton_normal",
+  "clickse" => "",
+  "x" => 337
+ ],
+   "reset" => (const) %[
+  "y" => 43,
+  "on" => "dia_button_on_05",
+  "over" => "dia_button_on_05",
+  "enterse" => "",
+  "use" => 0,
+  "normal" => "dia_button_05",
+  "clickse" => "",
+  "x" => 242
+ ],
+  "cvvolume" => (const) %[
+  "on" => "sample_sliderbutton_on",
+  "base" => "sample_slider",
+  "y" => 398,
+  "over" => "sample_sliderbutton_on",
+  "use" => 0,
+  "normal" => "sample_sliderbutton",
+  "x" => 250
+ ],
+ "sevolume" => (const) %[
+  "on" => "dark_slider_button_normal",
+  "base" => "dark_slider_bar",
+  "y" => 445,
+  "over" => "dark_slider_button_normal",
+  "use" => 1,
+  "normal" => "dark_slider_button_normal",
+  "x" => 395
+ ],
+ "autospeed" => (const) %[
+  "on" => "dark_slider_button_normal",
+  "base" => "dark_slider_bar",
+  "y" => 287,
+  "over" => "dark_slider_button_normal",
+  "use" => 1,
+  "normal" => "dark_slider_button_normal",
+  "x" => 395
+ ],
+ "readskip" => (const) %[
+  "y" => 319,
+  "on" => "dark_optionbutton_over",
+  "over" => "dark_optionbutton_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_optionbutton_normal",
+  "clickse" => "",
+  "x" => 476
+ ],
+ "bgmvolume" => (const) %[
+  "on" => "dark_slider_button_normal",
+  "base" => "dark_slider_bar",
+  "y" => 415,
+  "over" => "dark_slider_button_normal",
+  "use" => 1,
+  "normal" => "dark_slider_button_normal",
+  "x" => 395
+ ],
+ "back" => (const) %[
+  "y" => 556,
+  "on" => "dark_menu_back_over",
+  "over" => "dark_menu_back_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_menu_back_normal",
+  "clickse" => "",
+  "x" => 671
+ ],
+ "endgame" => (const) %[
+  "y" => 407,
+  "on" => "dia_button_on_06",
+  "over" => "dia_button_on_06",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "dia_button_06",
+  "clickse" => void,
+  "x" => 527
+ ],
+ "bgd" => "dark_option_bgd",
+ "fullscreen" => (const) %[
+  "y" => 169,
+  "on" => "dark_optionbutton_over",
+  "over" => "dark_optionbutton_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_optionbutton_normal",
+  "clickse" => "",
+  "x" => 337
+ ]
+]

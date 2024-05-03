@@ -1,0 +1,120 @@
+(const) %[
+ "scr" => (const) %[
+  "left" => 0,
+  "marginb" => "71",
+  "marginl" => "70",
+  "top" => 0,
+  "marginr" => "68",
+  "frame" => "q_dia_screen",
+  "margint" => "77"
+ ],
+ "face" => (const) %[
+  "left" => 187,
+  "top" => 730
+ ],
+ "save" => (const) %[
+  "y" => 721,
+  "on" => "q_dia_button_save_over",
+  "over" => "q_dia_button_save_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_dia_button_save_normal",
+  "clickse" => "",
+  "x" => 724
+ ],
+ "dia" => (const) %[
+  "left" => 0,
+  "marginb" => "50",
+  "marginl" => "300",
+  "top" => 0,
+  "marginr" => "92",
+  "frame" => "q_dia_frame",
+  "margint" => "535"
+ ],
+ "blank" => (const) %[
+  "marginl" => 36,
+  "marginb" => 34,
+  "marginr" => 49,
+  "margint" => 28
+ ],
+ "option" => (const) %[
+  "y" => 721,
+  "on" => "q_dia_button_system_over",
+  "over" => "q_dia_button_system_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_dia_button_system_normal",
+  "clickse" => "",
+  "x" => 561
+ ],
+ "load" => (const) %[
+  "y" => 721,
+  "on" => "q_dia_button_load_over",
+  "over" => "q_dia_button_load_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_dia_button_load_normal",
+  "clickse" => "",
+  "x" => 642
+ ],
+ "history" => (const) %[
+  "y" => 721,
+  "on" => "q_dia_button_hitory_over",
+  "over" => "q_dia_button_hitory_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_dia_button_hitory_normal",
+  "clickse" => "",
+  "x" => 318
+ ],
+ "menu" => (const) %[
+  "y" => 486,
+  "on" => "q_dia_button_menu_over",
+  "over" => "q_dia_button_menu_over",
+  "enterse" => "",
+  "use" => 0,
+  "normal" => "q_dia_button_menu_normal",
+  "clickse" => "",
+  "x" => 858
+ ],
+ "auto" => (const) %[
+  "y" => 721,
+  "on" => "q_dia_button_auto_over",
+  "over" => "q_dia_button_auto_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_dia_button_auto_normal",
+  "clickse" => "",
+  "x" => 399
+ ],
+ "skip" => (const) %[
+  "y" => 721,
+  "on" => "q_dia_button_skip_over",
+  "over" => "q_dia_button_skip_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_dia_button_skip_normal",
+  "clickse" => "",
+  "x" => 480
+ ],
+ "hide" => (const) %[
+  "y" => 721,
+  "on" => "q_dia_button_hide_over",
+  "over" => "q_dia_button_hide_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "q_dia_button_hide_normal",
+  "clickse" => "",
+  "x" => 237
+ ],
+ "other" => (const) %[
+  "y" => 535,
+  "on" => "menu_button_on_08",
+  "over" => "menu_button_on_08",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "menu_button_08",
+  "clickse" => void,
+  "x" => 290
+ ]
+]

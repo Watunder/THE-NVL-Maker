@@ -1,0 +1,777 @@
+//-------------------------------------------------------------------------------------------
+//    THE NVL Maker——GUI Editor for Kirikiri/KAG
+//    Copyright (C) 2011  VariableD <wang.siying@gmail.com>
+
+//    You should have received a copy of the GNU General Public License
+//     along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+//-------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------
+//这是针对脚本解释制作的配置表
+//配置表里的参数会对应地被解释为中文
+//--------------------------------------------------------------------
+%[
+//---------------------------------------------------------------
+//基本流程和注释
+//---------------------------------------------------------------
+//末尾
+"_end"=>
+  %[
+    "tagname"=>"(到达文件末端)",
+    "tagcolor"=>0xa6a6a6,
+  ],
+//空白行
+"_blank"=>
+  %[
+    "tagname"=>"(新增空白行)",
+    "tagcolor"=>0xa6a6a6,
+  ],
+
+//---------------------------------------------------------------
+//标签页
+"_label"=>
+  %[
+    "tagname"=>"★标签",
+    "tagcolor"=>0xFF0000,
+    
+    "label"=>"标签名",
+    "pagename"=>"章节名",
+  ],
+//宏定义
+"macro"=>
+  %[
+    "tagname"=>"◇宏定义",
+    "tagcolor"=>0x00cc00,
+    
+    "name"=>"名称",
+  ],
+"endmacro"=>
+  %[
+    "tagname"=>"◇宏定义结束",
+    "tagcolor"=>0x00cc00,
+
+  ],
+//---------------------------------------------------------------
+//注释
+"_remark"=>
+  %[
+    "tagname"=>"",
+    "tagcolor"=>0x008080,
+    
+    "text"=>"",
+  ],
+//---------------------------------------------------------------
+//对话
+"_msg"=>
+  %[
+    "tagname"=>"",
+    "tagcolor"=>0x000000,
+    
+    "text"=>"",
+  ],
+//---------------------------------------------------------------
+//跳转
+"jump"=>
+  %[
+    "tagname"=>"△跳转至",
+    "tagcolor"=>0xFF0000,
+    
+    "storage"=>"文件名",
+    "target"=>"标签名",
+  ],
+//---------------------------------------------------------------
+//呼叫
+"call"=>
+  %[
+    "tagname"=>"▽呼叫脚本",
+    "tagcolor"=>0xFF0000,
+    
+    "storage"=>"文件名",
+    "target"=>"标签名",
+  ],
+//---------------------------------------------------------------
+//返回上层
+"return"=>
+  %[
+    "tagname"=>"△返回上层",
+    "tagcolor"=>0xFF0000,
+  ],
+//---------------------------------------------------------------
+//返回标题
+"gotostart"=>
+  %[
+    "tagname"=>"△返回标题",
+    "tagcolor"=>0xFF0000,
+    
+    "ask"=>"询问",
+  ],
+//离开游戏
+"close"=>
+  %[
+    "tagname"=>"△离开游戏",
+    "tagcolor"=>0xFF0000,
+    
+    "ask"=>"询问",
+  ],
+//---------------------------------------------------------------
+//特效/tjs相关
+//---------------------------------------------------------------
+//表达式1
+"eval"=>
+  %[
+    "tagname"=>"◇执行表达式",
+    "tagcolor"=>0x00cc00,
+    
+    "exp"=>"表达式",
+  ],
+"emb"=>
+  %[
+    "tagname"=>"◇显示表达式",
+    "tagcolor"=>0x00cc00,
+    
+    "exp"=>"表达式",
+  ],
+//----------------------------------------
+//表达式2
+"iscript"=>
+  %[
+    "tagname"=>"◇执行代码段落",
+    "tagcolor"=>0x00cc00,
+  ],
+//----------------------------------------
+//条件分歧
+"if"=>
+  %[
+    "tagname"=>"◇条件分歧",
+    "tagcolor"=>0x00cc00,
+    
+    "exp"=>"表达式",
+  ],
+  
+"elsif"=>
+  %[
+    "tagname"=>"◇继续分歧",
+    "tagcolor"=>0x00cc00,
+    
+    "exp"=>"表达式",
+  ],
+"else"=>
+  %[
+    "tagname"=>"◇默认分歧",
+    "tagcolor"=>0x00cc00,
+  ],
+"endif"=>
+  %[
+    "tagname"=>"◇条件分歧结束",
+    "tagcolor"=>0x00cc00,
+  ],
+  
+//----------------------------------------
+//动态效果
+"action"=>
+  %[
+    "tagname"=>"◇动态效果",
+    "tagcolor"=>0x00cc00,
+    
+    "layer"=>"编号",
+    "module"=>"效果",
+  ],
+"wact"=>
+  %[
+    "tagname"=>"◇等待动态",
+    "tagcolor"=>0x00cc00,
+    
+    "layer"=>"编号",
+  ],
+"stopaction"=>
+  %[
+    "tagname"=>"◇停止动态",
+    "tagcolor"=>0x00cc00,
+    
+    "layer"=>"编号",
+  ],
+"movepos"=>
+  %[
+    "tagname"=>"◇图片位移",
+    "tagcolor"=>0x00cc00,
+    
+    "layer"=>"编号",
+    "x"=>"x",
+    "y"=>"y",
+    "opacity"=>"透明",
+  ],
+//----------------------------------------
+//天气效果
+"raininit"=>
+  %[
+    "tagname"=>"◇天气效果：雨 ON",
+    "tagcolor"=>0x00cc00,
+    "cond"=>"条件",
+  ],
+"fireflyinit"=>
+  %[
+    "tagname"=>"◇天气效果：萤火虫 ON",
+    "tagcolor"=>0x00cc00,
+    "cond"=>"条件",
+  ],
+"snowinit"=>
+  %[
+    "tagname"=>"◇天气效果：雪 ON",
+    "tagcolor"=>0x00cc00,
+    "cond"=>"条件",
+  ],
+"sakurainit"=>
+  %[
+    "tagname"=>"◇画面效果：樱 ON",
+    "tagcolor"=>0x00cc00,
+    "cond"=>"条件",
+  ],
+"foginit"=>
+  %[
+    "tagname"=>"◇天气效果：雾 ON",
+    "tagcolor"=>0x00cc00,
+    "cond"=>"条件",
+  ],
+"oldmovieinit"=>
+  %[
+    "tagname"=>"◇画面效果：旧电影 ON",
+    "tagcolor"=>0x00cc00,
+    "cond"=>"条件",
+  ],
+"momijiinit"=>
+  %[
+    "tagname"=>"◇画面效果：红叶 ON",
+    "tagcolor"=>0x00cc00,
+    "cond"=>"条件",
+  ],
+  
+//消除天气效果
+"rainuninit"=>
+  %[
+    "tagname"=>"◇天气效果：雨 OFF",
+    "tagcolor"=>0x00cc00,
+    
+  ],
+"snowuninit"=>
+  %[
+    "tagname"=>"◇天气效果：雪 OFF",
+    "tagcolor"=>0x00cc00,
+
+  ],
+"fireflyuninit"=>
+  %[
+    "tagname"=>"◇天气效果：萤火虫 OFF",
+    "tagcolor"=>0x00cc00,
+
+  ],
+"sakurauninit"=>
+  %[
+    "tagname"=>"◇画面效果：樱 OFF",
+    "tagcolor"=>0x00cc00,
+
+  ],
+"foguninit"=>
+  %[
+    "tagname"=>"◇天气效果：雾 OFF",
+    "tagcolor"=>0x00cc00,
+
+  ],
+"oldmovieuninit"=>
+  %[
+    "tagname"=>"◇画面效果：旧电影 OFF",
+    "tagcolor"=>0x00cc00,
+
+  ],
+"momijiuninit"=>
+  %[
+    "tagname"=>"◇画面效果：红叶 OFF",
+    "tagcolor"=>0x00cc00,
+
+  ],
+//---------------------------------------------------------------
+//音乐相关
+//---------------------------------------------------------------
+"bgm"=>
+  %[
+    "tagname"=>"◇播放音乐",
+    "tagcolor"=>0xff00dd,
+    
+    "storage"=>"文件名",
+  ],
+  
+"fadeinbgm"=>
+  %[
+    "tagname"=>"◇音乐淡入",
+    "tagcolor"=>0xff00dd,
+    
+    "storage"=>"文件名",
+    "time"=>"时间",
+  ],
+"fadebgm"=>
+  %[
+    "tagname"=>"◇音乐渐变",
+    "tagcolor"=>0xff00dd,
+    
+    "time"=>"时间",
+    "volume"=>"音量",
+  ],
+  
+"fadeoutbgm"=>
+  %[
+    "tagname"=>"◇音乐淡出",
+    "tagcolor"=>0xff00dd,
+    
+    "time"=>"时间",
+  ],
+"stopbgm"=>
+  %[
+    "tagname"=>"◇停止音乐",
+    "tagcolor"=>0xff00dd,
+  ],
+//---------------------------------------------------------------
+//音效相关
+//---------------------------------------------------------------
+"se"=>
+  %[
+    "tagname"=>"◇播放音效",
+    "tagcolor"=>0xff00dd,
+    
+    "storage"=>"文件名",
+    "buf"=>"编号",
+    "loop"=>"循环",
+  ],
+ "vo"=>
+  %[
+    "tagname"=>"◇播放语音",
+    "tagcolor"=>0xff00dd,
+    
+    "storage"=>"文件名",
+  ],
+ "mv"=>
+  %[
+    "tagname"=>"◇播放视频",
+    "tagcolor"=>0xff00dd,
+    
+    "storage"=>"文件名",
+  ],
+"fadeinse"=>
+  %[
+    "tagname"=>"◇音效淡入",
+    "tagcolor"=>0xff00dd,
+    
+    "storage"=>"文件名",
+    "time"=>"时间",
+    "volume"=>"音量",
+  ],
+  
+"fadese"=>
+  %[
+    "tagname"=>"◇音效渐变",
+    "tagcolor"=>0xff00dd,
+    
+    "time"=>"时间",
+    "volume"=>"音量",
+  ],
+  
+"fadeoutse"=>
+  %[
+    "tagname"=>"◇音效渐出",
+    "tagcolor"=>0xff00dd,
+    
+    "time"=>"时间",
+    "buf"=>"编号",
+  ],
+"stopse"=>
+  %[
+    "tagname"=>"◇停止音效",
+    "tagcolor"=>0xff00dd,
+
+    "buf"=>"编号",
+  ],
+  
+"ws"=>
+  %[
+    "tagname"=>"◇等待音效",
+    "tagcolor"=>0xff00dd,
+
+    "canskip"=>"可略过",
+  ],
+//---------------------------------------------------------------
+//其他相关
+//---------------------------------------------------------------
+//等待时间
+"wait"=>
+  %[
+    "tagname"=>"○等待时间",
+    "tagcolor"=>0xa6a6a6,
+    
+    "time"=>"时间",
+    "canskip"=>"可略过",
+  ],
+//等待点击
+"waitclick"=>
+  %[
+    "tagname"=>"○等待点击",
+    "tagcolor"=>0xa6a6a6,
+  ],
+//历史记录操作
+"history"=>
+  %[
+    "tagname"=>"○历史记录操作",
+    "tagcolor"=>0xa6a6a6,
+    
+    "enabled"=>"允许",
+    "output"=>"输出",
+  ],
+//历史记录换行
+"hr"=>
+  %[
+    "tagname"=>"〔历史记录换行〕",
+    "tagcolor"=>0xa6a6a6,
+  ],
+"quake"=>
+  %[
+    "tagname"=>"○画面震动",
+    "tagcolor"=>0xa6a6a6,
+    
+    "time"=>"时间",
+  ],
+"wq"=>
+  %[
+    "tagname"=>"○等待震动",
+    "tagcolor"=>0xa6a6a6,
+    
+    "canskip"=>"可略过",
+  ],
+//---------------------------------------------------------------
+//图形显示相关
+//---------------------------------------------------------------
+//准备切换
+"backlay"=>
+  %[
+    "tagname"=>"□准备切换",
+    "tagcolor"=>0x0000ff,
+  ],
+"wt"=>
+  %[
+    "tagname"=>"□切换完成",
+    "tagcolor"=>0x0000ff,
+  ],
+"trans"=>
+  %[
+    "tagname"=>"□画面切换",
+    "tagcolor"=>0x0000ff,
+    
+    "method"=>"效果",
+    "time"=>"时间",
+    "rule"=>"遮片",
+  ],
+  
+//载入图片
+"image"=>
+  %[
+    "tagname"=>"□载入图片",
+    "tagcolor"=>0x0000ff,
+    
+    "storage"=>"图片名",
+    "layer"=>"层",
+    "page"=>"页",
+  ],
+//卸载图片
+"freeimage"=>
+  %[
+    "tagname"=>"□卸载图片",
+    "tagcolor"=>0x0000ff,
+    
+    "layer"=>"层",
+    "page"=>"页",
+  ],
+//显示背景
+"bg"=>
+  %[
+    "tagname"=>"□显示背景",
+    "tagcolor"=>0x0000ff,
+    
+    "storage"=>"图片名",
+    "method"=>"效果",
+    "time"=>"时间",
+    "page"=>"页",
+    
+	"l"=>"显示角色",
+	"c"=>"显示角色",
+	"r"=>"显示角色",
+	
+  ],
+//消除背景
+"clbg"=>
+  %[
+    "tagname"=>"□消除背景",
+    "tagcolor"=>0x0000ff,
+   
+    "method"=>"效果",
+    "time"=>"时间",
+  ],
+  
+//显示角色
+"fg"=>
+  %[
+    "tagname"=>"□显示角色",
+    "tagcolor"=>0x0000ff,
+    
+    "layer"=>"编号",
+    "storage"=>"图片名",
+    "pos"=>"对齐",
+    "x"=>"x",
+    "y"=>"y",
+  ],
+ //消除角色
+ "clfg"=>
+  %[
+    "tagname"=>"□消除角色",
+    "tagcolor"=>0x0000ff,
+   
+    "method"=>"效果",
+    "layer"=>"编号",
+    "time"=>"时间",
+  ],
+"face"=>
+  %[
+    "tagname"=>"□显示头像",
+    "tagcolor"=>0x0000ff,
+    
+    "storage"=>"图片名",
+    "fg"=>"连同角色",
+  ],
+//---------------------------------------------------------------
+//对话显示/文字相关
+//---------------------------------------------------------------
+//对话框
+"dia"=>
+  %[
+   "tagname"=>"□对话框",
+    "tagcolor"=>0xee7700,
+  ],
+"scr"=>
+  %[
+   "tagname"=>"□全屏框",
+    "tagcolor"=>0xee7700,
+  ],
+"menu"=>
+  %[
+   "tagname"=>"□透明框",
+    "tagcolor"=>0xee7700,
+  ],
+ "position"=>
+  %[
+   "tagname"=>"□自定义对话框",
+    "tagcolor"=>0xee7700,
+    
+    "frame"=>"图片",
+    "layer"=>"层",
+    "page"=>"页",
+    "color"=>"颜色",
+  ],
+"hidemes"=>
+  %[
+   "tagname"=>"□隐藏话框",
+    "tagcolor"=>0xee7700,
+  ],
+"showmes"=>
+  %[
+   "tagname"=>"□恢复话框",
+    "tagcolor"=>0xee7700,
+  ],
+ "framein"=>
+  %[
+   "tagname"=>"□话框移入",
+    "tagcolor"=>0xee7700,
+  ],
+  "frameout"=>
+  %[
+   "tagname"=>"□话框移出",
+    "tagcolor"=>0xee7700,
+  ],
+"current"=>
+  %[
+   "tagname"=>"□指定消息层",
+    "tagcolor"=>0xa6a6a6,
+    
+    "layer"=>"层",
+    "page"=>"页",
+  ],
+"er"=>
+  %[
+   "tagname"=>"□清空当前文字层",
+    "tagcolor"=>0xa6a6a6,
+  ],
+"cm"=>
+  %[
+   "tagname"=>"□清空全部文字层",
+    "tagcolor"=>0xa6a6a6,
+  ],
+"ct"=>
+  %[
+   "tagname"=>"□清空文字层并复位",
+    "tagcolor"=>0xa6a6a6,
+  ],
+"r"=>
+  %[
+   "tagname"=>"〔换行〕",
+    "tagcolor"=>0xa6a6a6,
+  ],
+"l"=>
+  %[
+   "tagname"=>"〔等待点击〕",
+    "tagcolor"=>0xa6a6a6,
+  ],
+"lr"=>
+  %[
+   "tagname"=>"〔换行等待〕",
+    "tagcolor"=>0xa6a6a6,
+  ],
+ "w"=>
+  %[
+   "tagname"=>"〔分页等待〕",
+    "tagcolor"=>0xa6a6a6,
+  ],
+//NPC姓名
+"npc"=>
+  %[
+    "tagname"=>"【姓名栏】",
+    "tagcolor"=>0xee7700,
+    
+    "id"=>"姓名",
+    "face"=>"头像",
+    "fg"=>"角色",
+  ],
+//段落样式
+"style"=>
+  %[
+   "tagname"=>"□段落样式",
+    "tagcolor"=>0xa6a6a6,
+    
+    "align"=>"对齐",
+  ],
+//文字样式
+"font"=>
+  %[
+   "tagname"=>"□文字样式",
+    "tagcolor"=>0xa6a6a6,
+    
+    "size"=>"字号",
+    "color"=>"颜色",
+  ],
+  //文字速度
+  "nowait"=>
+  %[
+   "tagname"=>"□瞬间显示跳字",
+    "tagcolor"=>0xa6a6a6,
+  ],
+  "endnowait"=>
+  %[
+   "tagname"=>"□恢复正常跳字",
+    "tagcolor"=>0xa6a6a6,
+  ],
+//---------------------------------------------------------------
+//地图相关
+//---------------------------------------------------------------
+"map"=>
+  %[
+   "tagname"=>"▽调用地图",
+   "tagcolor"=>0xFF0000,
+   
+   "storage"=>"文件",
+       "layer"=>"层",
+  ],
+"clmap"=>
+  %[
+   "tagname"=>"□消除地图",
+   "tagcolor"=>0xa6a6a6,
+   
+          "layer"=>"层",
+  ],
+"edu"=>
+  %[
+   "tagname"=>"▽调用养成面板",
+   "tagcolor"=>0xFF0000,
+   
+   "storage"=>"文件",
+          "layer"=>"层",
+  ],
+"cledu"=>
+  %[
+   "tagname"=>"□消除面板",
+   "tagcolor"=>0xa6a6a6,
+          "layer"=>"层",
+  ],
+  "addcg"=>
+  %[
+   "tagname"=>"□登录CG",
+   "tagcolor"=>0xa6a6a6,
+   "storage"=>"文件",
+  ],
+  "addend"=>
+  %[
+   "tagname"=>"□登录结局",
+   "tagcolor"=>0xa6a6a6,
+   "storage"=>"文件",
+  ],
+//---------------------------------------------------------------
+//选项按钮相关
+//---------------------------------------------------------------
+"button"=>
+  %[
+   "tagname"=>"□按钮",
+   "tagcolor"=>0xa6a6a6,
+   
+   "normal"=>"普通",
+   "graphic"=>"图片",
+   "storage"=>"文件",
+   "target"=>"标签",
+  ],
+"s"=>
+  %[
+   "tagname"=>"□等待选择",
+   "tagcolor"=>0xa6a6a6,
+  ],
+  
+//选项准备
+"selstart"=>
+  %[
+   "tagname"=>"□准备选项",
+   "tagcolor"=>0xa6a6a6,
+  ],
+//位置
+"locate"=>
+  %[
+   "tagname"=>"□按钮&文字位置",
+   "tagcolor"=>0xa6a6a6,
+   
+   "x"=>"x",
+   "y"=>"y",
+  ],
+//选项按钮
+"selbutton"=>
+  %[
+   "tagname"=>"□选项按钮",
+   "tagcolor"=>0xa6a6a6,
+   "text"=>"选项",
+   
+   "normal"=>"普通",
+   "storage"=>"文件",
+   "target"=>"标签",
+   "exp"=>"TJS",
+  ],
+//结束选项
+"selend"=>
+  %[
+   "tagname"=>"□等待选项",
+   "tagcolor"=>0xa6a6a6,
+  ],
+//消除选项
+"clsel"=>
+  %[
+   "tagname"=>"□消除选项",
+   "tagcolor"=>0xa6a6a6,
+  ],
+
+]

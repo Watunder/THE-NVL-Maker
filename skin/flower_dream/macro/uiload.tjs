@@ -1,0 +1,63 @@
+(const) %[
+ "num" => (const) %[
+  "on" => "0xFFFF99",
+  "over" => "0xFFFF99",
+  "normal" => "0x73FFDE"
+ ],
+ "date" => (const) %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "up" => (const) %[
+  "over" => "q_load_back_over",
+  "normal" => "q_load_back_normal",
+  "clickse" => "",
+  "on" => "q_load_back_over",
+  "enterse" => ""
+ ],
+ "down" => (const) %[
+  "over" => "q_load_next_over",
+  "normal" => "q_load_next_normal",
+  "clickse" => "",
+  "on" => "q_load_next_over",
+  "enterse" => ""
+ ],
+ "history" => (const) %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "draw" => (const) %[
+  "talk" => "0xFFFFFF",
+  "date" => "0xFFFFFF",
+  "bookmark" => "0xFFFFFF"
+ ],
+ "back" => (const) %[
+  "over" => "q_load_exit_over",
+  "normal" => "q_load_exit_normal",
+  "clickse" => "",
+  "on" => "q_load_exit_over",
+  "enterse" => ""
+ ],
+ "lastsavemark" => "q_load_new",
+ "talk" => (const) %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "bookmark" => (const) %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "pagecolor" => "0xFFFFFF",
+ "button" => (const) %[
+  "over" => "q_load_button_over",
+  "normal" => "q_load_button_normal",
+  "clickse" => "",
+  "on" => "q_load_button_over",
+  "enterse" => ""
+ ],
+ "bgd" => "q_load_bgd"
+]

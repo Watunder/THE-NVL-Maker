@@ -1,0 +1,55 @@
+ %[
+ "num" =>  %[
+  "on" => "0x008000",
+  "over" => "0x008000",
+  "normal" => "0x008000"
+ ],
+ "date" =>  %[
+  "on" => "0x008000",
+  "over" => "0x008000",
+  "normal" => "0x008000"
+ ],
+ "up" =>  %[
+  "on" => "option_button_on_01",
+  "over" => "option_button_on_01",
+  "normal" => "option_button_01"
+ ],
+ "down" =>  %[
+  "on" => "option_button_on_02",
+  "over" => "option_button_on_02",
+  "normal" => "option_button_02"
+ ],
+ "history" =>  %[
+  "on" => "0x008000",
+  "over" => "0x008000",
+  "normal" => "0x008000"
+ ],
+ "draw" =>  %[
+  "talk" => "0x008000",
+  "bookmark" => "0x008000",
+  "date" => "0x008000"
+ ],
+ "back" =>  %[
+  "on" => "sf_button_return_over",
+  "over" => "sf_button_return_over",
+  "normal" => "sf_button_return_normal"
+ ],
+ "lastsavemark" => "sf_save_new",
+ "talk" =>  %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "bookmark" =>  %[
+  "on" => "0x008000",
+  "over" => "0x008000",
+  "normal" => "0x008000"
+ ],
+ "pagecolor" => "0xFFFFFF",
+ "button" =>  %[
+  "on" => "sf_slbutton_blue",
+  "over" => "sf_slbutton_blue",
+  "normal" => "sf_slbutton_normal"
+ ],
+ "bgd" => "sf_load_bgd"
+]

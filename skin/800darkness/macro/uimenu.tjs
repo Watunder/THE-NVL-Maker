@@ -1,0 +1,83 @@
+(const) %[
+ "totitle" => (const) %[
+  "y" => 345,
+  "on" => "dark_menu_over_04",
+  "over" => "dark_menu_over_04",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_menu_normal_04",
+  "clickse" => "",
+  "x" => 607
+ ],
+ "exit" => (const) %[
+  "y" => 385,
+  "on" => "dark_menu_over_05",
+  "over" => "dark_menu_over_05",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_menu_normal_05",
+  "clickse" => "",
+  "x" => 607
+ ],
+ "save" => (const) %[
+  "y" => 225,
+  "on" => "dark_menu_over_01",
+  "over" => "dark_menu_over_01",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_menu_normal_01",
+  "clickse" => "",
+  "x" => 607
+ ],
+ "option" => (const) %[
+  "y" => 305,
+  "on" => "dark_menu_over_03",
+  "over" => "dark_menu_over_03",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_menu_normal_03",
+  "clickse" => "",
+  "x" => 607
+ ],
+ "load" => (const) %[
+  "y" => 265,
+  "on" => "dark_menu_over_02",
+  "over" => "dark_menu_over_02",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_menu_normal_02",
+  "clickse" => "",
+  "x" => 607
+ ],
+ "history" => (const) %[
+  "y" => 242,
+  "on" => "menu_button_on_04",
+  "over" => "menu_button_on_04",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "menu_button_04",
+  "clickse" => void,
+  "x" => 35
+ ],
+ "back" => (const) %[
+  "y" => 562,
+  "on" => "menu_button_on_07",
+  "over" => "menu_button_on_07",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "menu_button_07",
+  "clickse" => void,
+  "x" => 710
+ ],
+ "other" => (const) %[
+  "y" => 148,
+  "on" => "menu_button_on_08",
+  "over" => "menu_button_on_08",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "menu_button_08",
+  "clickse" => void,
+  "x" => 35
+ ],
+ "bgd" => "empty"
+]

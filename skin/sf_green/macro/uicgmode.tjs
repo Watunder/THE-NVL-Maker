@@ -1,0 +1,62 @@
+ %[
+ "back" =>  %[
+  "y" => 550,
+  "on" => "sf_button_return_over",
+  "over" => "sf_button_return_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "sf_button_return_normal",
+  "clickse" => "",
+  "x" => 120
+ ],
+ "up" =>  %[
+  "y" => 563,
+  "on" => "option_button_on_01",
+  "over" => "option_button_on_01",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_01",
+  "clickse" => void,
+  "x" => 278
+ ],
+ "thum" =>  %[
+  "normal" => "sample_cgthum"
+ ],
+ "down" =>  %[
+  "y" => 563,
+  "on" => "option_button_on_02",
+  "over" => "option_button_on_02",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_02",
+  "clickse" => void,
+  "x" => 574
+ ],
+ "bgd" => "sf_cgmode_bgd",
+ "locate" =>  [
+   [
+   120,
+   130
+  ],
+   [
+   390,
+   130
+  ],
+   [
+   660,
+   130
+  ],
+   [
+   120,
+   340
+  ],
+   [
+   390,
+   340
+  ],
+   [
+   660,
+   340
+  ]
+ ]
+]

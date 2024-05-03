@@ -1,0 +1,63 @@
+(const) %[
+ "num" => (const) %[
+  "on" => "0xFF0000",
+  "over" => "0xFF0000",
+  "normal" => "0xFF7373"
+ ],
+ "date" => (const) %[
+  "on" => "0xb6b499",
+  "over" => "0xb6b499",
+  "normal" => "0xFFFFFF"
+ ],
+ "up" => (const) %[
+  "over" => "option_button_on_01",
+  "normal" => "option_button_01",
+  "clickse" => "",
+  "on" => "option_button_on_01",
+  "enterse" => ""
+ ],
+ "down" => (const) %[
+  "over" => "option_button_on_02",
+  "normal" => "option_button_02",
+  "clickse" => "",
+  "on" => "option_button_on_02",
+  "enterse" => ""
+ ],
+ "history" => (const) %[
+  "on" => "0xb6b499",
+  "over" => "0xb6b499",
+  "normal" => "0xFFFFFF"
+ ],
+ "draw" => (const) %[
+  "talk" => "0xFFFFFF",
+  "bookmark" => "0xFFFFFF",
+  "date" => "0xFFFFFF"
+ ],
+ "back" => (const) %[
+  "over" => "dark_menu_back_over",
+  "normal" => "dark_menu_back_normal",
+  "clickse" => "",
+  "on" => "dark_menu_back_over",
+  "enterse" => ""
+ ],
+ "lastsavemark" => "sample_new",
+ "talk" => (const) %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "bookmark" => (const) %[
+  "on" => "0xb6b499",
+  "over" => "0xb6b499",
+  "normal" => "0xFFFFFF"
+ ],
+ "pagecolor" => "0xFFFFFF",
+ "button" => (const) %[
+  "over" => "dark_slbutton_over",
+  "normal" => "dark_slbutton_normal",
+  "clickse" => "",
+  "on" => "dark_slbutton_over",
+  "enterse" => ""
+ ],
+ "bgd" => "dark_save_bgd"
+]

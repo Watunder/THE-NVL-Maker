@@ -1,0 +1,281 @@
+// SliderLayerPatch.tjs - 横纵均可工作的支持ASD的SliderLayer
+// 作者：希德船长 修改、发布自由
+// 2008/03/13
+// 适用于KAG3 3.28
+
+class SliderLayerPatch extends SliderLayer
+{
+	var baseImageAni = void;
+	var tabImageAni = void;
+	
+	function SliderLayerPatch(win, par, vertical=false)
+	{
+		super.SliderLayer(win, par, vertical);
+	}
+	
+	function finalize()
+	{
+		super.finalize(...);
+	}
+	
+	function onPaint()
+	{
+		(global.KAGLayer.onPaint incontextof this)();
+		
+		// よく使う値をローカル変数に用意する
+        var imw = imageWidth, imh = imageHeight;
+        
+        if (baseImage !== void) {
+            copyRect(0, 0, baseImage, 0, 0, imw, imh);
+        } else {
+            // 下敷きを塗る
+            fillRect(0, 0, imw, imh, 0);
+                colorRect(0, 0, imw, imh, Slider_color, Slider_opacity);
+        }
+        
+        if (focused && !nohilight)	{
+            // フォーカスがあるのでハイライトする
+            colorRect(0, 0, width-1, 1, clHighlight, 128);
+            colorRect(0, 1, 1, height-2, clHighlight, 128);
+            colorRect(0, height-1, width, 1, clHighlight, 128);
+            colorRect(width-1, 0, 1, height-1, clHighlight, 128);
+        }
+        
+        if (vertical) {
+
+            var tabh = Slider_tabHeight;
+            var htabh = tabh >> 1;
+            
+            // 中央のへこみ線
+            //if (baseImage === void) {
+            //var himh = imh >> 1;
+            //var right = imw - tabh;
+            //fillRect(htabh, himh - 1, right, 1, 0x80000000);
+            //fillRect(htabh, himh    , right, 1, 0x80ffffff);
+            //}
+            
+            // タブ
+            var pos_y = int(
+                (Slider_position-Slider_min) * (imh - tabh - 2)/(Slider_max - Slider_min)) +
+                htabh + 1;
+            var x_htabh = pos_y - htabh;
+            
+            if (tabImage !== void) {
+                
+                var tabw = Slider_tabWidth;
+                var tabx = (imw - tabw) / 2;
+
+                if (Slider_dragging) {
+                    // on
+                    operateRect(tabx, x_htabh, tabImage, tabw, 0, tabw, tabh);
+                } else if (Slider_mouseOn) {
+                    // over
+                    operateRect(tabx, x_htabh, tabImage, tabw*2, 0, tabw, tabh);
+                } else {
+                    // normal
+                    operateRect(tabx, x_htabh, tabImage, 0, 0, tabw, tabh);
+                }
+                
+            } else {
+                fillRect(0, x_htabh, imw, tabh, 0xffffff + (nodeEnabled ? 0 : 0xc0000000));
+                if (Slider_mouseOn) {
+                    colorRect(0, x_htabh, imw, tabh, clHighlight, 64); // 原来这行把x_htabh写成x_htabw了
+                }
+                colorRect(0, x_htabh + 1, 1, tabh-2, 0xffffff, 128);
+                colorRect(imw - 1, x_htabh + 1, 1, tabh-2, 0x000000, 128);
+                colorRect(0, x_htabh, width, 1, 0xffffff, 128);
+                colorRect(0, pos_y + htabh - 1, width, 1, 0x000000, 128);
+            }
+
+            
+        } else {
+
+            var tabw = Slider_tabWidth;
+            var htabw = tabw >> 1;
+            
+            // 中央のへこみ線
+            //if (baseImage === void) {
+            //var himh = imh >> 1;
+            //var right = imw - tabw;
+            //fillRect(htabw, himh - 1, right, 1, 0x80000000);
+            //fillRect(htabw, himh    , right, 1, 0x80ffffff);
+            //}
+            
+            // タブ
+            var pos_x = int(
+                (Slider_position-Slider_min) * (imw - tabw - 2)/(Slider_max - Slider_min)) +
+                htabw + 1;
+            var x_htabw = pos_x - htabw;
+            
+            if (tabImage !== void) {
+                
+                var tabh = Slider_tabHeight;
+                var taby = (imh - tabh) / 2;
+                
+                if (Slider_dragging) {
+                    // on
+                    operateRect(x_htabw, taby, tabImage, tabw, 0, tabw, tabh);
+                } else if (Slider_mouseOn) {
+                    // over
+                    operateRect(x_htabw, taby, tabImage, tabw*2, 0, tabw, tabh);
+                } else {
+                    // normal
+                    operateRect(x_htabw, taby, tabImage, 0, 0, tabw, tabh);
+                }
+                
+            } else {
+                fillRect(x_htabw, 0, tabw, imh, 0xffffff + (nodeEnabled ? 0 : 0xc0000000));
+                if (Slider_mouseOn) {
+                    colorRect(x_htabw, 0, tabw, imh, clHighlight, 64);
+                }
+                colorRect(x_htabw + 1, 0, tabw-2, 1, 0xffffff, 128);
+                colorRect(x_htabw + 1, imh - 1, tabw-2, 1, 0x000000, 128);
+                colorRect(x_htabw, 0, 1, height, 0xffffff, 128);
+                colorRect(pos_x + htabw - 1, 0, 1, height, 0x000000, 128);
+            }
+        }
+	}
+	
+	function onMouseDown(x, y, button)
+	{
+		// マウスボタンが押された
+		focus();
+		(global.KAGLayer.onMouseDown incontextof this)(...);
+
+        if (button == mbLeft) {
+            if (vertical) {
+                var tabh = Slider_tabHeight;
+                var htabh = tabh >> 1;
+                var pos_y = int((Slider_position-Slider_min) * (imageHeight - tabh - 2)/(Slider_max - Slider_min)) + htabh + 1;
+                
+                if(pos_y - htabh > y) {
+                    // タブより上 // 以前这个地方和下面正好标反了，还有，这里改成每次滚动距离等于tab的尺寸
+                    toTop();
+                } else if(pos_y + htabh < y) {
+                    // タブより下
+                    toBottom();
+                } else {
+                    // タブ
+                    // タブのドラッグを開始
+                    Slider_dragging = true;
+                    Slider_dragOriginY = y - pos_y;
+                }
+            } else {
+                var tabw = Slider_tabWidth;
+                var htabw = tabw >> 1;
+                var pos_x = int((Slider_position-Slider_min) * (imageWidth - tabw - 2)/(Slider_max - Slider_min)) + htabw + 1;
+                
+                if(pos_x - htabw > x) {
+                    // タブより左
+					toLeft();
+                } else if(pos_x + htabw < x) {
+                    // タブより右
+                    toRight();
+                } else {
+                    // タブ
+                    // タブのドラッグを開始
+                    Slider_dragging = true;
+                    Slider_dragOriginX = x - pos_x;
+                }
+            }
+        }
+	}
+	
+    function toLeft() { // 修改了下面两个函数，改成每次滚动距离等于tab的尺寸
+        if (vertical) {
+        	var move = int((Slider_max - Slider_min) / height * (Slider_tabHeight - 2));
+            position = Slider_position - (move == 0 ? 1 : move);
+        } else {
+        	var move = int((Slider_max - Slider_min) / width * (Slider_tabWidth - 2));
+            position = Slider_position - (move == 0 ? 1 : move);
+        }
+    }
+
+    function toRight() {
+        if (vertical) {
+        	var move = int((Slider_max - Slider_min) / height * (Slider_tabHeight - 2));
+            position = Slider_position + (move == 0 ? 1 : move);
+        } else {
+        	var move = int((Slider_max - Slider_min) / width * (Slider_tabWidth - 2));
+            position = Slider_position + (move == 0 ? 1 : move);
+        }
+    }
+
+	function toTop()
+	{
+		toLeft();
+	}
+    
+    function toBottom()
+    {
+    	toRight();
+   	}
+	
+	function onKeyDown(key, shift, process)
+	{
+		// キーが押された
+		if(process)
+		{
+			if(key == VK_UP)
+			{
+				// 上
+				if(shift & ssAlt)
+					position = Slider_position - 1;
+				else
+                    toTop();
+                super.onKeyDown(key, shift, false); // 処理をしたのでprocessにfalseを渡す
+			}
+			else if(key == VK_DOWN)
+			{
+				// 下
+				if(shift & ssAlt)
+                    position = Slider_position + 1;
+                else
+                    toBottom();
+                super.onKeyDown(key, shift, false); // 処理をしたのでprocessにfalseを渡す
+			}
+			else
+			{
+				super.onKeyDown(...);
+			}
+		}
+		else
+		{
+			// process が false の場合は処理は行わない
+			super.onKeyDown(...);
+		}
+	}
+
+/*
+	
+
+    function loadBaseAni(elm)
+	{
+        if (baseImage === void)
+        {
+            baseImage = new global.AnimationLayer(window, this);
+        }
+        baseImage.loadImages(elm);
+       	baseImage.hitType = htMask;
+		baseImage.hitThreshold = 256; // マウスメッセージは全域透過
+        width  = baseImage.width;
+        height = baseImage.height;
+    }
+
+
+    function loadTabAni(elm)
+    {
+        if (tabImage === void)
+        {
+            tabImage = new global.AnimationLayer(window, this);
+        }
+        tabImage.loadImages(elm);
+       	tabImage.hitType = htMask;
+		tabImage.hitThreshold = 256; // マウスメッセージは全域透過
+        Slider_tabWidth  = tabImage.imageWidth;
+        Slider_tabHeight = tabImage.imageHeight;
+    }
+*/
+    
+
+}

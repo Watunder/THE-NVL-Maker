@@ -1,0 +1,67 @@
+ %[
+ "totitle" =>  %[
+  "y" => 220,
+  "on" => "menu_button_on_06",
+  "over" => "menu_button_on_06",
+  "use" => 1,
+  "normal" => "menu_button_06",
+  "x" => 45
+ ],
+ "exit" =>  %[
+  "y" => 250,
+  "on" => "menu_button_on_05",
+  "over" => "menu_button_on_05",
+  "use" => 1,
+  "normal" => "menu_button_05",
+  "x" => 45
+ ],
+ "save" =>  %[
+  "y" => 100,
+  "on" => "menu_button_on_01",
+  "over" => "menu_button_on_01",
+  "use" => 1,
+  "normal" => "menu_button_01",
+  "x" => 45
+ ],
+ "option" =>  %[
+  "y" => 160,
+  "on" => "menu_button_on_03",
+  "over" => "menu_button_on_03",
+  "use" => 1,
+  "normal" => "menu_button_03",
+  "x" => 45
+ ],
+ "load" =>  %[
+  "y" => 130,
+  "on" => "menu_button_on_02",
+  "over" => "menu_button_on_02",
+  "use" => 1,
+  "normal" => "menu_button_02",
+  "x" => 45
+ ],
+ "history" =>  %[
+  "y" => 310,
+  "on" => "menu_button_on_04",
+  "over" => "menu_button_on_04",
+  "use" => 0,
+  "normal" => "menu_button_04",
+  "x" => 45
+ ],
+ "back" =>  %[
+  "y" => 720,
+  "on" => "menu_button_on_07",
+  "over" => "menu_button_on_07",
+  "use" => 1,
+  "normal" => "menu_button_07",
+  "x" => 910
+ ],
+ "other" =>  %[
+  "y" => 190,
+  "on" => "menu_button_on_08",
+  "over" => "menu_button_on_08",
+  "use" => 0,
+  "normal" => "menu_button_08",
+  "x" => 45
+ ],
+ "bgd" => "Sample_PANEL"
+]

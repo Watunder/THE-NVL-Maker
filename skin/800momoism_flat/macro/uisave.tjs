@@ -1,0 +1,63 @@
+(const) %[
+ "num" => (const) %[
+  "on" => "0xFF7373",
+  "over" => "0xFF7373",
+  "normal" => "0xFF7373"
+ ],
+ "date" => (const) %[
+  "on" => "0x302623",
+  "over" => "0x302623",
+  "normal" => "0x302623"
+ ],
+ "up" => (const) %[
+  "over" => "MOMOism_arrow_left",
+  "normal" => "MOMOism_arrow_left",
+  "clickse" => "",
+  "on" => "MOMOism_arrow_left",
+  "enterse" => ""
+ ],
+ "down" => (const) %[
+  "over" => "MOMOism_arrow_right",
+  "normal" => "MOMOism_arrow_right",
+  "clickse" => "",
+  "on" => "MOMOism_arrow_right",
+  "enterse" => ""
+ ],
+ "history" => (const) %[
+  "on" => "0x302623",
+  "over" => "0x302623",
+  "normal" => "0x302623"
+ ],
+ "draw" => (const) %[
+  "talk" => "0xFFFFFF",
+  "date" => "0xFFFFFF",
+  "bookmark" => "0xFFFFFF"
+ ],
+ "back" => (const) %[
+  "over" => "MOMOism_sl_back_over",
+  "normal" => "MOMOism_sl_back_normal",
+  "clickse" => "",
+  "on" => "MOMOism_sl_back_over",
+  "enterse" => ""
+ ],
+ "lastsavemark" => "sample_new",
+ "talk" => (const) %[
+  "on" => "0xFFFFFF",
+  "over" => "0xFFFFFF",
+  "normal" => "0xFFFFFF"
+ ],
+ "bookmark" => (const) %[
+  "on" => "0x302623",
+  "over" => "0x302623",
+  "normal" => "0x302623"
+ ],
+ "pagecolor" => "0xFFFFFF",
+ "button" => (const) %[
+  "over" => "MOMOism_savebutton_over",
+  "normal" => "MOMOism_savebutton",
+  "clickse" => "",
+  "on" => "MOMOism_savebutton_over",
+  "enterse" => ""
+ ],
+ "bgd" => "MOMOism_save_bgd"
+]

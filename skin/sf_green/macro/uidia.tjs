@@ -1,0 +1,102 @@
+ %[
+ "scr" =>  %[
+  "left" => 0,
+  "marginb" => "20",
+  "marginl" => "20",
+  "top" => 0,
+  "marginr" => "20",
+  "frame" => "sf_dia_screen",
+  "margint" => "20"
+ ],
+ "face" =>  %[
+  "left" => 127,
+  "top" => 768
+ ],
+ "save" =>  %[
+  "y" => 535,
+  "on" => "menu_button_on_01",
+  "over" => "menu_button_on_01",
+  "use" => 0,
+  "normal" => "menu_button_01",
+  "x" => 380
+ ],
+ "dia" =>  %[
+  "left" => 250,
+  "marginb" => "20",
+  "marginl" => "20",
+  "top" => 575,
+  "marginr" => "20",
+  "frame" => "sf_dia_frame",
+  "margint" => "20"
+ ],
+ "blank" =>  %[
+  "marginb" => 20,
+  "marginl" => 20,
+  "marginr" => 20,
+  "margint" => 20
+ ],
+ "option" =>  %[
+  "y" => 535,
+  "on" => "menu_button_on_03",
+  "over" => "menu_button_on_03",
+  "use" => 0,
+  "normal" => "menu_button_03",
+  "x" => 530
+ ],
+ "load" =>  %[
+  "y" => 535,
+  "on" => "menu_button_on_02",
+  "over" => "menu_button_on_02",
+  "use" => 0,
+  "normal" => "menu_button_02",
+  "x" => 460
+ ],
+ "history" =>  %[
+  "y" => 630,
+  "on" => "menu_button_on_04",
+  "over" => "menu_button_on_04",
+  "use" => 0,
+  "normal" => "menu_button_04",
+  "x" => 940
+ ],
+ "menu" =>  %[
+  "y" => 523,
+  "on" => "sf_dia_button_menu_over",
+  "over" => "sf_dia_button_menu_over",
+  "use" => 1,
+  "normal" => "sf_dia_button_menu_normal",
+  "x" => 898
+ ],
+ "auto" =>  %[
+  "y" => 523,
+  "on" => "sf_dia_button_auto_over",
+  "over" => "sf_dia_button_auto_over",
+  "use" => 1,
+  "normal" => "sf_dia_button_auto_normal",
+  "x" => 791
+ ],
+ "skip" =>  %[
+  "y" => 523,
+  "on" => "sf_dia_button_skip_over",
+  "over" => "sf_dia_button_skip_over",
+  "use" => 1,
+  "normal" => "sf_dia_button_skip_normal",
+  "x" => 845
+ ],
+ "hide" =>  %[
+  "y" => 523,
+  "on" => "sf_dia_button_hide_over",
+  "over" => "sf_dia_button_hide_over",
+  "use" => 1,
+  "normal" => "sf_dia_button_hide_normal",
+  "x" => 952
+ ],
+ "other" =>  %[
+  "y" => 535,
+  "on" => "menu_button_on_08",
+  "over" => "menu_button_on_08",
+  "use" => 0,
+  "normal" => "menu_button_08",
+  "x" => 290
+ ]
+]

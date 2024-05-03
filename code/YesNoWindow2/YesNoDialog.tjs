@@ -1,0 +1,252 @@
+// YesNoDialog.tjs - はい/いいえを選択するダイアログボックス
+// Copyright (C)2001-2009, W.Dee and contributors  改変・配布は自由です
+
+class YesNoDialogWindow extends Window
+{
+	var yesButton; // [はい] ボタン
+	var noButton; // [いいえ] ボタン
+
+	var result = false; // no:false yes:true
+	
+	//Templayer
+	var tempLayer;
+    property temporaryLayer
+    {
+            // ワークエリアとして一時的に使用できるレイヤを返す
+            getter()
+            {
+                    if(tempLayer === void)
+                    {
+                            tempLayer = new KAGLayer(this, primaryLayer);
+                            tempLayer.name = "一時ワークレイヤ";
+                    }
+                    return tempLayer;
+            }
+    }
+        
+	function YesNoDialogWindow(message, cap)
+	{
+		super.Window();
+
+		// メインウィンドウから cursor**** の情報をとってくる
+		if(global.Window.mainWindow !== null &&
+			typeof global.Window.mainWindow.cursorDefault != "undefined")
+			this.cursorDefault = global.Window.mainWindow.cursorDefault;
+		if(global.Window.mainWindow !== null &&
+			typeof global.Window.mainWindow.cursorPointed != "undefined")
+			this.cursorPointed = global.Window.mainWindow.cursorPointed;
+
+        // 外見の調整
+        borderStyle = bsNone;
+        innerSunken = false;
+        caption = cap;
+		showScrollBars = false;
+
+		// プライマリレイヤの作成
+		add(new Layer(this, null));
+
+		// プライマリのマウスカーソルを設定
+		if(typeof this.cursorDefault !== "undefined")
+			primaryLayer.cursor = cursorDefault;
+			
+        //底图改变
+        if (message=="关闭游戏吗？")
+        	primaryLayer.loadImages("yn_q_exit_tw");
+        else if (message=="返回标题吗？")
+        	primaryLayer.loadImages("yn_q_return_tw");
+        else
+        	primaryLayer.loadImages("yn_q_bgd");
+        	
+        primaryLayer.setSizeToImageSize();
+        
+        // 文字样式设定                
+        primaryLayer.font.face="黑体";
+        primaryLayer.font.height=24;
+                
+ 		//文字拆分和确定位置
+		var tw = primaryLayer.font.getTextWidth(message);
+		var th = primaryLayer.font.getTextHeight(message);
+		
+		var max_tw = 0;
+		var sum_th = 0;
+		var messages = message.split('\n');
+		for (var i=0; i < messages.count; i++)
+		{
+		  var lw = primaryLayer.font.getTextWidth(messages[i]);
+		  var lh = primaryLayer.font.getTextHeight(messages[i]);
+		  if (lw > max_tw)
+		  max_tw = tw;
+		  sum_th += lh + 0; // 行間が必要なら+0より大きくする
+		}
+		tw = max_tw;
+		th = sum_th;
+              
+		var w=primaryLayer.width;
+		var h=primaryLayer.height;
+		
+		/*
+		var w = tw + 40;
+		if(w<200) w = 200;
+		var h = th*2 + 60;
+		*/
+		
+		// 拡大率の設定
+		if (kag.fullScreen) {
+			if (kag.innerWidth / kag.scWidth
+				< kag.innerHeight / kag.scHeight)
+				setZoom(kag.innerWidth, kag.scWidth);
+			else
+				setZoom(kag.innerHeight, kag.scHeight);
+		} else {
+		  setZoom(kag.zoomNumer, kag.zoomDenom);
+		}
+		// サイズを決定
+		setInnerSize(w * zoomNumer / zoomDenom,
+			 h * zoomNumer / zoomDenom);
+		
+		// プライマリレイヤのサイズを設定
+		//primaryLayer.width = w;
+		//primaryLayer.height = h;
+		
+		//primaryLayer.colorRect(0, 0, w, h, clBtnFace, 255);
+
+		
+		// ウィンドウ位置の調整
+		if(global.Window.mainWindow !== null && global.Window.mainWindow isvalid)
+		{
+			var win = global.Window.mainWindow;
+			var l, t;
+			l = ((win.width - width)>>1) + win.left;
+			t = ((win.height - height)>>1) + win.top;
+			if(l < 0) l = 0;
+			if(t < 0) t = 0;
+			if(l + width > System.screenWidth) l = System.screenWidth - width;
+			if(t + height > System.screenHeight) t = System.screenHeight - height;
+			setPos(l, t);
+		}
+		else
+		{
+			setPos((System.screenWidth - width)>>1, (System.screenHeight - height)>>1);
+		}
+
+		// 文字描绘
+             var msgpos_y = 85;
+              
+              if (message!="关闭游戏吗？" && message!="返回标题吗？")
+              {
+	              for (var i=0; i < messages.count; i++)
+	              {
+		               var lw = primaryLayer.font.getTextWidth(messages[i]);
+		               var lh = primaryLayer.font.getTextHeight(messages[i]);
+		               var msgpos_x = (w - lw)\2;
+		               
+		               primaryLayer.drawText(msgpos_x, msgpos_y, messages[i],0xFFFFFF);
+		               
+		               msgpos_y += lh + 10; // 調整行間距
+	              }
+              }
+
+		// Yesボタン
+		add(yesButton = new ButtonLayer(this, primaryLayer));
+        yesButton.loadButtons("yn_q_yes_tw_1.png","yn_q_yes_tw_2.png","yn_q_yes_tw_2.png");//yesbutton graphic
+        yesButton.top = 202;//yesbutton pos
+        yesButton.left = 40;//yesbutton pos
+        yesButton.visible = true;
+
+		// Noボタン
+		add(noButton = new ButtonLayer(this, primaryLayer));
+        noButton.loadButtons("yn_q_no_tw_1.png","yn_q_no_tw_2.png","yn_q_no_tw_2.png");//nobutton graphic
+        noButton.top = 202;//nobutton pos
+        noButton.left = 227;//nobutton pos
+        noButton.visible = true;
+
+	}
+
+	function finalize()
+	{
+		super.finalize(...);
+	}
+
+	function action(ev)
+	{
+		// action
+		if(ev.type == "onClick")
+		{
+			if(ev.target == yesButton)
+			{
+				result = true;
+				close();
+			}
+			else if(ev.target == noButton)
+			{
+				result = false;
+				close();
+			}
+		}
+		else if(ev.type == "onKeyDown" && ev.target === this)
+		{
+			// パッド入力に対応する処理
+			switch(ev.key)
+			{
+			case VK_PADLEFT:
+				yesButton.focus();
+				break;
+			case VK_PADRIGHT:
+				noButton.focus();
+				break;
+			case VK_PAD1:
+				if(focusedLayer == yesButton)
+				{
+					result = true;
+					close();
+				}
+				else if(focusedLayer == noButton)
+				{
+					result = false;
+					close();
+				}
+				break;
+			case VK_PAD2:
+				result = false;
+				close();
+				break;
+			}
+		}
+	}
+
+	function onKeyDown(key, shift)
+	{
+		super.onKeyDown(...);
+		if(key == VK_ESCAPE)
+		{
+			// ESC キーが押された
+			// 「いいえ」として処理
+			result = false;
+			close();
+		}
+	}
+}
+
+// Yes か No かはっきりさせる関数
+function askYesNo(message, caption = "确认", yesFunc=void, noFunc=void, param=void, doneFunc=void)
+{
+	var win = new YesNoDialogWindow(message, caption);
+	win.showModal();
+	var res = win.result;
+	invalidate win;
+
+    if (res) {
+        if (yesFunc !== void) {
+            yesFunc(param);
+        }
+    } else {
+        if (noFunc !== void) {
+            noFunc(param);
+        }
+    }
+
+    if (doneFunc !== void) {
+        doneFunc(param);
+    }
+    
+}

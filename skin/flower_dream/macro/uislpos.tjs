@@ -1,0 +1,112 @@
+(const) %[
+ "num" => (const) %[
+  "pre" => "File. ",
+  "x" => "240",
+  "height" => "20",
+  "y" => "16",
+  "after" => "",
+  "use" => 1
+ ],
+ "date" => (const) %[
+  "x" => "240",
+  "height" => "18",
+  "y" => "55",
+  "use" => 1
+ ],
+ "up" => (const) [
+  0,
+  304,
+  1
+ ],
+ "drawdate" => (const) %[
+  "y" => 234,
+  "use" => 0,
+  "x" => 45,
+  "size" => 20
+ ],
+ "drawtalk" => (const) %[
+  "count" => "11",
+  "x" => 39,
+  "space" => "25",
+  "size" => 20,
+  "y" => 304,
+  "use" => 0
+ ],
+ "smallsnap" => (const) %[
+  "y" => "13",
+  "use" => 1,
+  "x" => "77"
+ ],
+ "down" => (const) [
+  0,
+  405,
+  1
+ ],
+ "pagefont" => (const) %[
+  "shadowcolor" => "0x000000",
+  "page" => void,
+  "shadow" => 0,
+  "bold" => 0,
+  "italic" => 0,
+  "edgecolor" => "0x000000",
+  "edge" => 1
+ ],
+ "snapshot" => (const) %[
+  "y" => 35,
+  "visible" => 0,
+  "x" => 305
+ ],
+ "locate" => (const) [
+  (const) [
+   244,
+   26
+  ],
+  (const) [
+   244,
+   172
+  ],
+  (const) [
+   244,
+   318
+  ],
+  (const) [
+   244,
+   464
+  ],
+  (const) [
+   244,
+   610
+  ]
+ ],
+ "history" => (const) %[
+  "num" => "10",
+  "x" => "240",
+  "height" => "20",
+  "y" => "90",
+  "use" => 1,
+  "linespace" => "10",
+  "line" => "2"
+ ],
+ "back" => (const) [
+  0,
+  693,
+  1
+ ],
+ "drawmark" => (const) %[
+  "y" => 270,
+  "use" => 0,
+  "x" => 35,
+  "size" => 20
+ ],
+ "lastsavemark" => (const) %[
+  "y" => "0",
+  "use" => 1,
+  "x" => "690"
+ ],
+ "bookmark" => (const) %[
+  "x" => "530",
+  "height" => "20",
+  "y" => "16",
+  "use" => 1
+ ]
+]

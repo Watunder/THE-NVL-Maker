@@ -1,0 +1,63 @@
+(const) %[
+ "left" => 117,
+ "marginr" => 196,
+ "up" => (const) %[
+  "y" => 100,
+  "on" => "dark_logbutton_over_02",
+  "over" => "dark_logbutton_over_02",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_logbutton_normal_02",
+  "clickse" => "",
+  "x" => 640
+ ],
+ "font" => (const) %[
+  "icon" => "log_play_normal",
+  "italic" => 0,
+  "size" => "20",
+  "color" => "",
+  "edge" => 1,
+  "selicon" => "log_play_over",
+  "shadowcolor" => "0x000000",
+  "shadow" => 0,
+  "bold" => 0,
+  "selcolor" => "",
+  "edgecolor" => "0x000000"
+ ],
+ "marginl" => 79,
+ "linespace" => 28,
+ "slider" => (const) %[
+  "width" => 18,
+  "y" => 110,
+  "over" => "sample_sliderbutton_on",
+  "normal" => "sample_sliderbutton",
+  "use" => 0,
+  "x" => 632,
+  "height" => 500
+ ],
+ "down" => (const) %[
+  "y" => 470,
+  "on" => "dark_logbutton_over_06",
+  "over" => "dark_logbutton_over_06",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_logbutton_normal_06",
+  "clickse" => "",
+  "x" => 640
+ ],
+ "line" => 14,
+ "back" => (const) %[
+  "y" => 280,
+  "on" => "dark_logbutton_over_04",
+  "over" => "dark_logbutton_over_04",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_logbutton_normal_04",
+  "clickse" => "",
+  "x" => 640
+ ],
+ "margint" => 107,
+ "marginb" => 81,
+ "top" => 117,
+ "bgd" => "dark_log_bgd"
+]

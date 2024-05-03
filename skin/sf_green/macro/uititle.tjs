@@ -1,0 +1,59 @@
+ %[
+ "rain" => 0,
+ "exit" =>  %[
+  "y" => 570,
+  "on" => "sf_title_over_03",
+  "over" => "sf_title_over_03",
+  "use" => 1,
+  "normal" => "sf_title_normal_03",
+  "x" => 775
+ ],
+ "sakura" => 0,
+ "bgm" => "cover of an old book.ogg",
+ "movie" => 0,
+ "momiji" => 0,
+ "option" =>  %[
+  "y" => 510,
+  "on" => "menu_button_on_03",
+  "over" => "menu_button_on_03",
+  "use" => 0,
+  "normal" => "menu_button_06",
+  "x" => 775
+ ],
+ "extra" =>  %[
+  "y" => 570,
+  "on" => "title_button_on_03",
+  "over" => "title_button_on_03",
+  "use" => 0,
+  "normal" => "title_button_03",
+  "x" => 775
+ ],
+ "load" =>  %[
+  "y" => 510,
+  "on" => "sf_title_over_02",
+  "over" => "sf_title_over_02",
+  "use" => 1,
+  "normal" => "sf_title_normal_02",
+  "x" => 775
+ ],
+ "snow" => 1,
+ "logo" => "nvl_logo",
+ "omake" =>  %[
+  "y" => 540,
+  "on" => "title_button_on_02",
+  "over" => "title_button_on_02",
+  "use" => 0,
+  "normal" => "title_button_02",
+  "x" => 775
+ ],
+ "firefly" => 0,
+ "bgd" => "sf_title_bgd",
+ "start" =>  %[
+  "y" => 450,
+  "on" => "sf_title_over_01",
+  "over" => "sf_title_over_01",
+  "use" => 1,
+  "normal" => "sf_title_normal_01",
+  "x" => 775
+ ]
+]

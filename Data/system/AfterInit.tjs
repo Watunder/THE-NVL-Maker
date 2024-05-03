@@ -1,0 +1,88 @@
+
+
+///////////////////////文字渐变///////
+//
+
+KAGLoadScript("TextTransConfig.tjs");
+
+//
+////////////////////////////////////////
+
+///////////////////////可多行输出的ptext///////
+//
+
+KAGLoadScript("PMultiText.tjs");
+
+//
+////////////////////////////////////////
+
+///////////////////////实现sysbutton的状态的设置///////
+//
+
+KAGLoadScript("SysbuttonOpt.tjs");
+
+//
+////////////////////////////////////////
+
+///////////////////////为文字层加载头像图片///////
+//
+
+KAGLoadScript("SetFace.tjs");
+
+//
+////////////////////////////////////////
+
+//菜单函数
+// kag.onOpenHomePageClick = function(sender)
+// {
+//   System.shellExecute( "http://www.nvlmaker.net/" );
+// } incontextof kag;
+
+// kag.onOpenBBSClick = function(sender)
+// {
+//   System.shellExecute( "http://weibo.com/nvlmaker" );
+// } incontextof kag;
+
+// kag.onOpenKikyouClick = function(sender)
+// {
+//   System.shellExecute( "http://kikyou.info/" );
+// } incontextof kag;
+
+
+//切换窗口
+kag.onSwitchWindowSizeClick = function(sender)
+{
+
+	if (tf.fit)
+	{
+		changeOrigin();
+	}
+	else
+	{
+		//调用kag函数
+		changeFit();
+	}
+
+	sender.checked = tf.fit;
+
+} incontextof kag;
+
+
+// 添加新菜单项
+// kag.helpOpenHomePageMenuItem = new KAGMenuItem(kag, "NVLMaker Official Site", 0, kag.onOpenHomePageClick, false);
+// kag.helpOpenBBSMenuItem = new KAGMenuItem(kag, "Weibo", 0, kag.onOpenBBSClick, false);
+// kag.helpOpenKikyouMenuItem = new KAGMenuItem(kag, "kikyou.info", 0, kag.onOpenKikyouClick, false);
+
+//插入菜单
+kag.helpMenu.add(new MenuItem(this, "-"));
+// kag.helpMenu.add(kag.helpOpenHomePageMenuItem);
+// kag.helpMenu.add(kag.helpOpenBBSMenuItem);
+// kag.helpMenu.add(kag.helpOpenKikyouMenuItem);
+
+//添加切换屏幕分辨率用菜单
+kag.SwitchScreenSizeMenuItem = new KAGMenuItem(kag, "AutoFit", 0, kag.onSwitchWindowSizeClick, false);
+
+//插入菜单
+kag.displayMenu.add(new MenuItem(this, "-"));
+kag.displayMenu.add(kag.SwitchScreenSizeMenuItem);
+kag.SwitchScreenSizeMenuItem.checked=false;

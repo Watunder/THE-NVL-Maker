@@ -1,0 +1,64 @@
+(const) %[
+ "thum" => (const) %[
+  "on" => "sample_cgthum",
+  "over" => "sample_cgthum",
+  "normal" => "dark_thumnail_over"
+ ],
+ "back" => (const) %[
+  "y" => 556,
+  "on" => "dark_menu_back_over",
+  "over" => "dark_menu_back_over",
+  "enterse" => "",
+  "use" => 1,
+  "normal" => "dark_menu_back_normal",
+  "clickse" => "",
+  "x" => 671
+ ],
+ "down" => (const) %[
+  "y" => 439,
+  "on" => "option_button_on_02",
+  "over" => "option_button_on_02",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_02",
+  "clickse" => void,
+  "x" => 448
+ ],
+ "up" => (const) %[
+  "y" => 439,
+  "on" => "option_button_on_01",
+  "over" => "option_button_on_01",
+  "enterse" => void,
+  "use" => 0,
+  "normal" => "option_button_01",
+  "clickse" => void,
+  "x" => 217
+ ],
+ "locate" => (const) [
+  (const) [
+   40,
+   148
+  ],
+  (const) [
+   300,
+   148
+  ],
+  (const) [
+   560,
+   148
+  ],
+  (const) [
+   40,
+   342
+  ],
+  (const) [
+   300,
+   342
+  ],
+  (const) [
+   560,
+   342
+  ]
+ ],
+ "bgd" => "dark_cg_bgd"
+]

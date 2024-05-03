@@ -1,0 +1,71 @@
+// TextTransConfig.ks - 文字渐变控制插件
+// 作者：希德船长 修改、发布自由
+// 适用于KAG3 3.28
+
+class TextTransConfigPlugin extends KAGPlugin
+{
+	var window; // 主窗口对象
+
+	function TextTransConfigPlugin(window)
+	{
+		super.KAGPlugin();
+		this.window = window;
+	}
+
+	function finalize()
+	{
+		super.finalize(...);
+	}
+	
+	function setTextTransOption(elm)
+	{
+		var msglayer;
+		var page = window.getMessageLayerPageFromElm(elm);
+		var num = window.getMessageLayerNumberFromElm(elm);
+		if(page)
+			msglayer = window.back.messages[num];
+		else
+			msglayer = window.fore.messages[num];
+		if(msglayer !== void)
+			msglayer.lineLayer.setTransOption(elm);
+	}
+
+	function onStore(f, elm)
+	{
+		// 栞を保存するとき
+	}
+
+	function onRestore(f, clear, elm)
+	{
+		// 栞を読み出すとき
+	}
+
+	function onStableStateChanged(stable)
+	{
+	}
+
+	function onMessageHiddenStateChanged(hidden)
+	{
+	}
+
+	function onCopyLayer(toback)
+	{
+		// レイヤの表←→裏情報のコピー
+		// このプラグインではコピーすべき情報は表示?非表示の情報だけ
+	}
+
+	function onExchangeForeBack()
+	{
+		// 裏と表の管理情報を交換
+	}
+}
+
+kag.addPlugin(global.texttransconfig_object = new TextTransConfigPlugin(kag));
+	// 插件对象的创建和注册
+	
+//注册Handler
+kag.tagHandlers.settexttransoption = function(elm)
+{
+	texttransconfig_object.setTextTransOption(elm);
+	return 0;
+} incontextof kag;
