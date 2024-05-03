@@ -101,7 +101,7 @@
 [hbutton normal="edit_button_normal" over="edit_button_over" on="edit_button_on" exp="OpenPath('bgmlist.txt')" hint="将曲目名称和对应文件按照每行一个写入本TXT即可在BGM模式中显示"]
 [eval exp="drawButtonCaption('BGM列表编辑')"]
 
-[if exp="Storages.isExistentStorage(sf.path+'map/'+'omake.map')"]
+[if exp="Storages.isExistentStorage(sf.path+'nvl/'+'omake.map')"]
 [locate x=50 y=460]
 [button normal="edit_button_normal" over="edit_button_over" on="edit_button_on" target=*特别模式]
 [eval exp="drawButtonCaption('特别模式')"]
@@ -229,7 +229,7 @@ f.setting=getConfig();
 [iscript]
 f.mapname="omake.map";
 [endscript]
-[eval exp="f.config_map=Scripts.evalStorage(sf.path+'map/'+f.mapname)"]
+[eval exp="f.config_map=Scripts.evalStorage(sf.path+'nvl/'+f.mapname)"]
 [call storage="gui_map.ks"]
 [jump storage="gui_main.ks"]
 
