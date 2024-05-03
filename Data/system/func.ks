@@ -16,10 +16,8 @@
 *init
 
 @loadplugin module=wuvorbis.dll
-@loadplugin module=wump3.dll
 @loadplugin module=wutcwf.dll
 @loadplugin module=extrans.dll
-@loadplugin module=extNagano.dll
 
 @if exp="global.useconfigMappfont==true"
 @mappfont storage=&global.configMappfont

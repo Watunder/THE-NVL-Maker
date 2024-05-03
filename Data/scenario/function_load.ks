@@ -62,13 +62,11 @@ function getsozai(type,path)
              break;
        case "bgm":
              if (ext=='.ogg') file.add(list[i]);
-             if (ext=='.mp3') file.add(list[i]);
              if (ext=='.wav') file.add(list[i]);
              if (ext=='.mid') file.add(list[i]);
              break;
        case "se":
              if (ext=='.ogg') file.add(list[i]);
-             if (ext=='.mp3') file.add(list[i]);
              if (ext=='.wav') file.add(list[i]);
              //if (ext=='.mid') file.add(list[i]);
              break;

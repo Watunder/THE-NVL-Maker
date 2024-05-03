@@ -81,7 +81,7 @@ class uiButtonLayer extends uiLayer
       {
 		//去掉扩展名
 		enterse=Storages.chopStorageExt(enterse);
-		if (Storages.isExistentStorage(enterse+".wav") || Storages.isExistentStorage(enterse+".ogg") || Storages.isExistentStorage(enterse+".mp3"))
+		if (Storages.isExistentStorage(enterse+".wav") || Storages.isExistentStorage(enterse+".ogg"))
 		{
 	         kag.tagHandlers.playse(%[
 	         "storage" => enterse,
@@ -102,7 +102,7 @@ class uiButtonLayer extends uiLayer
       {
 		//去掉扩展名
 		clickse=Storages.chopStorageExt(clickse);
-		if (Storages.isExistentStorage(clickse+".wav") || Storages.isExistentStorage(clickse+".ogg") || Storages.isExistentStorage(clickse+".mp3"))
+		if (Storages.isExistentStorage(clickse+".wav") || Storages.isExistentStorage(clickse+".ogg"))
 		{
 	         kag.tagHandlers.playse(%[
 	         "storage" => clickse,

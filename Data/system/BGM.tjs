@@ -264,8 +264,6 @@ class BGM
 					storage = test;
 				else if(test = storage + ".tcw", Storages.isExistentStorage(test))
 					storage = test;
-				else if(test = storage + ".mp3", Storages.isExistentStorage(test))
-					storage = test;
 				else
 					found = false;
 			}
