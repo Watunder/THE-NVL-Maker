@@ -1,0 +1,14 @@
+class _Global
+{
+    function _Global()
+    {
+        
+    }
+}
+
+var Global = new _Global();
+
+Storages.addAutoPath("script/");
+
+Scripts.execStorage("_toJSONString.tjs");
+Scripts.execStorage("_toTJS2String.tjs");
