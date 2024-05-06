@@ -1,0 +1,3 @@
+[submodule "tool/THE-NVL-Wizard"]
+	path = tool/THE-NVL-Wizard
+	url = git@github.com:Watunder/THE-NVL-Wizard.git
