@@ -179,27 +179,6 @@
 [macro name=pos]
 [eval exp="drawPos(mp.valuex,mp.valuey,(int)mp.x,(int)mp.y,mp.true,mp.sample)"]
 [endmacro]
-
-;---------------------------------------------------------------
-;method相关参数输入
-;---------------------------------------------------------------
-[macro name=frame_trans]
-
-[line title="时间" name="f.参数.time" x=%x y=%y]
-[line title="方式" name="f.参数.method" x=%x y=&"(int)mp.y+30" type="list" target="*切换方式"]
-
-;使用rule
-[if exp="f.参数.method=='universal'"]
-[line title="遮片" name="f.参数.rule" x=%x y=&"(int)mp.y+60" type="pic" path="rule"]
-;使用滚动
-[elsif exp="f.参数.method=='scroll'"]
-[line title="方向" name="f.参数.from" x=%x y=&"(int)mp.y+60" type="list" target="*卷动方向"]
-[line title="背景" name="f.参数.stay" x=%x y=&"(int)mp.y+90" type="list" target="*背景停留"]
-[endif]
-
-[check title="可略过" name="f.参数.canskip" x=%x y=&"(int)mp.y+125"]
-
-[endmacro]
 ;---------------------------------------------------------------
 ;下拉菜单
 ;---------------------------------------------------------------
@@ -215,117 +194,6 @@
 [style align="center"]
 [endmacro]
 
-;---------------------------------------------------------------
-;层选择下拉菜单
-;---------------------------------------------------------------
-[macro name="list_fglayer_part"]
-[link target=*关闭下拉菜单 exp="f.参数.layer='0'"][emb exp="getTransStr('前景层')"]No.0[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='1'"][emb exp="getTransStr('前景层')"]No.1[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='2'"][emb exp="getTransStr('前景层')"]No.2[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='3'"][emb exp="getTransStr('前景层')"]No.3[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='4'"][emb exp="getTransStr('前景层')"]No.4[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='5'"][emb exp="getTransStr('前景层')"]No.5[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='6'"][emb exp="getTransStr('前景层')"]No.6[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='7'"][emb exp="getTransStr('前景层')"]No.7[endlink][r]
-[endmacro]
-
-[macro name=list_fglayer]
-[commit]
-[list x=%x y=%y line=9 layer="message6"]
-[list_fglayer_part]
-[link target=*关闭下拉菜单 exp="f.参数.layer='8'"][emb exp="getTransStr('头像层')"]No.8[endlink]
-[endmacro]
-
-[macro name=list_glayer]
-[commit]
-[list x=%x y=%y line=10 layer="message6"]
-[link target=*关闭下拉菜单 exp="f.参数.layer='all'"][emb exp="getTransStr('全部前景')"][endlink][r]
-[list_fglayer_part]
-[link target=*关闭下拉菜单 exp="f.参数.layer='8'"][emb exp="getTransStr('头像层')"]No.8[endlink]
-[endmacro]
-
-[macro name=list_layer]
-[commit]
-[list x=%x y=%y line=11 layer="message6"]
-[link target=*关闭下拉菜单 exp="f.参数.layer='stage'"][emb exp="getTransStr('背景层')"][endlink][r]
-[list_fglayer_part]
-[link target=*关闭下拉菜单 exp="f.参数.layer='8'"][emb exp="getTransStr('头像层')"]No.8[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='event'"][emb exp="getTransStr('特效层')"][endlink]
-[endmacro]
-
-[macro name=list_page]
-[commit]
-[list x=%x y=%y line=2 layer="message6"]
-[link target=*关闭下拉菜单 exp="f.参数.page='fore'"][emb exp="getTransStr('表页')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.page='back'"][emb exp="getTransStr('里页')"][endlink]
-[endmacro]
-
-[macro name=list_map]
-[commit]
-[list x=%x y=%y line=2 layer="message6"]
-[link target=*关闭下拉菜单 exp="f.参数.layer='11'"][emb exp="getTransStr('默认')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.layer='14'"][emb exp="getTransStr('系统')"][endlink]
-[endmacro]
-;---------------------------------------------------------------
-;method相关效果下拉菜单
-;---------------------------------------------------------------
-[macro name=list_method]
-[commit]
-[list x=%x y=%y line=10 layer="message6"]
-[link target=*关闭下拉菜单 exp="f.参数.method='crossfade'"][emb exp="getTransStr('淡入')"]（crossfade）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='universal'"][emb exp="getTransStr('遮片')"]（universal）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='turn'"][emb exp="getTransStr('翻页')"]（turn）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='wave'"][emb exp="getTransStr('波纹')"]（wave）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='ripple'"][emb exp="getTransStr('水面')"]（ripple）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='scroll'"][emb exp="getTransStr('卷动')"]（scroll）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='mosaic'"][emb exp="getTransStr('马赛克')"]（mosaic）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='rotateswap'"][emb exp="getTransStr('旋转切换')"]（rotateswap）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='rotatezoom'"][emb exp="getTransStr('旋转缩放')"]（rotatezoom）[endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.method='rotatevanish'"][emb exp="getTransStr('旋转消失')"]（rotatevanish）[endlink]
-[endmacro]
-
-[macro name=list_from]
-[commit]
-[list x=%x y=%y line=4 layer="message6"]
-[link target=*关闭下拉菜单 exp="f.参数.from='left'"][emb exp="getTransStr('自左')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.from='right'"][emb exp="getTransStr('自右')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.from='top'"][emb exp="getTransStr('自上')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.from='bottom'"][emb exp="getTransStr('自下')"][endlink]
-[endmacro]
-
-[macro name=list_stay]
-[commit]
-[list x=%x y=%y line=3 layer="message6"]
-[link target=*关闭下拉菜单 exp="f.参数.stay='nostay'"][emb exp="getTransStr('不停留')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.stay='stayback'"][emb exp="getTransStr('移走原图')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.stay='stayfore'"][emb exp="getTransStr('遮盖原图')"][endlink]
-[endmacro]
-;---------------------------------------------------------------
-;加算相关效果下拉菜单
-;---------------------------------------------------------------
-[macro name=list_image_effect]
-[link target=*关闭下拉菜单 exp="f.参数.mode='alpha'"][emb exp="getTransStr('一般透过（默认）')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='opaque'"][emb exp="getTransStr('完全不透过')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='addalpha'"][emb exp="getTransStr('加算透过')"][endlink][r]
-
-[link target=*关闭下拉菜单 exp="f.参数.mode='psadd'"][emb exp="getTransStr('PS加算')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='pssub'"][emb exp="getTransStr('PS減算')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='psmul'"][emb exp="getTransStr('PS正片叠底')"][endlink][r]
-
-[link target=*关闭下拉菜单 exp="f.参数.mode='psscreen'"][emb exp="getTransStr('PS屏幕')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='psoverlay'"][emb exp="getTransStr('PS叠加')"][endlink][r]
-
-[link target=*关闭下拉菜单 exp="f.参数.mode='pshlight'"][emb exp="getTransStr('PS强光')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='psslight'"][emb exp="getTransStr('PS柔光')"][endlink][r]
-
-[link target=*关闭下拉菜单 exp="f.参数.mode='psdodge'"][emb exp="getTransStr('PS减淡')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='psburn'"][emb exp="getTransStr('PS加深')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='pslighten'"][emb exp="getTransStr('PS变亮')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='psdarken'"][emb exp="getTransStr('PS变暗')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='psdiff'"][emb exp="getTransStr('PS差值')"][endlink][r]
-[link target=*关闭下拉菜单 exp="f.参数.mode='psexcl'"][emb exp="getTransStr('PS排除')"][endlink]
-[endmacro]
-
 [macro name=list_image_thumlist]
 [list x=46 y=40 line=8 layer="message8" width=188]
 [link exp="(f.bgimage=loadpic('bgimage') if f.bgimage==void),(f.list=f.bgimage)" target=*关闭下拉菜单][emb exp="getTransStr('背景')"](bgimage)[endlink][r]
@@ -337,5 +205,5 @@
 [link exp="(f.map=loadpic('map') if f.map==void),(f.list=f.map)" target=*关闭下拉菜单][emb exp="getTransStr('地图')"](map)[endlink][r]
 [link exp="(f.ui=loadpic('ui') if f.ui==void),(f.list=f.ui)" target=*关闭下拉菜单][emb exp="getTransStr('界面')"](ui)[endlink]
 [endmacro]
-;---------------------------------------------------------------
+
 [return]

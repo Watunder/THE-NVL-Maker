@@ -650,44 +650,6 @@ class AffineLayer extends KAGLayer {
             return _image.neutralColor;
         }
     }
-
-    // ----------------------------------------------------------------
-    // LayerEx 対応
-
-    function light(brightness, contrast) {
-        _image.light(...);
-        calcAffine();
-    }
-
-    function colorize(hue, sat, blend) {
-        _image.colorize(...);
-        calcAffine();
-    }
-    
-    function noise(level) {
-        _image.noise(...);
-        calcAffine();
-    }
-    
-    function doDropShadow(dx=10, dy=10, blur=3, shadowColor=0x000000, shadowOpacity=200) {
-        _image.doDropShadow(...);
-        calcAffine();
-    }
-
-    function doBlurLight(blur=10, blurOpacity=128, lightOpacity=200, lightType=ltPsHardLight) {
-        _image.doBlurLight(...);
-        calcAffine();
-    }
-
-    function tileRect(left, top, width, height, tile, x=0, y=0) {
-        _image.tileRect(...);
-        calcAffine();
-    }
-
-    function fillOperateRect(left, top, width, height, color, mode) {
-        _image.fillOperateRect(...);
-        calcAffine();
-    }
 };
 
 // 定数定義

@@ -193,9 +193,6 @@ property execDialog { getter() { KAGLoadScript("ExecDialog.tjs"); return global.
 */
 dm("KAG System 正在读取中...");
 
-// add by GoWatanabe
-KAGLoadScript("LayerEx.tjs");
-
 KAGLoadScript("Utils.tjs");
 KAGLoadScript("KAGLayer.tjs");
 
