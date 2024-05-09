@@ -23,7 +23,7 @@ class ExecDialogWindow extends Window
 		super.Window();
 
 		borderStyle = bsDialog;
-		innerSunken = false;
+		//innerSunken = false;
 		caption = "シナリオの読込み";
 
 		// プライマリレイヤの作成
@@ -63,7 +63,7 @@ class ExecDialogWindow extends Window
         edit.top  = 10;
         edit.left = (w - (150 + 10)>>1);
         edit.visible = true;
-        
+
 		// Yesボタン
 		add(okButton = new ButtonLayer(this, primaryLayer));
 		okButton.caption = "OK";
@@ -97,7 +97,7 @@ class ExecDialogWindow extends Window
         }
         close();
     }
-    
+
 	function finalize()
 	{
 		super.finalize(...);

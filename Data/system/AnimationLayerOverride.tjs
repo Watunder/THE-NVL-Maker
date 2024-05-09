@@ -12,7 +12,7 @@ class AnimationLayer extends ActionLayer
 	var Anim_loadParams = void; // 読み込み時に指定されたパラメータ
 	var Anim_partialImageInfo = void; // 画像の部分追加読み込みのパラメータ
 	var Anim_interrupted = false;// 中断中か
-	
+
 	var Anim_baseBak = void; // cell模式时用的原基础图层的备份
 
 	var Anim_defaultFontInfo = %[];
@@ -83,7 +83,7 @@ class AnimationLayer extends ActionLayer
 		// アニメーションセルレイヤの破棄
 		invalidate Anim_cellLayer if Anim_cellLayer !== void;
 		Anim_cellLayer = void;
-		
+
 		invalidate Anim_baseBak if Anim_baseBak !== void;
 		Anim_baseBak = void;
 	}
@@ -254,24 +254,24 @@ class AnimationLayer extends ActionLayer
 		Anim_storageName =
 			Storages.getPlacedPath(
 				Storages.chopStorageExt(elm.anim) + ".asd");
-		
+
 		if(Anim_storageName === void || Anim_storageName == '')
 		{
 			Anim_storageName =
 				Storages.getPlacedPath(
 					Storages.chopStorageExt(elm.storage) + ".asd");
 		}
-		
+
 		if(Anim_storageName != '')
 		{
 			// アニメーション情報があった!
 			// アニメーション情報をデフォルトのコンダクタに読み込む
-			
+
 			if(Anim_baseBak === void)
 				Anim_baseBak = new global.Layer(window, this);
 			Anim_baseBak.loadImages(elm.storage, elm.key);
 			Anim_baseBak.visible = false;
-			
+
 			loadAnimInfo(0, ''); // ついでにアニメーション開始(もし開始できれば)
 
 			if(+elm.stopseg0) // 增加了stopseg0参数，置为true则会停掉0号segment
@@ -536,8 +536,8 @@ class AnimationLayer extends ActionLayer
 		// ただし 位置、透明度、サイズ、レイヤ内画像位置はコピーしない
 		// (コピーしたい場合は KAGLayer.assignVisibleState を呼ぶこと)
 		super.assignImages(src);
-		
-		// 
+
+		//
 		if(src.Anim_baseBak !== void)
 		{
 			if(Anim_baseBak === void)
@@ -809,7 +809,7 @@ class AnimationLayer extends ActionLayer
 			dx = imageWidth - dx - sw;
 			sx = cl.imageWidth - sx - sw;
 		}
-		
+
 		copyRect(0, 0, Anim_baseBak, 0, 0, width, height);
 
 		face = dfAuto;

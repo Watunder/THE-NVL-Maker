@@ -74,7 +74,7 @@ kag.onSwitchWindowSizeClick = function(sender)
 // kag.helpOpenKikyouMenuItem = new KAGMenuItem(kag, "kikyou.info", 0, kag.onOpenKikyouClick, false);
 
 //插入菜单
-kag.helpMenu.add(new MenuItem(this, "-"));
+// kag.helpMenu.add(new MenuItem(this, "-"));
 // kag.helpMenu.add(kag.helpOpenHomePageMenuItem);
 // kag.helpMenu.add(kag.helpOpenBBSMenuItem);
 // kag.helpMenu.add(kag.helpOpenKikyouMenuItem);
@@ -83,6 +83,6 @@ kag.helpMenu.add(new MenuItem(this, "-"));
 kag.SwitchScreenSizeMenuItem = new KAGMenuItem(kag, "AutoFit", 0, kag.onSwitchWindowSizeClick, false);
 
 //插入菜单
-kag.displayMenu.add(new MenuItem(this, "-"));
+// kag.displayMenu.add(new MenuItem(this, "-"));
 kag.displayMenu.add(kag.SwitchScreenSizeMenuItem);
 kag.SwitchScreenSizeMenuItem.checked=false;

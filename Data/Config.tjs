@@ -227,7 +227,7 @@ function KAGWindow_config()
 // | |  |  | |
 // | |  |  | |
 // +---------+
-// 根据image 指令或 img 指令的 pos 属性指定前景层的位置 (left、lecft_center 等 )对应的中心位置 ( x 坐标 ) 
+// 根据image 指令或 img 指令的 pos 属性指定前景层的位置 (left、lecft_center 等 )对应的中心位置 ( x 坐标 )
 // ;scPositionX.位置名 = 中心位置; 以此形式指定。
 ;scPositionX.left = 200;
 ;scPositionX.left_center = 300;
@@ -600,14 +600,14 @@ function BGM_config()
 // "Wave"  : WaveSoundBuffer ( wav等(含使用插件播放的格式) )
 // "MIDI"  : MIDISoundBuffer ( mid,smf )
 // "CDDA"  : CDDASoundBuffer ( cda )
-;type = "MIDI";
+//;type = "MIDI";
 
 
 // ◆ CDDA播放来源标签
 // "CDDA" 指定后，由cdVolume 変数指定播放CD音轨的来源标签，而非音量来源的编号。
 // KAG 以放入有来源标签的光驱中来播放CD音轨。
 // 特别是用于区别装有复数光驱时与原光驱区别。
-;cdVolume = "xxxx";
+//;cdVolume = "xxxx";
 
 
 // ◆ 交叉定位
@@ -615,7 +615,7 @@ function BGM_config()
 // true 设定后可以准备两个声音缓冲进行交叉定位。
 // MIDI 使用声音缓冲不希望进行复数播放的数据时和使用
 // CDDA 声音缓冲时，请设定 false 。
-;doubleBuffered = false;
+//;doubleBuffered = false;
 
 
 // ◆ MIDI 播放开始前的讯息
@@ -628,7 +628,7 @@ function BGM_config()
 // 等。
 // 中途插入ff 00时 ，有 50ms 淡入淡出。
 // 需等待音源初期化等时插入。
-;midiInitialMessage = <% f0 7e 7f 09 01 f7 ff 00 %>;
+//;midiInitialMessage = <% f0 7e 7f 09 01 f7 ff 00 %>;
 
 
 // ◆ BGM 追加

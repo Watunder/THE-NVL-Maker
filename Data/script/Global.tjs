@@ -1,3 +1,6 @@
+Plugins.link("menu.dll");
+Plugins.link("KAGParser.dll");
+
 class _Global
 {
     function _Global()

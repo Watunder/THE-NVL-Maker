@@ -3,7 +3,7 @@
 ;     Copyright (C) 2011  VariableD http://www.nvlmaker.net/
 
 ;     You should have received a copy of the GNU General Public License
-;     along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+;     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;-------------------------------------------------------------------------------------------
 ;---------------------------------------------------------------
 ;界面设定
@@ -107,7 +107,11 @@
 [eval exp="drawButtonCaption('特别模式')"]
 [endif]
 ;---------------------------------------------------------------
-;[frame title="数据导出" line=2 x=345 y=15]
+[frame title="数据导出" line=2 x=345 y=15]
+[locate x=380 y=40]
+[hbutton normal="edit_button_normal" over="edit_button_over" on="edit_button_on" target=*导出JSON hint="导出游戏剧情脚本中所用到的演出TAG，可在其他引擎中按此列表重新实现"]
+[eval exp="drawButtonCaption('导出JSON')"]
+
 ;[locate x=380 y=40]
 ;[hbutton normal="edit_button_normal" over="edit_button_over" on="edit_button_on" exp="OpenPath('scenario.txt')" hint="设定需要导出的剧情脚本"]
 ;[eval exp="drawButtonCaption('脚本列表')"]

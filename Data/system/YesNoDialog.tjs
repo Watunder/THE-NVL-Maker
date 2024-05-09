@@ -22,7 +22,7 @@ class YesNoDialogWindow extends Window
 
 		// 外見の調整
 		borderStyle = bsDialog;
-		innerSunken = false;
+		//innerSunken = false;
 		caption = cap;
 
 		// プライマリレイヤの作成
@@ -175,6 +175,6 @@ function askYesNo(message, caption = "确认", yesFunc=void, noFunc=void, param=
     if (doneFunc !== void) {
         doneFunc(param);
     }
-    
+
     return res;
 }
