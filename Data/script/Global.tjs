@@ -1,11 +1,12 @@
 Plugins.link("menu.dll");
+Plugins.link("win32dialog.dll");
 Plugins.link("KAGParser.dll");
 
 class _Global
 {
     function _Global()
     {
-        
+
     }
 }
 

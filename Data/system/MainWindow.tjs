@@ -1202,8 +1202,7 @@ class KAGWindow extends Window
 
 	function onShowConsoleMenuItemClick(sender)
 	{
-		//Debug.console.visible = true;
-		System.inform("不支持的功能");
+		Debug.console.visible = true;
 	}
 
 	function onShowContollerMenuItemClick(sender)
