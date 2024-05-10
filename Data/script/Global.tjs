@@ -15,3 +15,5 @@ Storages.addAutoPath("script/");
 
 Scripts.execStorage("_toJSONString.tjs");
 Scripts.execStorage("_toTJS2String.tjs");
+
+Scripts.execStorage("polyfill/startup.tjs");

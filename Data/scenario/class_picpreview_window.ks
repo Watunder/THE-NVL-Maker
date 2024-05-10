@@ -38,6 +38,8 @@ class PicPreviewWindow extends Window
     menu_next = new MenuItem(this, "下一张");
     menu.add(menu_pre);
     menu.add(menu_next);
+
+    hideWindow();
   }
 
 //载入图片

@@ -1,0 +1,24 @@
+// Load font and set it as default
+if (typeof(global.Font) === "Object" && typeof(global.Font.addFont) === "Object")
+{
+    var font_to_add = "";
+    var paths_to_check = [
+        "polyfill/simsun.ttc",
+    ];
+    for (var i = 0; i < paths_to_check.count; i += 1)
+    {
+        var font_to_check = paths_to_check[i];
+        if (font_to_check !== void)
+        {
+            if (global.Storages.isExistentStorage(font_to_check))
+            {
+                font_to_add = font_to_check;
+                break;
+            }
+        }
+    }
+    if (font_to_add !== "")
+    {
+        global.System.setArgument("-deffont", global.Font.addFont(font_to_add)[0]);
+    }
+}
