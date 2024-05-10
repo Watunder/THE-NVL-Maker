@@ -3,7 +3,7 @@
 ;     Copyright (C) 2011  VariableD http://www.nvlmaker.net/
 
 ;     You should have received a copy of the GNU General Public License
-;     along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+;     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;-------------------------------------------------------------------------------------------
 *start
 [iscript]
@@ -19,7 +19,7 @@ class uiBackLayer extends Layer
 
 	function uiBackLayer(elm)
 	{
-     	super.Layer(kag, parent); 
+     	super.Layer(kag, parent);
 
 		left=0;
 		top=0;
@@ -27,7 +27,7 @@ class uiBackLayer extends Layer
 		absolute=1;
 
 		visible=true;
-		
+
 		hitType = htMask;
 		hitThreshold =0;
 
@@ -38,7 +38,7 @@ class uiBackLayer extends Layer
 	function Reset(elm)
 	{
 
-		if (typeof elm == "String") 
+		if (typeof elm == "String")
 		{
 			var bgdstr=elm;
 			var dic=%["frame"=>bgdstr];
@@ -47,7 +47,7 @@ class uiBackLayer extends Layer
 		}
 		else
 		{
-			
+
 		}
 
 		frame=elm.frame;
@@ -73,7 +73,7 @@ class uiBackLayer extends Layer
 			var slayer = new global.Layer(kag,this);
 				slayer.loadImages(stitle);
 				slayer.setSizeToImageSize();
-	
+
 			//复制小图片
 			this.pileRect(stitle_x,stitle_y,slayer,0,0,slayer.width,slayer.height);
 			delete slayer;

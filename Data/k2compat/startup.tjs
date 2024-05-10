@@ -1,0 +1,16 @@
+@set (K2COMPAT_VERBOSE = 1)
+
+@if (kirikiriz)
+{
+	var base = "k2compat/"; // System.exePath + "k2compat.xp3>";
+	Scripts.execStorage(base+"k2compat.tjs");
+	Krkr2CompatUtils.scriptBase = base;
+}
+@endif
+
+if (System.getArgument("-consoleonly") == "yes")
+{
+	System.exitOnNoWindowStartup = false; // [???] 機能しない？
+	Debug.console.visible = true;
+	return;
+}

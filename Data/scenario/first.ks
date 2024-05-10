@@ -38,7 +38,7 @@ function changeFit() {
 		dm("Width Ref: " + refWidth + "," + (kag.scHeight * refWidth / kag.scWidth));
 	}
 	tf.fit=true;
-	kag.showScrollBars=false;
+	//kag.showScrollBars=false;
 }
 
 //复原分辨率
@@ -47,7 +47,7 @@ function changeOrigin() {
 	kag.setZoom(1, 1);
 	kag.setInnerSize(kag.scWidth, kag.scHeight);
 	tf.fit=false;
-	kag.showScrollBars=true;
+	//kag.showScrollBars=true;
 }
 
 //默认为不自适应
@@ -65,7 +65,7 @@ sf.gs.height=600;
 sf.version_num="3.90 beta";
 sf.version_date="2018/11/20";
 //加入滚动条，如果画面不够大的话就可以拖了……=_=b
-kag.showScrollBars=true;
+//kag.showScrollBars=true;
 [endscript]
 ;---------------------------------------------------------------
 ;DLL插件

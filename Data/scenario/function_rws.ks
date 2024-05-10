@@ -6,6 +6,17 @@
 ;     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;-------------------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------------------------
+;NEO-CL3D
+;------------------------------------------------------------------------------------------------
+[iscript]
+function outAsJson(file,flagname)
+{
+
+	var path=Storages.getLocalName(sf.outputpath+"json/");
+	Scripts.saveJSON(path+file, flagname, 1, 0);
+}
+[endscript]
+;------------------------------------------------------------------------------------------------
 ;音乐的播放函数
 ;------------------------------------------------------------------------------------------------
 [iscript]
@@ -14,12 +25,7 @@ function bgmplayer(file,isloop=false)
 	stopbgm();
 	dm("音乐播放："+file+"，循环："+isloop);
 	var ext=Storages.extractStorageExt(file);
-	if (ext==".mid")
-	kag.tagHandlers.playbgm(%[
-	"storage"=>file,
-	"loop"=>isloop
-	]);
-	else
+
 	kag.tagHandlers.playse(%[
 	"storage"=>file,
 	"loop"=>isloop

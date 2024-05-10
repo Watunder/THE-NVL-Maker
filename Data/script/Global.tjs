@@ -2,7 +2,7 @@ class _Global
 {
     function _Global()
     {
-        
+
     }
 }
 
@@ -12,3 +12,5 @@ Storages.addAutoPath("script/");
 
 Scripts.execStorage("_toJSONString.tjs");
 Scripts.execStorage("_toTJS2String.tjs");
+
+Scripts.execStorage("k2compat/startup.tjs");

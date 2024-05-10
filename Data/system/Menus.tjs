@@ -135,9 +135,9 @@ function KAGWindow_createMenus()
 
 		debugMenu.add(this.reloadScenarioMenuItem = new KAGMenuItem(this, "Reload Scenario(&R)", 1,
 			onReloadScenarioMenuItemClick, false));
-		debugMenu.add(this.showConsoleMenuItem = new KAGMenuItem(this, "Console(&C)\tShift+F4", 1,
+		debugMenu.add(this.showConsoleMenuItem = new KAGMenuItem(this, "Console(&C)", 1,
 			onShowConsoleMenuItemClick, false));
-		debugMenu.add(this.showControllerMenuItem = new KAGMenuItem(this, "Controller(&S)\tShift+F1", 1,
+		debugMenu.add(this.showControllerMenuItem = new KAGMenuItem(this, "Controller(&S)", 1,
 			onShowContollerMenuItemClick, false));
 
 }

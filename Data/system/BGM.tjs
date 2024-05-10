@@ -64,7 +64,7 @@ class KAGSoundBuffer
 		inFadeAndPause = true;
 		sbclass.fade(0, time, delay);
 	}
-    
+
 	function onFadeCompleted()
 	{
         // フェードが終了した
@@ -111,35 +111,35 @@ class KAGWaveSoundBuffer extends WaveSoundBuffer, KAGSoundBuffer
     }
 }
 
-class KAGMIDISoundBuffer extends MIDISoundBuffer, KAGSoundBuffer
-{
-	function KAGMIDISoundBuffer(owner)
-	{
-		MIDISoundBuffer(owner);
-		KAGSoundBuffer(owner, global.MIDISoundBuffer);
-	}
+// class KAGMIDISoundBuffer extends MIDISoundBuffer, KAGSoundBuffer
+// {
+// 	function KAGMIDISoundBuffer(owner)
+// 	{
+// 		MIDISoundBuffer(owner);
+// 		KAGSoundBuffer(owner, global.MIDISoundBuffer);
+// 	}
 
-	function finalize()
-	{
-		global.KAGSoundBuffer.finalize(...);
-		global.MIDISoundBuffer.finalize(...);
-	}
-}
+// 	function finalize()
+// 	{
+// 		global.KAGSoundBuffer.finalize(...);
+// 		global.MIDISoundBuffer.finalize(...);
+// 	}
+// }
 
-class KAGCDDASoundBuffer extends CDDASoundBuffer, KAGSoundBuffer
-{
-	function KAGCDDASoundBuffer(owner)
-	{
-		CDDASoundBuffer(owner);
-		KAGSoundBuffer(owner, global.CDDASoundBuffer);
-	}
+// class KAGCDDASoundBuffer extends CDDASoundBuffer, KAGSoundBuffer
+// {
+// 	function KAGCDDASoundBuffer(owner)
+// 	{
+// 		CDDASoundBuffer(owner);
+// 		KAGSoundBuffer(owner, global.CDDASoundBuffer);
+// 	}
 
-	function finalize()
-	{
-		global.KAGSoundBuffer.finalize(...);
-		global.CDDASoundBuffer.finalize(...);
-	}
-}
+// 	function finalize()
+// 	{
+// 		global.KAGSoundBuffer.finalize(...);
+// 		global.CDDASoundBuffer.finalize(...);
+// 	}
+// }
 
 
 class BGM
@@ -149,7 +149,7 @@ class BGM
 	var type = "Wave"; // BGM タイプ
 	var cdVolume = "xxxx"; // 演奏に使用する CD の ボリュームラベル
 	var doubleBuffered = true; // クロスフェードを行うか
-	var midiInitialMessage = <% %>; // MIDI 初期化メッセージ
+	// var midiInitialMessage = <% %>; // MIDI 初期化メッセージ
 
 	var buf1; // バッファ 1
 	var buf2; // バッファ 2
@@ -194,20 +194,20 @@ class BGM
 			buf1 = new KAGWaveSoundBuffer(this);
 			buf2 = new KAGWaveSoundBuffer(this) if doubleBuffered;
 		}
-		else if(type == "MIDI")
-		{
-			buf1 = new KAGMIDISoundBuffer(this);
-			buf2 = new KAGMIDISoundBuffer(this) if doubleBuffered;
-		}
-		else if(type == "CDDA")
-		{
-			buf1 = new KAGCDDASoundBuffer(this);
-			if(doubleBuffered)
-			{
-				throw new Exception("CDDA 无法进行Crossfade。"
-					"请设定doubleBuffered = false 。");
-			}
-		}
+		// else if(type == "MIDI")
+		// {
+		// 	buf1 = new KAGMIDISoundBuffer(this);
+		// 	buf2 = new KAGMIDISoundBuffer(this) if doubleBuffered;
+		// }
+		// else if(type == "CDDA")
+		// {
+		// 	buf1 = new KAGCDDASoundBuffer(this);
+		// 	if(doubleBuffered)
+		// 	{
+		// 		throw new Exception("CDDA 无法进行Crossfade。"
+		// 			"请设定doubleBuffered = false 。");
+		// 	}
+		// }
 		buf1.looping = looping;
 		buf2.looping = looping if buf2 !== void;
 	}
@@ -221,7 +221,7 @@ class BGM
 
 	function changeDevice(newtype)
 	{
-		// デバイスの変更 
+		// デバイスの変更
 		var flags = %[];
 		store(flags); // いったん状態を保存
 		freeBuffers(); // バッファの解放
@@ -236,24 +236,24 @@ class BGM
 
 		// 拡張子やドライブ文字が省略された場合、検索を行う
 		var found = true;
-		if(type == "CDDA")
-		{
-			if(storage[1] != ':')
-			{
-				var drive = Storages.searchCD(cdVolume);
-				if(drive == '')
-				{
-					// 使用可能な CD が見つからない
-					dm("ボリュームラベル " + cdVolume + " を持った CD がドライブに入っていません");
-					return; //------
-				}
-				else
-				{
-					storage = drive + ':' + storage;
-				}
-			}
-		}
-		else if(type == "Wave")
+		// if(type == "CDDA")
+		// {
+		// 	if(storage[1] != ':')
+		// 	{
+		// 		var drive = Storages.searchCD(cdVolume);
+		// 		if(drive == '')
+		// 		{
+		// 			// 使用可能な CD が見つからない
+		// 			dm("ボリュームラベル " + cdVolume + " を持った CD がドライブに入っていません");
+		// 			return; //------
+		// 		}
+		// 		else
+		// 		{
+		// 			storage = drive + ':' + storage;
+		// 		}
+		// 	}
+		// }
+		if(type == "Wave")
 		{
 			var test;
 			if(!Storages.isExistentStorage(storage))
@@ -266,24 +266,24 @@ class BGM
 					found = false;
 			}
 		}
-		else if(type == "MIDI")
-		{
-			var test;
-			if(!Storages.isExistentStorage(storage))
-			{
-				if(test = storage + ".mid", Storages.isExistentStorage(test))
-					storage = test;
-				else if(test = storage + ".smf", Storages.isExistentStorage(test))
-					storage = test;
-				else if(test = storage + ".mdi", Storages.isExistentStorage(test))
-					storage = test;
-				else
-					found = false;
-			}
+		// else if(type == "MIDI")
+		// {
+		// 	var test;
+		// 	if(!Storages.isExistentStorage(storage))
+		// 	{
+		// 		if(test = storage + ".mid", Storages.isExistentStorage(test))
+		// 			storage = test;
+		// 		else if(test = storage + ".smf", Storages.isExistentStorage(test))
+		// 			storage = test;
+		// 		else if(test = storage + ".mdi", Storages.isExistentStorage(test))
+		// 			storage = test;
+		// 		else
+		// 			found = false;
+		// 	}
 
-			if(midiInitialMessage.length)
-				MIDISoundBuffer.midiOut(midiInitialMessage); // 初期化メッセージなど
-		}
+		// 	if(midiInitialMessage.length)
+		// 		MIDISoundBuffer.midiOut(midiInitialMessage); // 初期化メッセージなど
+		// }
 
 		if(_enabled)
 		{
@@ -410,8 +410,8 @@ class BGM
     function fadePause(elm)
     {
         if(_enabled) currentBuffer.fadeOutAndPause(elm.time);
-    }    
-    
+    }
+
 	function fade(elm)
 	{
 		// 指定音量までフェード
