@@ -1,244 +1,1 @@
-Krkr2CompatUtils.requireWIN32Dialog();
-
-//=============================================================
-
-class        WIN32ModelessDialogEX      extends WIN32DialogEX {
-	function WIN32ModelessDialogEX(elm) { super.WIN32DialogEX(...);
-		modeless = true;
-		(Dictionary.assignStruct incontextof (_initialParam = %[]))(elm) if (typeof elm == "Object" && elm);
-		createAsyncTrigger("onAsyncUpdate");
-	}
-	function finalize {
-		deleteAsyncTrigger();
-		super.finalize(...);
-	}
-
-	// visibleでmodeless dialogをopen/closeする
-	var _visible = false, _stored = false, _initialParam;
-	property visible {
-		getter { return _visible; }
-		setter(v) {
-			if (_visible == !!v) return;
-			if (_visible) {
-				onClose();
-				_visible = false;
-				super.close(-1);
-			} else {
-				var first = false;
-				if(!_stored) {
-					_stored = first = true;
-					store(getDialogTemplate(_initialParam));
-				}
-				_visible = true;
-				open(Window.mainWindow ? null : void); // ※ZではMainWindowがないとTVPGetApplicationWindowが失敗する
-				onOpen(first);
-			}
-		}
-	}
-	function close() { visible = false; }
-	/*virtusl*/function onOpen(first) { _syncPos(true); }
-	/*virtusl*/function onClose()     { _resetPos(); }
-
-	/*virtual*/function onResized(w, h) {}
-	/*virtual*/function getDialogTemplate(elmov) {
-		var cx, cy;
-		if (_width !== void || _height !== void) {
-			// フォントサイズに影響されるので実サイズとは異なるが表示時にリサイズすることで対応する
-			var units = getBaseUnits();
-			cx = _width  * 4 \ units.h if (_width  !== void);
-			cy = _height * 8 \ units.v if (_height !== void);
-		}
-		var style = getWindowStyle();
-		var dlgsty = getDialogStyle();
-		return %[ items:[], style: style[0] | dlgsty, exStyle: style[1],
-				  /**/title: _title, x:_left, y:_top, cx:cx, cy:cy ];
-	}
-	/*virtual*/function getDialogStyle() { return DS_SHELLFONT/*DS_SETFONT*/ | WS_VISIBLE; }
-
-	// borderStyleからSTYLE/EXSTYLEを決定する
-	function getWindowStyle(style = WS_OVERLAPPEDWINDOW, exStyle = 0) {
-		var origStyle   = style;
-		var origExStyle = exStyle;
-		/**/style   &= ~(WS_POPUP | WS_CAPTION | WS_BORDER | WS_THICKFRAME | WS_DLGFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SYSMENU);
-		/**/exStyle &= ~(WS_EX_TOOLWINDOW | /*WS_EX_ACCEPTFILES |*/WS_EX_APPWINDOW);
-		switch (_borderStyle) {
-		case bsDialog:
-			style   |= WS_DLGFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU;
-			exStyle |= WS_EX_DLGMODALFRAME | WS_EX_WINDOWEDGE;
-			break;
-		case bsSingle:
-			style   |= WS_CAPTION | WS_BORDER;
-			style   |= WS_MINIMIZEBOX | WS_SYSMENU;
-			break;
-		case bsNone:
-		case bsSizeable:
-			style   |= (_borderStyle == bsNone) ? WS_POPUP : (WS_CAPTION | WS_THICKFRAME);
-			style   |= WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SYSMENU;
-			break;
-		case bsToolWindow:
-		case bsSizeToolWin:
-			style   |= WS_CAPTION;
-			style   |= (_borderStyle == bsToolWindow) ? WS_BORDER : WS_THICKFRAME;
-			style   |= WS_SYSMENU;
-			exStyle |= WS_EX_TOOLWINDOW;
-			break;
-		default:
-			// revert
-			style   = origStyle;
-			exStyle = origExStyle;
-			break;
-		}
-		return [ style, exStyle ];
-	}
-
-	// ダイアログアイテムのコールバックを onCommand/onNotify_アイテム名 で呼び返す
-	function onCommand(msg, wp, lp) {
-		super.onCommand(...);
-		_invokeCallback("onCommand", getNamedId(wp & 0xFFFF), wp>>16, lp);
-	}
-	function onNotify(wp, nm) {
-		super.onNotify(...);
-		var id = getNamedId(wp);
-		if (id == "") id = getNamedId(nm.idFrom);
-		_invokeCallback("onNotify", id, nm);
-	}
-	function _invokeCallback(cbname, id, *) {
-		if (id != "") {
-			var method = @"${cbname}_${id}";
-			if (typeof this[method] == "Object") try {
-				this[method](id, *);
-			} catch (e) {
-				Debug.notice(@"${cbname}Exception", id, e.message);
-			}
-		}
-	}
-
-	// 複数個のAsyncTriggerを汎用に生成する処理（callback method名をキーに保存）
-	var _asyncTriggers;
-	function createAsyncTrigger(cbmethod, mode = atmAtIdle, cached = true) {
-		if (cbmethod == "") return;
-		var trig = new AsyncTrigger(this, cbmethod);
-		with (trig) .mode=mode, .cached=cached;
-		if (_asyncTriggers === void) 
-			_asyncTriggers = %[];
-		var old = trig;
-		_asyncTriggers[cbmethod] <-> old;
-		if (old) invalidate old;
-		return trig;
-	}
-	function deleteAsyncTrigger(cbmethod) {
-		if (_asyncTriggers === void) return;
-		if (cbmethod != "") {
-			var target = _asyncTriggers[cbmethod];
-			delete       _asyncTriggers[cbmethod];
-			if (target) invalidate target;
-		} else {
-			var ext = [];
-			ext.assign(_asyncTriggers);
-			for (var i = 0, cnt = ext.count; i < cnt; i+=2) {
-				var target = ext[i+1];
-				if (target) invalidate target;
-			}
-			(Dictionary.clear incontextof _asyncTriggers)();
-			_asyncTriggers = void;
-		}
-	}
-	function kickAsyncTrigger(cbmethod, autogen = true, *) {
-		if (cbmethod == "" || _asyncTriggers === void) return;
-		var trig = _asyncTriggers[cbmethod];
-		if (trig === void) {
-			if (!autogen) return;
-			trig = createAsyncTrigger(cbmethod, *);
-		}
-		trig.trigger();
-		return trig;
-	}
-
-	//-------------------------------------------------------------
-
-	var _title = System.title;
-	property title {
-		getter { return _title; }
-		setter(v) {     _title = v; _updateTitle(); }
-	}
-	function _updateTitle() {
-		if (_visible) setItemText(0, _title);
-	}
-	var _borderStyle = bsSingle;
-	property borderStyle {
-		getter { return _borderStyle; }
-		setter(v) {     _borderStyle = v; _updateBorderStyle(); }
-	}
-	function _updateBorderStyle {
-		if (_visible) {
-			var   style = getItemLong(0, GWL_STYLE);
-			var exstyle = getItemLong(0, GWL_EXSTYLE);
-			var gws = getWindowStyle(style, exstyle);
-			setItemLong(0, GWL_STYLE,   gws[0]) if (gws[0] !=   style);
-			setItemLong(0, GWL_EXSTYLE, gws[1]) if (gws[1] != exstyle);
-			invalidateAll(true);
-		}
-	}
-
-	//-------------------------------------------------------------
-
-	function onSize(msg, wp, lp) {
-		var w = (lp&0xFFFF), h = (lp>>16)&0xFFFF;
-		onResized(w, h) if (_visible && (wp == 0/*SIZE_RESTORED*/ || wp == 2/*SIZE_MAXIMIZED*/));
-	}
-
-	var _left, _top, _width, _height;
-	function _syncPos(force) {
-		if (!_visible) return;
-		if (_left   === void) _left   = super.left;
-		if (_top    === void) _top    = super.top;
-		if (_width  === void) _width  = super.width;
-		if (_height === void) _height = super.height;
-		if (force) onAsyncUpdate();
-	}
-	function _resetPos() {
-		if (_visible) {
-			_left = _top = _width = _height = void;
-			_syncPos(false);
-		}
-	}
-	function _updatePos()  { _asyncUpdate(); }
-	function _updateSize() { _asyncUpdate(); }
-	function _asyncUpdate() { _syncedPosSize = false; kickAsyncTrigger("onAsyncUpdate"); }
-	function onAsyncUpdate() {
-		if (isvalid this && _visible) {
-			super.setPos( _left,  _top)    if (_left  != super.left  || _top    != super.top);
-			super.setSize(_width, _height) if (_width != super.width || _height != super.height);
-			_syncedPosSize = true;
-		}
-	}
-	var _syncedPosSize = true;
-	property left {
-		getter { return _visible && _syncedPosSize ? super.left : _left; }
-		setter(v) { _left = (int)+v; _updatePos(); }
-	}
-	property top {
-		getter { return _visible && _syncedPosSize ? super.top :_top; }
-		setter(v) { _top  = (int)+v; _updatePos(); }
-	}
-	property width {
-		getter { return _visible && _syncedPosSize ? super.width : _width; }
-		setter(v) { _width  = (int)+v; _updateSize(); }
-	}
-	property height {
-		getter { return _visible && _syncedPosSize ? super.height : _height; }
-		setter(v) { _height = (int)+v; _updateSize(); }
-	}
-	function setPos(x, y, w, h) {
-		_left = (int)+x if (x !== void);
-		_top  = (int)+y if (y !== void);
-		_updatePos();
-		setSize(w, h) if (w !== void || h !== void);
-	}
-	function setSize(w, h) {
-		_width  = (int)+w if (w !== void);
-		_height = (int)+h if (h !== void);
-		_updateSize();
-	}
-}
-
+䭲歲㉃潭灡瑕瑩汳⹲敱畩牥坉丳㉄楡汯木⤻ਊ⼯㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴊੣污獳⁗䥎㌲䵯摥汥獳䑩慬潧䕘⁥硴敮摳⁗䥎㌲䑩慬潧䕘੻ਉ晵湣瑩潮⁗䥎㌲䵯摥汥獳䑩慬潧䕘⡥汭⤊ॻਉॳ異敲⹗䥎㌲䑩慬潧䕘⠮⸮⤻ਉ७潤敬敳猠㴠瑲略㬊उ⡄楣瑩潮慲礮慳獩杮却牵捴⁩湣潮瑥硴潦 彩湩瑩慬偡牡洠㴠╛崩⤨敬洩⁩映⡴祰敯映敬洠㴽•佢橥捴∠☦⁥汭⤻ਉॣ牥慴敁獹湣呲楧来爨≯湁獹湣啰摡瑥∩㬊ॽਊ०畮捴楯渠晩湡汩穥ਉ笊उ摥汥瑥䅳祮捔物杧敲⠩㬊उ獵灥爮晩湡汩穥⠮⸮⤻ਉ紊ਉ⼯⁶楳楢汥ꝭ潤敬敳猠摩慬潧鉯灥港捬潳旣膙謊ॶ慲 癩獩扬攠㴠晡汳攬 獴潲敤‽⁦慬獥Ⱐ彩湩瑩慬偡牡活ਉ灲潰敲瑹⁶楳楢汥ਉ笊उ来瑴敲⁻⁲整畲渠彶楳楢汥㬠紊उ獥瑴敲⡶⤊उ笊उ३映⡟癩獩扬攠㴽‡ⅶ⤠牥瑵牮㬊उ३映⡟癩獩扬攩ਉउ笊उउ潮䍬潳攨⤻ਉउय़癩獩扬攠㴠晡汳攻ਉउॳ異敲⹣汯獥⠭ㄩ㬊उॽਉउ敬獥ਉउ笊उउ癡爠晩牳琠㴠晡汳攻ਉउ३昨⅟獴潲敤⤊उउ笊उउय़獴潲敤‽⁦楲獴‽⁴牵攻ਉउउ獴潲攨来瑄楡汯杔敭灬慴攨彩湩瑩慬偡牡洩⤻ਉउॽਉउय़癩獩扬攠㴠瑲略㬊उउ潰敮⡗楮摯眮浡楮坩湤潷‿⁮畬氠㨠癯楤⤻ ⼠뭚꟣膯䵡楮坩湤潷賣膪蓣膨呖假整䅰灬楣慴楯湗楮摯矣膌뇦閗駣芋ਉउ९湏灥渨晩牳琩㬊उॽਉॽਉ紊ऊ०畮捴楯渠捬潳攨⤠笠癩獩扬攠㴠晡汳攻⁽ਉ⼪癩牴畳氪⽦畮捴楯渠潮佰敮⡦楲獴⤠笠彳祮捐潳⡴牵攩㬠紊य⩶楲瑵獬⨯晵湣瑩潮⁯湃汯獥⠩††⁻ 牥獥瑐潳⠩㬠紊ਉ⼪癩牴畡氪⽦畮捴楯渠潮剥獩穥搨眬⁨⤠筽ਉ⼪癩牴畡氪⽦畮捴楯渠来瑄楡汯杔敭灬慴攨敬浯瘩ਉ笊उ癡爠捸Ⱐ捹㬊उ楦 彷楤瑨‡㴽⁶潩搠籼 桥楧桴‡㴽⁶潩搩ਉॻਉउ⼯⃣莕ꧣ莳裣芵ꓣ芺ꯥ붱뿣膕賣芋껣膧鿣芵ꓣ芺꣣膯냣膪诣膌꣧꒺苣膫ꫣ芵ꓣ芺駣芋鏣膨꟥꾾鳣膙謊उॶ慲⁵湩瑳‽⁧整䉡獥啮楴猨⤻ਉउ捸‽ 睩摴栠‪‴⁜⁵湩瑳⹨⁩映⡟睩摴栠‡㴽⁶潩搩㬊उॣ礠㴠彨敩杨琠⨠㠠尠畮楴献瘠楦 彨敩杨琠ℽ㴠癯楤⤻ਉॽਉॶ慲⁳瑹汥‽⁧整坩湤潷却祬攨⤻ਉॶ慲⁤汧獴礠㴠来瑄楡汯杓瑹汥⠩㬊उ牥瑵牮‥嬠楴敭猺孝Ⱐ獴祬攺⁳瑹汥嬰崠簠摬杳瑹Ⱐ數却祬攺⁳瑹汥嬱崬ਉउठ ⨪⽴楴汥㨠彴楴汥Ⱐ砺彬敦琬⁹㩟瑯瀬⁣砺捸Ⱐ捹㩣礠崻ਉ紊य⩶楲瑵慬⨯晵湣瑩潮⁧整䑩慬潧却祬攨⤠笠牥瑵牮⁄卟午䕌䱆低启⩄卟卅呆低吪⼠簠坓彖䥓䥂䱅㬠紊ਉ⼯⁢潲摥牓瑹汥诣芉協奌䔯䕘協奌䗣芒뫥꺚駣芋ਉ晵湣瑩潮⁧整坩湤潷却祬攨獴祬攠㴠坓彏噅剌䅐偅䑗䥎䑏圬⁥硓瑹汥‽‰⤊ॻਉॶ慲⁯物杓瑹汥†‽⁳瑹汥㬊उ癡爠潲楧䕸却祬攠㴠數却祬攻ਉय⨪⽳瑹汥†…㴠縨坓彐佐啐⁼⁗卟䍁偔䥏丠簠坓彂佒䑅删簠坓彔䡉䍋䙒䅍䔠簠坓彄䱇䙒䅍䔠簠坓彍䥎䥍䥚䕂佘⁼⁗卟䵁塉䵉婅䉏堠簠坓当奓䵅乕⤻ਉय⨪⽥硓瑹汥…㴠縨坓彅塟呏佌坉乄佗⁼ ⩗卟䕘彁䍃䕐呆䥌䕓⁼⨯坓彅塟䅐偗䥎䑏圩㬊उ獷楴捨 形潲摥牓瑹汥⤊उ笊उॣ慳攠扳䑩慬潧㨊उउ獴祬攠†簽⁗卟䑌䝆剁䵅⁼⁗卟偏偕倠簠坓彃䅐呉低⁼⁗卟卙卍䕎唻ਉउ॥硓瑹汥⁼㴠坓彅塟䑌䝍佄䅌䙒䅍䔠簠坓彅塟坉乄佗䕄䝅㬊उउ扲敡欻ਉउ捡獥⁢獓楮杬攺ਉउॳ瑹汥†⁼㴠坓彃䅐呉低⁼⁗卟䉏剄䕒㬊उउ獴祬攠†簽⁗卟䵉义䵉婅䉏堠簠坓当奓䵅乕㬊उउ扲敡欻ਉउ捡獥⁢獎潮攺ਉउ捡獥⁢獓楺敡扬攺ਉउॳ瑹汥†⁼㴠⡟扯牤敲却祬攠㴽⁢獎潮攩‿⁗卟偏偕倠㨠⡗卟䍁偔䥏丠簠坓彔䡉䍋䙒䅍䔩㬊उउ獴祬攠†簽⁗卟䵉义䵉婅䉏堠簠坓彍䅘䥍䥚䕂佘⁼⁗卟卙卍䕎唻ਉउॢ牥慫㬊उॣ慳攠扳呯潬坩湤潷㨊उॣ慳攠扳卩穥呯潬坩渺ਉउॳ瑹汥†⁼㴠坓彃䅐呉低㬊उउ獴祬攠†簽 形潲摥牓瑹汥‽㴠扳呯潬坩湤潷⤠㼠坓彂佒䑅删㨠坓彔䡉䍋䙒䅍䔻ਉउॳ瑹汥†⁼㴠坓当奓䵅乕㬊उउ數却祬攠簽⁗卟䕘彔住䱗䥎䑏圻ਉउॢ牥慫㬊उ।敦慵汴㨊उउ⼯⁲敶敲琊उउ獴祬攠†㴠潲楧却祬攻ਉउ॥硓瑹汥‽⁯物杅硓瑹汥㬊उउ扲敡欻ਉॽਉॲ整畲渠嬠獴祬攬⁥硓瑹汥⁝㬊ॽਊय⼠胣芤ꋣ莭냣芢ꓣ莆ꃣ膮돣莼ꯣ莐菣芯鈠潮䍯浭慮搯潮乯瑩晹忣芢ꓣ莆ꃥ邍⃣膧볣膳铣膙ਉ晵湣瑩潮⁯湃潭浡湤⡭獧Ⱐ睰Ⱐ汰⤊ॻਉॳ異敲⹯湃潭浡湤⠮⸮⤻ਉय़楮癯步䍡汬扡捫⠢潮䍯浭慮搢Ⱐ来瑎慭敤䥤⡷瀠☠へ䙆䙆⤬⁷瀾㸱㘬⁬瀩㬊ॽਊ०畮捴楯渠潮乯瑩晹⡷瀬⁮洩ਉ笊उ獵灥爮潮乯瑩晹⠮⸮⤻ਉॶ慲⁩搠㴠来瑎慭敤䥤⡷瀩㬊उ楦 楤‽㴠∢⤠楤‽⁧整乡浥摉搨湭⹩摆牯洩㬊उ彩湶潫敃慬汢慣欨≯湎潴楦礢Ⱐ楤Ⱐ湭⤻ਉ紊ਉ晵湣瑩潮 楮癯步䍡汬扡捫⡣扮慭攬⁩搬‪⤊ॻਉ३映⡩搠ℽ•∩ਉॻਉउ癡爠浥瑨潤‽⁀∤筣扮慭敽弤筩摽∻ਉउ楦 瑹灥潦⁴桩獛浥瑨潤崠㴽•佢橥捴∩ਉउ笊उउ瑲礊उउ笊उउॴ桩獛浥瑨潤崨楤Ⱐ⨩㬊उउ紊उउ捡瑣栠⡥⤊उउ笊उउॄ敢畧⹮潴楣攨䀢⑻换湡浥絅硣数瑩潮∬⁩搬⁥⹭敳獡来⤻ਉउॽਉउ紊उ紊ॽਊय⼠蟦閰诣膮䅳祮捔物杧敲鋦놎꣣膫鿦袐駣芋ꛧ邆衣慬汢慣欠浥瑨潤跣芒귣莼ꯤ뾝飯벉ਉ癡爠彡獹湣呲楧来牳㬊०畮捴楯渠捲敡瑥䅳祮捔物杧敲⡣扭整桯搬⁭潤攠㴠慴流瑉摬攬⁣慣桥搠㴠瑲略⤊ॻਉ३映⡣扭整桯搠㴽•∩⁲整畲渻ਉॶ慲⁴物朠㴠湥眠䅳祮捔物杧敲⡴桩猬⁣扭整桯搩㬊उ睩瑨 瑲楧⤠⹭潤攽浯摥Ⱐ⹣慣桥搽捡捨敤㬊ਉ३映⡟慳祮捔物杧敲猠㴽㴠癯楤⤠ਉउ彡獹湣呲楧来牳‽‥孝㬊ਉॶ慲⁯汤‽⁴物朻ਉय़慳祮捔物杧敲獛换浥瑨潤崠㰭㸠潬搻ਉ३映⡯汤⤠楮癡汩摡瑥⁯汤㬊ਉॲ整畲渠瑲楧㬊ॽਊ०畮捴楯渠摥汥瑥䅳祮捔物杧敲⡣扭整桯搩ਉ笊उ楦 彡獹湣呲楧来牳‽㴽⁶潩搩⁲整畲渻ਉ३映⡣扭整桯搠ℽ•∩ਉॻਉउ癡爠瑡牧整‽ 慳祮捔物杧敲獛换浥瑨潤崻ਉउ摥汥瑥††† 慳祮捔物杧敲獛换浥瑨潤崻ਉउ楦 瑡牧整⤠楮癡汩摡瑥⁴慲来琻ਉॽਉ॥汳攊उ笊उॶ慲⁥硴‽⁛崻ਉउ數琮慳獩杮⡟慳祮捔物杧敲猩㬊उ०潲 癡爠椠㴠〬⁣湴‽⁥硴⹣潵湴㬠椠㰠据琻⁩⬽㈩⁻ਉउॶ慲⁴慲来琠㴠數瑛椫ㅝ㬊उउ楦 瑡牧整⤠楮癡汩摡瑥⁴慲来琻ਉउ紊उन䑩捴楯湡特⹣汥慲⁩湣潮瑥硴潦 慳祮捔物杧敲猩⠩㬊उय़慳祮捔物杧敲猠㴠癯楤㬊उ紊ॽਉ晵湣瑩潮⁫楣歁獹湣呲楧来爨换浥瑨潤Ⱐ慵瑯来渠㴠瑲略Ⱐ⨩ਉ笊उ楦 换浥瑨潤‽㴠∢⁼簠彡獹湣呲楧来牳‽㴽⁶潩搩⁲整畲渻ਉॶ慲⁴物朠㴠彡獹湣呲楧来牳季扭整桯摝㬊उ楦 瑲楧‽㴽⁶潩搩ਉॻਉउ楦 Ⅱ畴潧敮⤠牥瑵牮㬊उॴ物朠㴠捲敡瑥䅳祮捔物杧敲⡣扭整桯搬‪⤻ਉॽਉॴ物朮瑲楧来爨⤻ਉॲ整畲渠瑲楧㬊ॽਊय⼭ⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭਊॶ慲 瑩瑬攠㴠卹獴敭⹴楴汥㬊॰牯灥牴礠瑩瑬攊ॻਉ१整瑥爠笠牥瑵牮 瑩瑬攻⁽ਉॳ整瑥爨瘩⁻†† 瑩瑬攠㴠瘻 異摡瑥呩瑬攨⤻⁽ਉ紊ਉ晵湣瑩潮 異摡瑥呩瑬攨⤊ॻਉ३映⡟癩獩扬攩⁳整䥴敭呥硴⠰Ⱐ彴楴汥⤻ਉ紊ਉ癡爠形潲摥牓瑹汥‽⁢獓楮杬攻ਉ灲潰敲瑹⁢潲摥牓瑹汥ਉ笊उ来瑴敲⁻⁲整畲渠形潲摥牓瑹汥㬠紊उ獥瑴敲⡶⤠笠††形潲摥牓瑹汥‽⁶㬠彵灤慴敂潲摥牓瑹汥⠩㬠紊ॽਉਉ晵湣瑩潮 異摡瑥䉯牤敲却祬攊ॻਉ३映⡟癩獩扬攩ਉॻਉउ癡爠†獴祬攠㴠来瑉瑥浌潮木〬⁇坌当呙䱅⤻ਉउ癡爠數獴祬攠㴠来瑉瑥浌潮木〬⁇坌彅塓呙䱅⤻ਉउ癡爠杷猠㴠来瑗楮摯睓瑹汥⡳瑹汥Ⱐ數獴祬攩㬊उॳ整䥴敭䱯湧⠰Ⱐ䝗䱟協奌䔬†⁧睳嬰崩⁩映⡧睳嬰崠ℽ†⁳瑹汥⤻ਉउ獥瑉瑥浌潮木〬⁇坌彅塓呙䱅Ⱐ杷獛ㅝ⤠楦 杷獛ㅝ‡㴠數獴祬攩㬊उ३湶慬楤慴敁汬⡴牵攩㬊उ紊ॽਊय⼭ⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭⴭਊ०畮捴楯渠潮卩穥⡭獧Ⱐ睰Ⱐ汰⤊ॻਉॶ慲⁷‽ 汰☰硆䙆䘩Ⱐ栠㴠⡬瀾㸱㘩☰硆䙆䘻ਉ९湒敳楺敤⡷Ⱐ栩⁩映⡟癩獩扬攠☦ 睰‽㴠〯⩓䥚䕟剅協佒䕄⨯⁼簠睰‽㴠㈯⩓䥚䕟䵁塉䵉婅䐪⼩⤻ਉ紊ਉ癡爠彬敦琬 瑯瀬 睩摴栬 桥楧桴㬊ਉ晵湣瑩潮 獹湣偯猨景牣攩ਉ笊उ楦 ⅟癩獩扬攩⁲整畲渻ਉ३映⡟汥晴†‽㴽⁶潩搩 汥晴†‽⁳異敲⹬敦琻ਉ३映⡟瑯瀠†‽㴽⁶潩搩 瑯瀠†‽⁳異敲⹴潰㬊उ楦 彷楤瑨†㴽㴠癯楤⤠彷楤瑨†㴠獵灥爮睩摴栻ਉ३映⡟桥楧桴‽㴽⁶潩搩 桥楧桴‽⁳異敲⹨敩杨琻ਉ३映⡦潲捥⤠潮䅳祮捕灤慴攨⤻ਉ紊ਉ晵湣瑩潮 牥獥瑐潳⠩ਉ笊उ楦 彶楳楢汥⤠笊उय़汥晴‽ 瑯瀠㴠彷楤瑨‽ 桥楧桴‽⁶潩搻ਉउ彳祮捐潳⡦慬獥⤻ਉॽਉ紊ਉ晵湣瑩潮 異摡瑥偯猨⤠⁻ 慳祮捕灤慴攨⤻⁽ਉ晵湣瑩潮 異摡瑥卩穥⠩⁻ 慳祮捕灤慴攨⤻⁽ਉ晵湣瑩潮 慳祮捕灤慴攨⤠笠彳祮捥摐潳卩穥‽⁦慬獥㬠歩捫䅳祮捔物杧敲⠢潮䅳祮捕灤慴攢⤻⁽ਉ晵湣瑩潮⁯湁獹湣啰摡瑥⠩ਉ笊उ楦 楳癡汩搠瑨楳…☠彶楳楢汥⤊उ笊उॳ異敲⹳整偯猨 汥晴Ⱐ 瑯瀩††楦 彬敦琠‡㴠獵灥爮汥晴†籼 瑯瀠†‡㴠獵灥爮瑯瀩㬊उॳ異敲⹳整卩穥⡟睩摴栬 桥楧桴⤠楦 彷楤瑨‡㴠獵灥爮睩摴栠籼 桥楧桴‡㴠獵灥爮桥楧桴⤻ਉउ彳祮捥摐潳卩穥‽⁴牵攻ਉॽਉ紊ॶ慲 獹湣敤偯獓楺攠㴠瑲略㬊ਉ灲潰敲瑹⁬敦琊ॻਉ१整瑥爠笠牥瑵牮 癩獩扬攠☦ 獹湣敤偯獓楺攠㼠獵灥爮汥晴› 汥晴㬠紊उ獥瑴敲⡶⤠笠彬敦琠㴠⡩湴⤫瘻 異摡瑥偯猨⤻⁽ਉ紊ਉ灲潰敲瑹⁴潰ਉ笊उ来瑴敲⁻⁲整畲渠彶楳楢汥…☠彳祮捥摐潳卩穥‿⁳異敲⹴潰›彴潰㬠紊उ獥瑴敲⡶⤠笠彴潰†㴠⡩湴⤫瘻 異摡瑥偯猨⤻⁽ਉ紊ਉ灲潰敲瑹⁷楤瑨ਉ笊उ来瑴敲⁻⁲整畲渠彶楳楢汥…☠彳祮捥摐潳卩穥‿⁳異敲⹷楤瑨› 睩摴栻⁽ਉॳ整瑥爨瘩⁻ 睩摴栠‽ 楮琩⭶㬠彵灤慴敓楺攨⤻⁽ਉ紊ਉ灲潰敲瑹⁨敩杨琊ॻਉ१整瑥爠笠牥瑵牮 癩獩扬攠☦ 獹湣敤偯獓楺攠㼠獵灥爮桥楧桴› 桥楧桴㬠紊उ獥瑴敲⡶⤠笠彨敩杨琠㴠⡩湴⤫瘻 異摡瑥卩穥⠩㬠紊ॽਊ०畮捴楯渠獥瑐潳⡸Ⱐ礬⁷Ⱐ栩ਉ笊उ彬敦琠㴠⡩湴⤫砠楦 砠ℽ㴠癯楤⤻ਉय़瑯瀠‽ 楮琩⭹⁩映⡹‡㴽⁶潩搩㬊उ彵灤慴敐潳⠩㬊उ獥瑓楺攨眬⁨⤠楦 眠ℽ㴠癯楤⁼簠栠ℽ㴠癯楤⤻ਉ紊ਉ晵湣瑩潮⁳整卩穥⡷Ⱐ栩ਉ笊उ彷楤瑨†㴠⡩湴⤫眠楦 眠ℽ㴠癯楤⤻ਉय़桥楧桴‽ 楮琩⭨⁩映⡨‡㴽⁶潩搩㬊उ彵灤慴敓楺攨⤻ਉ紊紊

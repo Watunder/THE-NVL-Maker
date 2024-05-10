@@ -86,5 +86,3 @@ kag.SwitchScreenSizeMenuItem = new KAGMenuItem(kag, "AutoFit", 0, kag.onSwitchWi
 // kag.displayMenu.add(new MenuItem(this, "-"));
 kag.displayMenu.add(kag.SwitchScreenSizeMenuItem);
 kag.SwitchScreenSizeMenuItem.checked=false;
-
-Scripts.execStorage("k2compat/startup.tjs");
