@@ -5,14 +5,16 @@
 // k2compat.tjsをロードする前に下記条件コンパイル式が定義可能です
 
 //// 各種互換実装を無効化します
-//
+//	
 //	@set (K2COMPAT_PURGE_PLUGIN = 1) // KAGParser.dll menu.dll win32dialog.dll
+//  @set (K2COMPAT_PURGE_INPUTSTRING = 1) // System.inputString
 //	@set (K2COMPAT_PURGE_DEBUG = 1) // 下記のDebugクラス周りの実装一括
 //		@set (K2COMPAT_PURGE_CONSOLE = 1) // コンソール (Debug.console)
 //		@set (K2COMPAT_PURGE_CONTROLLER = 1) // コントローラ (Debug.controller)
 //		@set (K2COMPAT_PURGE_SCRIPTEDITOR = 1) // スクリプトエディタ (Debug.scripted)
 //		@set (K2COMPAT_PURGE_WATCH = 1) // 監視式 (Debug.watchexp)
 //		@set (K2COMPAT_PURGE_HOTKEY = 1) // Shift+F1～F4のホットキー
+// @set (K2COMPAT_PURGE_FONTSELECT = 1) // Layer.doUserSelect
 //
 //// k2compat.tjsのデバッグログ表示を有効にします
 //	@set (K2COMPAT_VERBOSE = 1)
@@ -55,12 +57,6 @@ class Krkr2CompatUtils
 
 		trace(messageTag+".requireWIN32Dialog");
 
-		if (typeof global.WIN32Dialog != "Object")
-		{
-			delete global.WIN32Dialog;
-			loadPlugin("win32dialog.dll");
-		}
-
 		var file = @"win32dialog.tjs";
 		if (Storages.isExistentStorage(scriptBase + file))
 		{
@@ -76,31 +72,6 @@ class Krkr2CompatUtils
 		}
 	}
 
-	function requireWindowEx()
-	{
-		if (typeof global.Window.registerExEvent == "Object") return;
-
-		trace(messageTag+".requireWindowEx");
-
-		onBeforeWindowExLink();
-
-		loadPlugin("windowEx.dll");
-	}
-
-	function onBeforeWindowExLink()
-	{
-		// [XXX] typeof 参照で遅延読み込みが入る／ない場合はダミーを作成
-		if (typeof global.MenuItem == "undefined")
-			/**/   global.MenuItem  = %[];
-
-		if (typeof global.Pad      == "undefined")
-			/**/   global.Pad       = %[];
-
-		if (typeof Debug.console   == "undefined")
-			/**/   Debug.console    = %[];
-	}
-
-	function delayLoadPlugin   (plugin, ref, pre) { return makeDelay(@"${pre} loadPlugin('${plugin}'); return ${ref};"); }
 	function delayLoadFunction (module, ref)      { return makeDelay(@"require('${module}'); return ${ref};"); }
 	function delayLoadSingleton(module, cls, ovr) { return makeDelay(@"require('${module}'); return ${ovr} = new ${cls}();"); }
 	function delayLoadProperty { return delayLoadFunction(...); }
@@ -209,6 +180,10 @@ with (global.Krkr2CompatUtils = new Krkr2CompatUtils()) // replace singleton ins
 		Plugins.link("menu.dll");
 	}
 	@endif
+	
+	@if (! K2COMPAT_PURGE_INPUTSTRING)
+	&System.inputString  = .delayLoadFunction("inputstring", "System.inputString");
+	@endif
 
 	@if (! K2COMPAT_PURGE_DEBUG)
 	if (System.getArgument("-debugwin") != "no")
@@ -260,4 +235,20 @@ with (global.Krkr2CompatUtils = new Krkr2CompatUtils()) // replace singleton ins
 		@endif
 	}
 	@endif // !K2COMPAT_PURGE_DEBUG
+
+	@if (! K2COMPAT_PURGE_FONTSELECT)
+	&System.doFontSelect = .delayLoadFunction("fontselect",  "System.doFontSelect");
+	Layer.k2compat_doUserSelect = function(*)
+	{
+		var face = System.doFontSelect(this, *);
+		if (face !== void) this.font.face = face;
+		return face !== void;
+	} incontextof null;
+	.hookInjection(Layer, "Layer", function (orig, *)
+	{
+		var r = orig(*);
+		this.doUserSelect = (this.k2compat_doUserSelect);
+		return r;
+	} incontextof null);
+	@endif // !K2COMPAT_PURGE_FONTSELECT
 }
