@@ -1,2 +1,7 @@
 *.ks text diff working-tree-encoding=UTF-16LE-BOM eol=CRLF
 *.tjs text diff working-tree-encoding=UTF-16LE-BOM eol=CRLF
+
+*.ks linguist-language=KAGScript
+*.tjs linguist-language=TJS2Script
+*.html linguist-language=false
+*.css linguist-language=false
