@@ -197,15 +197,6 @@ function drawButtonCaption(caption,size=16)
   var link = kag.current.links[kag.current.links.count-1];
   var button = link.object;
 
-  link.hintLayer = new Layer(button.window ,button.parent.parent);
-  with(link.hintLayer)
-  {
-    .visible = false;
-    .ignoreHintSensing = true;
-    .font.height = 14;
-    .hitThreshold = 256;
-  }
-
 	caption=getTransStr(caption);
 
 	button.font.height = size;     //文字大小设定

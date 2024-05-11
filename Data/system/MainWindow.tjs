@@ -82,6 +82,8 @@ class KAGWindow extends Window
 	var chDefaultFace; // 文字のデフォルトのフォント
 
     var initialMessageLayerVisible = true;
+	
+	var hintLayer = void;
 
 	var historyLayer; // メッセージ履歴レイヤ
 	/*C*/var historyWriteEnabled = true; // メッセージレイヤに文字を出力するか
@@ -604,6 +606,15 @@ class KAGWindow extends Window
 		back.event.setCompLayer(fore.event);
 		fore.event.freeImage();
 		back.event.freeImage();
+
+		hintLayer = new Layer(this, primaryLayer);
+		with(hintLayer)
+		{
+			.visible = false;
+			.ignoreHintSensing = true;
+			.font.height = 14;
+			.hitThreshold = 256;
+		}
 
 		// メッセージ履歴レイヤの作成
         historyLayer = new HistoryLayer(this, fore.base);
@@ -4792,8 +4803,6 @@ class KAGWindow extends Window
 
 	function onHintChanged(text, x, y, isshow)
     {
-		var hintLayer = kag.current.links[kag.current.links.count-1].hintLayer;
-		if (hintLayer == void) return;
 		with(hintLayer)
 		{
 			if(isshow)
