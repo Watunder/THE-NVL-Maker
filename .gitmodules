@@ -1,3 +1,6 @@
 [submodule "tool/THE-NVL-Wizard"]
 	path = tool/THE-NVL-Wizard
 	url = git@github.com:Watunder/THE-NVL-Wizard.git
+[submodule "code/THE-NVL-KRKR"]
+	path = code/THE-NVL-KRKR
+	url = git@github.com:Watunder/THE-NVL-KRKR.git
