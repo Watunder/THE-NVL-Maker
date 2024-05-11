@@ -4790,6 +4790,39 @@ class KAGWindow extends Window
 		super.onMouseDown(...);
 	}
 
+	function onHintChanged(text, x, y, isshow)
+    {
+		var hintLayer = kag.current.links[kag.current.links.count-1].hintLayer;
+		if (hintLayer == void) return;
+		with(hintLayer)
+		{
+			if(isshow)
+			{
+				var w = .font.getTextWidth( text ) + 6;
+				var h = .font.getTextHeight( text ) + 4 + 4;
+				.setImageSize( w, h );
+				.setSizeToImageSize();
+
+				.setPos(x * (scWidth/innerWidth), y * (scHeight/innerHeight));
+
+				.fillRect(0, 0, w, h, 0);
+				.colorRect(0, 0, w, h, clInfoBk, 196);
+
+				.colorRect(0, 0, 1, h, 0xFFFFFF);
+				.colorRect(0, 0, w, 1, 0xFFFFFF);
+				.colorRect(w-1, 0, 1, h, 0xFFFFFF);
+				.colorRect(0, h-1, w, 1, 0xFFFFFF);
+
+				.drawText(2, 2, text, clInfoText, 220);
+				.visible = true;
+			}
+			else
+			{
+				.visible = false;
+			}
+		}
+	}
+
 	//------------------------------------------------------- キーボード操作 --
 
 	function processKeys(key, shift)

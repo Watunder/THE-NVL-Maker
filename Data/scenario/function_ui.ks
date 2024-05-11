@@ -3,7 +3,7 @@
 ;     Copyright (C) 2011  VariableD http://www.nvlmaker.net/
 
 ;     You should have received a copy of the GNU General Public License
-;     along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+;     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;-------------------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------------------------
 ;UI背景板描绘
@@ -130,7 +130,7 @@ function countPage(count,line)
    f.page=count\line;
    if (count%line>0) f.page++;
    //默认翻到最后一页
-   f.curpage=f.page;   
+   f.curpage=f.page;
    //默认不选中
    f.select=count;
 }
@@ -194,7 +194,17 @@ function update()
 [iscript]
 function drawButtonCaption(caption,size=16)
 {
-	var button=kag.current.links[kag.current.links.count-1].object;
+  var link = kag.current.links[kag.current.links.count-1];
+  var button = link.object;
+
+  link.hintLayer = new Layer(button.window ,button.parent.parent);
+  with(link.hintLayer)
+  {
+    .visible = false;
+    .ignoreHintSensing = true;
+    .font.height = 14;
+    .hitThreshold = 256;
+  }
 
 	caption=getTransStr(caption);
 
@@ -336,7 +346,7 @@ function DrawPosFrame(x=40,y=50)
       var setting=new Dictionary();
       setting.normal="edit_button_copy";
       setting.target="*调整位置";
-      
+
       kag.tagHandlers.button(setting);
 */
 }
@@ -365,10 +375,10 @@ function drawEdit(title,value,posX,posY,length=224,cond='')
 
   kag.tagHandlers.locate(%["x"=>posX,"y"=>posY]);
   kag.tagHandlers.ch(%["text"=>title]);
-  
+
   var width=kag.current.font.getTextWidth(title);
   kag.tagHandlers.locate(%["x"=>posX+width+20,"y"=>posY]);
-  
+
   if (value!=void)
   {
       //描绘编辑框
@@ -659,7 +669,7 @@ function drawGroup(title,value,posX,posY,comp)
   kag.tagHandlers.locate(%["x"=>posX,"y"=>posY+5]);
   //取得值
   var result=value!;
-  
+
   if (result==comp)
   {
     kag.tagHandlers.button(%[
@@ -676,7 +686,7 @@ function drawGroup(title,value,posX,posY,comp)
     "target"=>"*window"
     ]);
   }
-  
+
 }
 [endscript]
 ;---------------------------------------------------------------
@@ -718,7 +728,7 @@ function drawWin(layer,message,title,width,height)
      if (.top>=10) .top=10;
      .width=width;
      .height=height;
-  }  
+  }
 }
 [endscript]
 ;---------------------------------------------------------------
@@ -743,7 +753,7 @@ var height=(line+1)*20+5;
      .fillRect(left+1,top+21,width-2,1,0xFFaca899);
      //边框
      .fillRect(left,top,width,1,0xFFaca899);
-     .fillRect(left,top,1,height,0xFFaca899);  
+     .fillRect(left,top,1,height,0xFFaca899);
      .fillRect(left,top+height-1,width,1,0xFFaca899);
      .fillRect(left+width-1,top,1,height,0xFFaca899);
      //列表
