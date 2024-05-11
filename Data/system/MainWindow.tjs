@@ -82,6 +82,8 @@ class KAGWindow extends Window
 	var chDefaultFace; // 文字のデフォルトのフォント
 
     var initialMessageLayerVisible = true;
+	
+	var hintLayer = void;
 
 	var historyLayer; // メッセージ履歴レイヤ
 	/*C*/var historyWriteEnabled = true; // メッセージレイヤに文字を出力するか
@@ -604,6 +606,15 @@ class KAGWindow extends Window
 		back.event.setCompLayer(fore.event);
 		fore.event.freeImage();
 		back.event.freeImage();
+
+		hintLayer = new Layer(this, primaryLayer);
+		with(hintLayer)
+		{
+			.visible = false;
+			.ignoreHintSensing = true;
+			.font.height = 14;
+			.hitThreshold = 256;
+		}
 
 		// メッセージ履歴レイヤの作成
         historyLayer = new HistoryLayer(this, fore.base);
@@ -4788,6 +4799,37 @@ class KAGWindow extends Window
         lastMouseDownX = x;
 		lastMouseDownY = y;
 		super.onMouseDown(...);
+	}
+
+	function onHintChanged(text, x, y, isshow)
+    {
+		with(hintLayer)
+		{
+			if(isshow)
+			{
+				var w = .font.getTextWidth( text ) + 6;
+				var h = .font.getTextHeight( text ) + 4 + 4;
+				.setImageSize( w, h );
+				.setSizeToImageSize();
+
+				.setPos(x * (scWidth/innerWidth), y * (scHeight/innerHeight));
+
+				.fillRect(0, 0, w, h, 0);
+				.colorRect(0, 0, w, h, clInfoBk, 196);
+
+				.colorRect(0, 0, 1, h, 0xFFFFFF);
+				.colorRect(0, 0, w, 1, 0xFFFFFF);
+				.colorRect(w-1, 0, 1, h, 0xFFFFFF);
+				.colorRect(0, h-1, w, 1, 0xFFFFFF);
+
+				.drawText(2, 2, text, clInfoText, 220);
+				.visible = true;
+			}
+			else
+			{
+				.visible = false;
+			}
+		}
 	}
 
 	//------------------------------------------------------- キーボード操作 --
