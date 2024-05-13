@@ -16,6 +16,9 @@ class uiSliderLayer extends uiLayer
    var normal;
    var over;
    var on;
+
+   var type="slider";
+
   //---------------------------------------------------创建---------------------------------------------------
   function uiSliderLayer(elm)
   {
@@ -95,6 +98,9 @@ class uiSliderLayer extends uiLayer
       dic.over=this.over;
       dic.on=this.on;
       dic.use=this.visible;
+
+      dic.type=this.type;
+
       return dic;
    }
 }

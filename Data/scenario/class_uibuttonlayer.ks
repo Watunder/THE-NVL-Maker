@@ -25,6 +25,8 @@ class uiButtonLayer extends uiLayer
 	var normalcolor;
 	var overcolor;
 	var oncolor;
+
+	var type="button";
   //---------------------------------------------------创建---------------------------------------------------
   function uiButtonLayer(elm)
   {
@@ -136,6 +138,8 @@ class uiButtonLayer extends uiLayer
       dic.normalcolor=this.normalcolor;
       dic.overcolor=this.overcolor;
       dic.oncolor=this.oncolor;
+
+      dic.type=this.type;
 
       return dic;
    }

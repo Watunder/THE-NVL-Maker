@@ -24,6 +24,8 @@ class uiYNMsgLayer extends uiLayer
 	var centerleft;
 	var centertop;
 
+	var type="ynMsg";
+
 	  function uiYNMsgLayer(str,elm)
   {
         super.Layer(kag, parent);
@@ -120,6 +122,8 @@ class uiYNMsgLayer extends uiLayer
 		dic.textsize=this.font.height;
 		dic.bold=this.font.bold;
 		dic.italic=this.font.italic;
+
+		dic.type=this.type;
 
       	return dic;
  }

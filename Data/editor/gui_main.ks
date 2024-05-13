@@ -277,6 +277,8 @@ if (f.config_endmode!=void) outAsJson("uiendmode.json",f.config_endmode);
 if (f.config_bgmmode!=void) outAsJson("uibgmmode.json",f.config_bgmmode);
 
 outAsJson("namelist.json",f.config_name);
+outAsJson("uititle_omake.json",f.config_title_omake);
+outAsJson("omake.json",f.config_map);
 
 System.inform("导出至"+Storages.getLocalName(sf.outputpath+"json/"));
 //打开文件夹

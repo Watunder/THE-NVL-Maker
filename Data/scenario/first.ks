@@ -153,12 +153,8 @@ sf.version_date="2018/11/20";
 [call storage="class_uicheckboxlayer.ks"]
 
 [call storage="class_uimapbuttonlayer.ks"]
-[call storage="class_uiedubuttonlayer.ks"]
 [call storage="class_uiadvbuttonlayer.ks"]
 [call storage="class_getadvlayer.ks"]
-
-[call storage="class_uiedupiclayer.ks"]
-[call storage="class_uiedutextlayer.ks"]
 
 [call storage="class_getmarginlayer.ks"]
 [call storage="class_uislbutton.ks"]

@@ -20,10 +20,10 @@ f.uilayer[1]=new uiButtonLayer(f.config_menu.load);
 f.uilayer[2]=new uiButtonLayer(f.config_menu.option);
 f.uilayer[3]=new uiButtonLayer(f.config_menu.history);
 
-f.uilayer[4]=new uiButtonLayer(f.config_menu.other);
-f.uilayer[5]=new uiButtonLayer(f.config_menu.exit);
-f.uilayer[6]=new uiButtonLayer(f.config_menu.totitle);
-f.uilayer[7]=new uiButtonLayer(f.config_menu.back);
+f.uilayer[4]=new uiButtonLayer(f.config_menu.exit);
+f.uilayer[5]=new uiButtonLayer(f.config_menu.totitle);
+f.uilayer[6]=new uiButtonLayer(f.config_menu.back);
+//f.uilayer[?]=new uiButtonLayer(f.config_menu.other);
 [endscript]
 
 *window
@@ -55,10 +55,10 @@ drawButtonSetting("读取进度","f.uilayer[1]",sf.gs.width+50,start_y+20+30);
 drawButtonSetting("系统设定","f.uilayer[2]",sf.gs.width+50,start_y+20+30*2);
 drawButtonSetting("历史记录","f.uilayer[3]",sf.gs.width+50,start_y+20+30*3);
 
-drawButtonSetting("自定选单","f.uilayer[4]",sf.gs.width+50,start_y+20+30*4);
-drawButtonSetting("离开游戏","f.uilayer[5]",sf.gs.width+50,start_y+20+30*5);
-drawButtonSetting("返回标题","f.uilayer[6]",sf.gs.width+50,start_y+20+30*6);
-drawButtonSetting("回到游戏","f.uilayer[7]",sf.gs.width+50,start_y+20+30*7);
+drawButtonSetting("离开游戏","f.uilayer[4]",sf.gs.width+50,start_y+20+30*4);
+drawButtonSetting("返回标题","f.uilayer[5]",sf.gs.width+50,start_y+20+30*5);
+drawButtonSetting("回到游戏","f.uilayer[6]",sf.gs.width+50,start_y+20+30*6);
+//drawButtonSetting("自定选单","f.uilayer[4]",sf.gs.width+50,start_y+20+30*?);
 //--------------------------------------------------------
 DrawPosFrame();
 [endscript]
@@ -87,10 +87,10 @@ f.config_menu.load=f.uilayer[1].ButtonElm();
 f.config_menu.option=f.uilayer[2].ButtonElm();
 f.config_menu.history=f.uilayer[3].ButtonElm();
 
-f.config_menu.other=f.uilayer[4].ButtonElm();
-f.config_menu.exit=f.uilayer[5].ButtonElm();
-f.config_menu.totitle=f.uilayer[6].ButtonElm();
-f.config_menu.back=f.uilayer[7].ButtonElm();
+f.config_menu.exit=f.uilayer[4].ButtonElm();
+f.config_menu.totitle=f.uilayer[5].ButtonElm();
+f.config_menu.back=f.uilayer[6].ButtonElm();
+//f.config_menu.other=f.uilayer[?].ButtonElm();
 
 //保存字典
 SaveDic(f.config_menu,"uimenu.tjs");

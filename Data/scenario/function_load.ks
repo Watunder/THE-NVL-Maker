@@ -328,6 +328,8 @@ function loadUIData()
 	f.config_bgmmode=LoadDic('uibgmmode.tjs');
 	f.config_yesno=LoadDic('uiyesno.tjs');
 	f.config_sel=LoadDic('uisel.tjs');
+	f.config_title_omake=LoadDic("uititle_omake.tjs");
+	f.config_map=LoadDic('omake.map');
 }
 [endscript]
 ;-----------------------------------------------------------------------------------

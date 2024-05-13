@@ -27,6 +27,8 @@ class uiFrameLayer extends uiLayer
 	var textsize;
 	var anchorc;
 
+	var type="frame";
+
 	function uiFrameLayer(str,elm)
 	{
         super.Layer(kag, parent);
@@ -137,6 +139,8 @@ class uiFrameLayer extends uiLayer
 		dic.textx=this.textx;
 		dic.texty=this.texty;
 		dic.anchorc=this.anchorc;
+
+		dic.type=this.type;
 		
 		return dic;
 	}

@@ -85,7 +85,7 @@ for (var i=0;i<f.uilayer.count;i++)
 f.config_map[i+1]=f.uilayer[i].ButtonElm();
 }
 //保存
-f.config_map.saveStruct(sf.path+"map/"+f.mapname);
+f.config_map.saveStruct(sf.path+"nvl/"+f.mapname);
 [endscript]
 
 *关闭选单

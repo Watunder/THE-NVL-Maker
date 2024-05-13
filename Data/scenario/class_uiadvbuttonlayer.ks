@@ -14,6 +14,7 @@ class uiAdvButtonLayer extends uiMapButtonLayer
 	var r_width;
 	var r_height;
 
+	var type="advButton";
   //---------------------------------------------------创建---------------------------------------------------
   function uiAdvButtonLayer(elm)
   {
@@ -61,6 +62,8 @@ class uiAdvButtonLayer extends uiMapButtonLayer
 		//将该层的各数据输出，供字典保存用
 		dic.width=this.width;
 		dic.height=this.height;
+
+		dic.type=this.type;
 
       	return dic;
    }

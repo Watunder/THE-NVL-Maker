@@ -21,6 +21,8 @@ class uiSLButton extends uiButtonLayer
 {
 
    var num;
+
+   var type="slButotn";
    
    function uiSLButton(num)
    {
@@ -289,6 +291,9 @@ class uiSnapLayer extends uiLayer
       dic.x=this.left;
       dic.y=this.top;
       dic.visible=this.visible;
+
+      dic.type="snap";
+
       return dic;
    }
 }
@@ -384,6 +389,9 @@ var color;
       dic.y=this.top;
       dic.use=this.visible;
       dic.size=this.font.height;
+
+      dic.type="text";
+
       return dic;
  }
 }

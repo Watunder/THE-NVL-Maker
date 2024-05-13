@@ -35,6 +35,8 @@ class uiListLayer extends uiLayer
 	var disx;
 	var temp;
 
+	var type="listButton";
+
 	//---------------------------------------------------创建---------------------------------------------------
 	function uiListLayer(elm)
 	{
@@ -197,6 +199,8 @@ class uiListLayer extends uiLayer
 		dic.face=this.face;
 		dic.size=this.size;
 		dic.color=(string)this.color;
+
+		dic.type=this.type;
 	
       	return dic;
    }

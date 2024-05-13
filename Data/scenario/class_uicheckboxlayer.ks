@@ -4,6 +4,8 @@ class uiCheckboxLayer extends uiButtonLayer
 {
 	var on_over;
 
+	var type="checkBox";
+
 	function uiCheckboxLayer(elm)
 	{
 		super.uiButtonLayer(...);
@@ -14,6 +16,9 @@ class uiCheckboxLayer extends uiButtonLayer
 		var dic=super.ButtonElm();
 
 		dic.on_over=this.on_over;
+
+		dic.type=this.type;
+
 		return dic;
    }
 

@@ -16,6 +16,9 @@ var marginl;
 var marginr;
 var margint;
 var marginb;
+
+var type="message";
+
   //---------------------------------------------------创建---------------------------------------------------
   function uiMessageLayer(elm)
   {
@@ -92,6 +95,9 @@ var marginb;
       dic.marginr=this.marginr;
       dic.margint=this.margint;
       dic.marginb=this.marginb;
+
+      dic.type=this.type;
+
       return dic;
    }
 }

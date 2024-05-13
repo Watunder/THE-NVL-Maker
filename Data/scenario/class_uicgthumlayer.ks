@@ -18,6 +18,8 @@ class uiCgThumLayer extends uiLayer
 	var thumx;
 	var thumy;
 
+	var type="cgThum";
+
   //---------------------------------------------------创建---------------------------------------------------
   function uiCgThumLayer(elm,dic)
   {
@@ -35,6 +37,8 @@ class uiCgThumLayer extends uiLayer
 		this.thum=dic.thum;
 		this.thumx=dic.x;
 		this.thumy=dic.y;
+
+		dic.type=this.type;
 
 		hitType = htMask;
 		hitThreshold =0;

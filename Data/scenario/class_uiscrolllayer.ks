@@ -27,6 +27,8 @@ class uiScrollLayer extends uiLayer
 	var button_color="0xFFFFFF";
 	var button_opacity=128;
 
+	var type="scroll";
+
    //---------------------------------------------------创建---------------------------------------------------
    function uiScrollLayer(elm)
    {
@@ -143,6 +145,8 @@ class uiScrollLayer extends uiLayer
 		
 		dic.button_opacity=this.button_opacity;
 		dic.button_color=this.button_color;
+
+		dic.type=this.type;
       
       return dic;
    }

@@ -14,6 +14,8 @@ class uiBackLayer extends Layer
 	var stitle_x;
 	var stitle_y;
 
+	var type="back";
+
   //父层
   var parent=kag.fore.layers[4];
 
@@ -87,6 +89,9 @@ class uiBackLayer extends Layer
 		dic.stitle=this.stitle;
 		dic.stitle_x=this.stitle_x;
 		dic.stitle_y=this.stitle_y;
+
+		dic.type=this.type;
+
 		return dic;
 	}
 }
